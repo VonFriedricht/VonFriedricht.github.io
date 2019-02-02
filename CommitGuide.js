@@ -39,7 +39,7 @@ class CommitGuide{
         }
     }
     
-    remind(user){
+    remind(user, time){
         user.send("Hi!\n"+current_lyrics().join("\n"))
     }
 

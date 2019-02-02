@@ -1,0 +1,23 @@
+{
+  "name": "weight-of-the-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VonFriedricht/Weight-of-the-World.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VonFriedricht/Weight-of-the-World/issues"
+  },
+  "homepage": "https://github.com/VonFriedricht/Weight-of-the-World#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "discord.js": "^11.4.2"
+  }
+}

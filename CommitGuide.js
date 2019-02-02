@@ -19,7 +19,13 @@ class CommitGuide{
             message.channel.send(this.preview)
         }
         if(message.content == ".now"){
-            message.channel.send(this.current_date)
+            var date = this.current_date
+            var target = this.target_image[this.current_date]
+            var preview = this.preview_tiles[target-1]
+            var size = this.tile_sizes[target-1]
+            var lyrics_snippet = this.current_lyrics
+
+            message.channel.send(JSON.stringify({date, target, preview, size, lyrics_snippet}))
         }
         if(message.content.startsWith(".phrases of ")){
             var parameter = message.content.substring(".phrases of ".length)
@@ -92,7 +98,7 @@ class CommitGuide{
     
     get preview(){
         var result = new Array(7).fill("")
-        for( var i in this.target_image ){
+        for(var i in this.target_image){
             var tile = this.preview_tiles[this.target_image[i]-1]
             result[(i%7)] += tile+tile
         }

@@ -1,4 +1,6 @@
-Discord = require("discord.js")
+const Discord = require("discord.js")
+const CommitGuide = require("./CommitGuide.js")
+
 const bot = new Discord.Client()
 
 const ADMIN = process.env.admin

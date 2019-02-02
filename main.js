@@ -2,51 +2,122 @@ Discord = require("discord.js")
 const bot = new Discord.Client()
 
 const ADMIN = process.env.admin
-const DESTINY_TOKEN = process.env.destiny
 const TOP_LEFT_DAY = process.env.top_left_day
 const COMMIT_IMAGE = process.env.commit_image
-const LYRICS = process.env.lyrics
+const LYRICS = process.env.lyrics.split("+")
+const DESTINY_TOKEN = process.env.destiny
 
 bot.on("ready",async function(){
     bot.admin = bot.users.find(user=>user.id==ADMIN)
     console.log("My Body is Ready!")
-    commitguide_init(bot)
+    const commitguide = new CommitGuide(bot, {
+        top_left_day: TOP_LEFT_DAY,
+        target_image: COMMIT_IMAGE,
+        lyrics: LYRICS
+    })
 })
 
 bot.login(DESTINY_TOKEN)
 
-function commitguide_init(bot){
-    bot.commitguide = {
-        preview_tiles: "─░▓█",
-        top_left_day: TOP_LEFT_DAY,
-        target_text: COMMIT_IMAGE,
-        lyrics: LYRICS,
-        sizes: [0,1,5,10]
+class CommitGuide{
+    constructor(bot, options){
+        this.preview_tiles = options.preview_tiles || "─░▓█"
+        this.top_left_day = options.top_left_day || "1970-01-01"
+        this.target_image = options.target_image || "1111111122222413333344444444"
+        this.lyrics = options.lyrics || false
+        this.tile_sizes = options.tile_sizes || [0,1,5,10]
+        
+        bot.on("message", (message) => {
+            this.on_message(message)
+        })
     }
-    bot.commitguide.get_current_date = () => {
-        var current_time_ms = new Date().getTime()-new Date(top_left_day).getTime()
-        var current_time_day = current_time_ms/1000/60/60/24
-        return Math.floor(current_time_day)
+    
+    set preview_tiles(new_value){
+        if(typeof new_value[0] != "undefined"){
+            this._preview_tiles = new_value
+        }
+        else{
+            console.error("preview_tiles has to be indexable")
+        }
     }
-    bot.commitguide.get_current_tile = () => {
-        return target_text[this.get_current_day()]
+    get preview_tiles(){
+        return this._preview_tiles
     }
-    bot.commitguide.get_preview = () => {
+    
+    set top_left_day(time){
+        if(new Date(time).getTime()){
+            this._top_left_day = new Date(time)
+        }
+        else{
+            console.error("top_left_day can't be an Invalid Time")
+        }
+    }
+    get top_left_day(){
+        return this._top_left_day
+    }
+    
+    set target_image(new_value){
+        this._target_image = new_value
+    }
+    get target_image(){
+        return this._target_image
+    }
+    
+    set lyrics(new_value){
+        if(typeof new_value == "string"){
+            new_value = new_value.split(" ")
+        }
+        this._lyrics = new_value
+    }
+    get lyrics(){
+        return this._lyrics
+    }
+    
+    set tile_sizes(new_value){
+        this._tile_sizes = new_value
+    }
+    get tile_sizes(){
+        return this._tile_sizes
+    }
+    
+    get current_date(){
+        var time_ms = new Date().getTime()-this.top_left_day.getTime()
+        var time_days = time_ms/1000/60/60/24
+        return Math.floor(time_days)
+    }
+    
+    set target_image(new_value){
+        if(typeof new_value[0] != "undefined"){
+            this._target_image = new_value
+        }
+        else{
+            console.error("target_image has to be some indexable")
+        }
+    }
+    
+    get preview(){
         var result = new Array(7).fill("")
-        for( var i in bot.commitguide.target_text ){
-            var tile = bot.commitguide.preview_tiles[bot.commitguide.target_text[i]-1]
+        for( var i in this.target_image ){
+            var tile = this.preview_tiles[this.target_image[i]-1]
             result[(i%7)] += tile+tile
         }
         return result.join("\n")
     }
-    bot.commitguide.on_message = (message) => {
-        if( message.content == "test" ){
-            message.reply(bot.commitguide.preview_tiles)
+    
+    on_message(message){
+        console.log(this)
+        if(message.content == "test"){
+            message.reply(this.preview_tiles)
         }
-        if( message.content == ".show preview" ){
-            message.channel.send(bot.commitguide.get_preview())
+        if(message.content == ".preview"){
+            message.channel.send(this.preview)
+        }
+        if(message.content == ".now"){
+            message.channel.send(this.current_date)
+        }
+        if(message.content.startsWith(".phrases of ")){
+            var parameter = message.content.substring(".phrases of ".length)
+            message.channel.send(parameter)
         }
     }
-
-    bot.on("message",bot.commitguide.on_message)
 }

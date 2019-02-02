@@ -1,5 +1,5 @@
 /**
- * helping help(p)er for the commits to make it an image ¯\_(ツ)_/¯
+ * helping helper for the commits to make it an image ¯\_(ツ)_/¯
  */
 class CommitGuide{
     constructor(bot, options){

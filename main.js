@@ -8,7 +8,7 @@ const COMMIT_IMAGE = process.env.commit_image
 const LYRICS = process.env.lyrics
 
 bot.on("ready",async function(){
-    bot.admin = bot.users.find(user=>user.id==ADMIN
+    bot.admin = bot.users.find(user=>user.id==ADMIN)
     console.log("My Body is Ready!")
     commitguide_init(bot)
 })

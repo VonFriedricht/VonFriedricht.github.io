@@ -78,7 +78,7 @@ class CommitGuide{
     
    /**
     * guiding thread for the commit-names
-    * @param {string} new_value the new lyrics
+    * @param {string|array} new_value the new lyrics (string gets space-seperated by default)
     */
     set lyrics(new_value){
         if(typeof new_value == "string"){

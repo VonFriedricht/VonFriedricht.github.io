@@ -11,6 +11,22 @@ class CommitGuide{
         })
     }
     
+    on_message(message){
+        if(message.content == "test"){
+            message.reply(this.preview_tiles)
+        }
+        if(message.content == ".preview"){
+            message.channel.send(this.preview)
+        }
+        if(message.content == ".now"){
+            message.channel.send(this.current_date)
+        }
+        if(message.content.startsWith(".phrases of ")){
+            var parameter = message.content.substring(".phrases of ".length)
+            message.channel.send(parameter)
+        }
+    }
+    
     set preview_tiles(new_value){
         if(typeof new_value[0] != "undefined"){
             this._preview_tiles = new_value
@@ -81,23 +97,6 @@ class CommitGuide{
             result[(i%7)] += tile+tile
         }
         return result.join("\n")
-    }
-    
-    on_message(message){
-        console.log(this)
-        if(message.content == "test"){
-            message.reply(this.preview_tiles)
-        }
-        if(message.content == ".preview"){
-            message.channel.send(this.preview)
-        }
-        if(message.content == ".now"){
-            message.channel.send(this.current_date)
-        }
-        if(message.content.startsWith(".phrases of ")){
-            var parameter = message.content.substring(".phrases of ".length)
-            message.channel.send(parameter)
-        }
     }
 }
 

@@ -3,6 +3,9 @@ const bot = new Discord.Client()
 
 const ADMIN = process.env.admin
 const DESTINY_TOKEN = process.env.destiny
+const TOP_LEFT_DAY = process.env.top_left_day
+const COMMIT_IMAGE = process.env.commit_image
+const LYRICS = process.env.lyrics
 
 bot.on("ready",async function(){
     bot.admin = bot.users.find(user=>user.id==ADMIN

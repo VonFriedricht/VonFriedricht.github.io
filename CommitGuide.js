@@ -9,6 +9,9 @@ class CommitGuide{
         this.lyrics = options.lyrics || false
         this.tile_sizes = options.tile_sizes || [0,1,5,10]
         
+        if(options.admin){
+            this.remind(options.admin,60*1000)
+        }
         bot.on("message", (message) => {
             this.on_message(message)
         })
@@ -23,7 +26,7 @@ class CommitGuide{
         }
         if(message.content == ".now"){
             var date = this.current_date
-            var target = this.target_image[this.current_date]
+            var target = this.current_tile
             var preview = this.preview_tiles[target-1]
             var size = this.tile_sizes[target-1]
             var lyrics_snippet = this.current_lyrics
@@ -36,6 +39,10 @@ class CommitGuide{
         }
     }
     
+    remind(user){
+        user.send("Hi!\n"+current_lyrics().join("\n"))
+    }
+
    /**
     * tiles for the target_image-preview at the command .preview
     * @param {string|array} new_value the tiles for the preview
@@ -81,6 +88,9 @@ class CommitGuide{
             console.error("target_image has to be some indexable")
         }
     }
+    get target_image(){
+        return this._target_image
+    }
     
    /**
     * guiding thread for the commit-names
@@ -88,9 +98,9 @@ class CommitGuide{
     */
     set lyrics(new_value){
         if(typeof new_value == "string"){
-            new_value = new_value.split(" ")
+            new_value = new_value.split(",")
         }
-        this._lyrics = new_value
+        this._lyrics = new_value.filter(element=>element.length>0)
     }
     get lyrics(){
         return this._lyrics
@@ -107,11 +117,17 @@ class CommitGuide{
         return this._tile_sizes
     }
 
+
+    // get current_tile
+    get current_tile(){
+        return this.target_image[this.current_date]
+    }
+
    /**
     * the current tile relative to the target_image-beginning
     */
     get current_date(){
-        var time_ms = new Date().getTime()-this.top_left_day.getTime()
+        var time_ms = new Date("2019-02-05").getTime()-this.top_left_day.getTime()
         var time_days = time_ms/1000/60/60/24
         return Math.floor(time_days)
     }
@@ -126,6 +142,18 @@ class CommitGuide{
             result[(i%7)] += tile+tile
         }
         return result.join("\n")
+    }
+
+   /**
+    * getting the current relevant lyrics-snippet
+    */
+    get current_lyrics(){
+        var offset = 0
+        this.target_image.substr(0,this.current_date).split("").forEach(tile=>{
+            offset += +this.tile_sizes[+tile-1]
+        })
+        var current_size = this.tile_sizes[this.current_tile-1]
+        return this.lyrics.slice(offset,offset+current_size)
     }
 }
 

@@ -1,3 +1,6 @@
+/**
+ * helping helper for the commits to make it an image ¯\_(ツ)_/¯
+ */
 class CommitGuide{
     constructor(bot, options){
         this.preview_tiles = options.preview_tiles || "─░▓█"
@@ -33,6 +36,10 @@ class CommitGuide{
         }
     }
     
+   /**
+    * tiles for the target_image-preview at the command .preview
+    * @param {string|array} new_value the tiles for the preview
+    */
     set preview_tiles(new_value){
         if(typeof new_value[0] != "undefined"){
             this._preview_tiles = new_value
@@ -45,6 +52,11 @@ class CommitGuide{
         return this._preview_tiles
     }
     
+   /**
+    * the date for the very first tile in the collection 
+    * (should be the one on the top right)
+    * @param {string|Date} time the date of the first tile
+    */
     set top_left_day(time){
         if(new Date(time).getTime()){
             this._top_left_day = new Date(time)
@@ -57,13 +69,23 @@ class CommitGuide{
         return this._top_left_day
     }
     
+   /**
+    * setting the target_image for the commits
+    * @param {string|array} new_value the new target_image
+    */ 
     set target_image(new_value){
-        this._target_image = new_value
-    }
-    get target_image(){
-        return this._target_image
+        if(typeof new_value[0] != "undefined"){
+            this._target_image = new_value
+        }
+        else{
+            console.error("target_image has to be some indexable")
+        }
     }
     
+   /**
+    * guiding thread for the commit-names
+    * @param {string|array} new_value the new lyrics (string gets space-seperated by default)
+    */
     set lyrics(new_value){
         if(typeof new_value == "string"){
             new_value = new_value.split(" ")
@@ -74,28 +96,29 @@ class CommitGuide{
         return this._lyrics
     }
     
+   /**
+    * the size of each tile in commits
+    * @param {string|array} new_value the new tile-sizes
+    */
     set tile_sizes(new_value){
         this._tile_sizes = new_value
     }
     get tile_sizes(){
         return this._tile_sizes
     }
-    
+
+   /**
+    * the current tile relative to the target_image-beginning
+    */
     get current_date(){
         var time_ms = new Date().getTime()-this.top_left_day.getTime()
         var time_days = time_ms/1000/60/60/24
         return Math.floor(time_days)
     }
     
-    set target_image(new_value){
-        if(typeof new_value[0] != "undefined"){
-            this._target_image = new_value
-        }
-        else{
-            console.error("target_image has to be some indexable")
-        }
-    }
-    
+   /**
+    * getting the target_image translated into a preview
+    */
     get preview(){
         var result = new Array(7).fill("")
         for(var i in this.target_image){

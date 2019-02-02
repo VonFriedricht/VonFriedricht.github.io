@@ -6,7 +6,7 @@ const bot = new Discord.Client()
 const ADMIN = process.env.admin
 const TOP_LEFT_DAY = process.env.top_left_day
 const COMMIT_IMAGE = process.env.commit_image
-const LYRICS = process.env.lyrics.split("+")
+const LYRICS = process.env.lyrics
 const DESTINY_TOKEN = process.env.destiny
 
 bot.on("ready",async function(){

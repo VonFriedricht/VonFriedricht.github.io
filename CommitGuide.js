@@ -161,7 +161,7 @@ class CommitGuide{
         var offset = 0
         this.target_image.substr(0,this.current_date).split("").forEach(tile=>{
             console.log(offset, tile)
-            offset += parseInt(this.tile_sizes[parseInt(tile)])
+            offset += parseInt(this.tile_sizes[parseInt(tile)-1])
         })
         var current_size = this.tile_sizes[this.current_tile-1]
         return this.lyrics.slice(offset,offset+current_size)

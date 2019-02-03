@@ -50,7 +50,7 @@ class CommitGuide{
     }
     
     remind(user, time){
-        user.send("Hi!\n"+this.current_lyrics.join("\n"))
+        user.send(this.current_lyrics.join("\n"))
     }
 
    /**
@@ -160,6 +160,7 @@ class CommitGuide{
     get current_lyrics(){
         var offset = 0
         this.target_image.substr(0,this.current_date-1).split("").forEach(tile=>{
+            console.log(offset, tile)
             offset += parseInt(this.tile_sizes[parseInt(tile)-1])
         })
         var current_size = this.tile_sizes[this.current_tile-1]

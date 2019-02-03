@@ -50,6 +50,7 @@ class CommitGuide{
     }
     
     remind(user, time){
+        user.send("today's commit-names: ")
         user.send(this.current_lyrics.join("\n"))
     }
 
@@ -137,7 +138,7 @@ class CommitGuide{
     * the current tile relative to the target_image-beginning
     */
     get current_date(){
-        var time_ms = new Date("2019-02-02").getTime()-this.top_left_day.getTime()
+        var time_ms = new Date().getTime()-this.top_left_day.getTime()
         var time_days = time_ms/1000/60/60/24
         return Math.floor(time_days)
     }

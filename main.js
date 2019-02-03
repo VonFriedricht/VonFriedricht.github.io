@@ -6,7 +6,7 @@ const commitguide = new CommitGuide(bot, {
     top_left_day: process.env.top_left_day,
     target_image: process.env.commit_image,
     lyrics: process.env.lyrics,
-    admin: process.env.admin
+    admin: process.env.admin.split("+")
 })
 
 bot.on("ready",async function(){

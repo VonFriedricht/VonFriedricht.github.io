@@ -22,10 +22,8 @@ class CommitGuide{
     on_ready(bot){
         console.log(this)
         if( bot.admin ){
-            console.log("2")
             bot.admin.send("booted")
-            remind(bot.admin, 5)
-            console.log("3")
+            this.remind(bot.admin, 5)
         }
     }
     

@@ -9,11 +9,7 @@ class CommitGuide{
         this.lyrics = options.lyrics || false
         this.tile_sizes = options.tile_sizes || [0,1,5,10]
         this.admin = options.admin || -1
-        
-        if(options.admin){
-            this.remind(options.admin,60*1000)
-        }
-        
+                
         bot.on("ready",async function(){
             bot.admin = bot.users.find(user=>user.id==this.admin)
             if( this.admin ){

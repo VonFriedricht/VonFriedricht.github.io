@@ -10,20 +10,24 @@ class CommitGuide{
         this.tile_sizes = options.tile_sizes || [0,1,5,10]
         this.admin = options.admin || -1
                 
-        bot.on("ready",async function(){
-            console.log("0")
-            bot.admin = bot.users.find(user=>user.id==this.admin)
-            console.log("1")
-            if( this.admin ){
-                console.log("2")
-                this.admin.send("booted")
-                remind(this.admin, 5)
-                console.log("3")
-            }
+        bot.on("ready", () => {
+            this.on_ready()
         })
         bot.on("message", (message) => {
             this.on_message(message)
         })
+    }
+    
+    on_ready(){
+        console.log(this)
+        bot.admin = bot.users.find(user=>user.id==this.admin)
+        console.log(bot)
+        if( bot.admin ){
+            console.log("2")
+            bot.admin.send("booted")
+            remind(bot.admin, 5)
+            console.log("3")
+        }
     }
     
     on_message(message){

@@ -11,17 +11,16 @@ class CommitGuide{
         this.admin = options.admin || -1
                 
         bot.on("ready", () => {
-            this.on_ready()
+            bot.admin = bot.users.find(user=>user.id==this.admin)
+            this.on_ready(bot)
         })
         bot.on("message", (message) => {
             this.on_message(message)
         })
     }
     
-    on_ready(){
+    on_ready(bot){
         console.log(this)
-        bot.admin = bot.users.find(user=>user.id==this.admin)
-        console.log(bot)
         if( bot.admin ){
             console.log("2")
             bot.admin.send("booted")

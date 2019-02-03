@@ -18,6 +18,7 @@ class CommitGuide{
             bot.admin = bot.users.find(user=>user.id==this.admin)
             if( this.admin ){
                 this.admin.send("booted")
+                remind(this.admin, 5)
             }
         })
         bot.on("message", (message) => {
@@ -48,7 +49,7 @@ class CommitGuide{
     }
     
     remind(user, time){
-        user.send("Hi!\n"+current_lyrics().join("\n"))
+        user.send("Hi!\n"+this.current_lyrics.join("\n"))
     }
 
    /**

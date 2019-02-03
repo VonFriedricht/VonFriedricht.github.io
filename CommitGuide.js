@@ -137,7 +137,7 @@ class CommitGuide{
     * the current tile relative to the target_image-beginning
     */
     get current_date(){
-        var time_ms = new Date("2019-02-05").getTime()-this.top_left_day.getTime()
+        var time_ms = new Date("2019-02-02").getTime()-this.top_left_day.getTime()
         var time_days = time_ms/1000/60/60/24
         return Math.floor(time_days)
     }
@@ -159,9 +159,9 @@ class CommitGuide{
     */
     get current_lyrics(){
         var offset = 0
-        this.target_image.substr(0,this.current_date-2).split("").forEach(tile=>{
+        this.target_image.substr(0,this.current_date).split("").forEach(tile=>{
             console.log(offset, tile)
-            offset += parseInt(this.tile_sizes[parseInt(tile)-1])
+            offset += parseInt(this.tile_sizes[parseInt(tile)-])
         })
         var current_size = this.tile_sizes[this.current_tile-1]
         return this.lyrics.slice(offset,offset+current_size)

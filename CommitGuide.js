@@ -20,11 +20,11 @@ class CommitGuide{
         })
     }
     
-    on_ready(bot){
+    async on_ready(bot){
         console.log(this)
         if( bot.admin ){
-            bot.admin.send("booted")
-            this.remind(bot.admin, 5)
+            //await bot.admin.send("booted")
+            this.remind(bot.admin)
         }
     }
     
@@ -52,6 +52,9 @@ class CommitGuide{
     
     async remind(user, time){
         let remind_flag = `commits for day ${this.current_date}`
+        if( !user.dmChannel ){
+            await user.send(":thinking:")
+        }
         let has_already_remind = (await user.dmChannel.fetchMessages()).some(message=>message.content==remind_flag)
         if( !has_already_remind ){
             user.send(remind_flag)

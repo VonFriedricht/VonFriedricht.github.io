@@ -13,6 +13,7 @@ class CommitGuide{
         bot.on("ready", () => {
             bot.admin = bot.users.find(user=>user.id==this.admin)
             this.on_ready(bot)
+            console.log("CommitGuide Ready!")
         })
         bot.on("message", (message) => {
             this.on_message(message)

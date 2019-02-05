@@ -52,8 +52,8 @@ class CommitGuide{
     
     async remind(user, time){
         let remind_flag = `commits for day ${this.current_date}`
-        if( !bot.admin.dmChannel ){
-            await bot.admin.send(":thinking:")
+        if( !user.dmChannel ){
+            await user.send(":thinking:")
         }
         let has_already_remind = (await user.dmChannel.fetchMessages()).some(message=>message.content==remind_flag)
         if( !has_already_remind ){

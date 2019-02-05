@@ -165,7 +165,7 @@ class CommitGuide{
             offset += parseInt(this.tile_sizes[parseInt(tile)-1])
         })
         var current_size = this.tile_sizes[this.current_tile-1]
-        return this.lyrics.slice(offset,offset+current_size)
+        return this.lyrics.slice(offset-1,offset+current_size-1)
     }
 }
 

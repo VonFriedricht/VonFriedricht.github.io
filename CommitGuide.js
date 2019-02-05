@@ -32,6 +32,10 @@ class CommitGuide{
         }
     }
     
+    /**
+    * function that triggers when a message is received by the bot
+    * @param {Discord.message} message the message itself
+    */
     on_message(message){
         if(message.content == "test"){
             message.reply(this.preview_tiles)

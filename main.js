@@ -5,7 +5,7 @@ const CommitGuide = require("./CommitGuide.js")
 const commitguide = new CommitGuide(bot, {
     top_left_day: process.env.top_left_day,
     target_image: process.env.commit_image,
-    lyrics: process.env.lyrics.split(" "),
+    lyrics: process.env.lyrics.split("+"),
     admin: process.env.admin
 })
 

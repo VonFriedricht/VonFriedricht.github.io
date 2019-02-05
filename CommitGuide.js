@@ -20,6 +20,10 @@ class CommitGuide{
         })
     }
     
+    /**
+    * function that triggers after the bot successfully connects
+    * @param {Discord.Client} bot the the bot-client
+    */
     async on_ready(bot){
         console.log(this)
         if( bot.admin ){

@@ -23,8 +23,8 @@ class CommitGuide{
     async on_ready(bot){
         console.log(this)
         if( bot.admin ){
-            //await bot.admin.send("booted")
-            this.remind(bot.admin)
+            await bot.admin.send("booted")
+            setInterval(this.remind,60*60*1000,bot.admin)
         }
     }
     

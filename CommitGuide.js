@@ -50,9 +50,16 @@ class CommitGuide{
         }
     }
     
-    remind(user, time){
-        user.send("today's commit-names: ")
-        user.send(this.current_lyrics.join("\n"))
+    async remind(user, time){
+        let remind_flag = `commits for day ${this.current_date}`
+        let has_already_remind = (await user.dmChannel.fetchMessages()).some(message=>message.content==remind_flag)
+        if( !has_already_remind ){
+            user.send(remind_flag)
+            user.send(this.current_lyrics.join("\n"))
+        }
+        else{
+            console.log(`not sending "${remind_flag}"`)
+        }
     }
 
    /**

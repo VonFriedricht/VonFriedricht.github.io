@@ -212,7 +212,7 @@ class CommitGuide{
     
     async get_next_words(solutions){
         var all = this.lyrics
-        var key = await this.get_last_commits(5).reverse()
+        var key = (await this.get_last_commits(5)).reverse()
         var pointer = 0
         var verifier = 0
         var requested_solutions = solutions

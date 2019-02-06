@@ -20,14 +20,22 @@ class CommitGuide{
         })
     }
     
+    /**
+    * function that triggers after the bot successfully connects
+    * @param {Discord.Client} bot the the bot-client
+    */
     async on_ready(bot){
         console.log(this)
         if( bot.admin ){
-            //await bot.admin.send("booted")
-            this.remind(bot.admin)
+            await bot.admin.send("booted")
+            setInterval(this.remind,60*60*1000,bot.admin)
         }
     }
     
+    /**
+    * function that triggers when a message is received by the bot
+    * @param {Discord.message} message the message itself
+    */
     on_message(message){
         if(message.content == "test"){
             message.reply(this.preview_tiles)

@@ -60,6 +60,11 @@ class CommitGuide{
             var last_commits = await this.get_last_commits(parameter)
             message.channel.send(last_commits)
         }
+        if(message.content.startsWith(".next")){
+            var parameter = message.content.substring(".next ".length)
+            var next_words = await this.get_next_words(parameter)
+            message.channel.send(next_words)
+        }
     }
     
     async remind(user, time){
@@ -203,6 +208,32 @@ class CommitGuide{
             last_commits.push(b[1])
         }
         return last_commits
+    }
+    
+    async get_next_words(solutions){
+        var all = this.lyrics
+        var key = await this.get_last_commits(50)
+        var pointer = 0
+        var verifier = 0
+        var requested_solutions = solutions
+        var solution = []
+        for( var i = 0; i < all.length; i++ ){
+            if( all[i].toLowerCase() == key[0].toLowerCase() ){
+                for( var j = 0; j < key.length; j++ ){
+                    if( all[i+j].toLowerCase() != key[j].toLowerCase() ){
+                        break;
+                    }
+                }
+                if( j == key.length ){
+                    solution.push("###")
+                    for( var k = 0; k < requested_solutions && all[i+j+k]; k++ ){
+                        solution.push(all[i+j+k])
+                    }
+                    solution.push("###")
+                }
+            }
+        }
+        return solution
     }
 }
 

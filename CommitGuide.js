@@ -191,7 +191,7 @@ class CommitGuide{
     }
     
     async get_last_commits(number = 5){
-        commits = await axios.get("https://github.com/VonFriedricht/Weight-of-the-World/commits/master")
+        var commits = await axios.get("https://github.com/VonFriedricht/Weight-of-the-World/commits/master")
 
         var commitname_reg = /message js-navigation-open.*?>(.*?)<\/a>/g
         var commitsite_data = commits.data

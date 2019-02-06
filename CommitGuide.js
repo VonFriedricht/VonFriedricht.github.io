@@ -199,7 +199,7 @@ class CommitGuide{
         var b = ""
         var last_commits = []
         while( (b = commitname_reg.exec(commitsite_data)) && i-->0 ){
-            last_ten_commits.push(b[1])
+            last_commits.push(b[1])
         }
         return last_commits
     }

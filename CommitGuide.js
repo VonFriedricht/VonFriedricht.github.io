@@ -1,3 +1,5 @@
+const axios = require("axios")
+
 /**
  * helping helper for the commits to make it an image ¯\_(ツ)_/¯
  */
@@ -36,7 +38,7 @@ class CommitGuide{
     * function that triggers when a message is received by the bot
     * @param {Discord.message} message the message itself
     */
-    on_message(message){
+    async on_message(message){
         if(message.content == "test"){
             message.reply(this.preview_tiles)
         }
@@ -52,9 +54,10 @@ class CommitGuide{
 
             message.channel.send(JSON.stringify({date, target, preview, size, lyrics_snippet}))
         }
-        if(message.content.startsWith(".phrases of ")){
-            var parameter = message.content.substring(".phrases of ".length)
-            message.channel.send(parameter)
+        if(message.content.startsWith(".commits")){
+            var parameter = message.content.substring(".commits ".length)
+            var last_commits = await this.get_last_commits(parameter)
+            message.channel.send(last_commits)
         }
     }
     
@@ -69,7 +72,7 @@ class CommitGuide{
             user.send(this.current_lyrics.join("\n"))
         }
         else{
-            console.log(`not sending "${remind_flag}"`)
+            user.send(`not sending this message in the future // ${remind_flag}`)
         }
     }
 
@@ -185,6 +188,20 @@ class CommitGuide{
         })
         var current_size = this.tile_sizes[this.current_tile-1]
         return this.lyrics.slice(offset-1,offset+current_size-1)
+    }
+    
+    async get_last_commits(number = 5){
+        commits = await axios.get("https://github.com/VonFriedricht/Weight-of-the-World/commits/master")
+
+        var commitname_reg = /message js-navigation-open.*?>(.*?)<\/a>/g
+        var commitsite_data = commits.data
+        var i = number
+        var b = ""
+        var last_commits = []
+        while( (b = commitname_reg.exec(commitsite_data)) && i-->0 ){
+            last_ten_commits.push(b[1])
+        }
+        return last_commits
     }
 }
 

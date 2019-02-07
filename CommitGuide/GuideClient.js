@@ -14,6 +14,9 @@ class GuideClient extends Client{
     if( typeof new_admin == "string" ){
       this._admin = this.users.find(u=>u.id==new_admin)
     }
+    if( new_admin instanceof Discord.User ){
+      this._admin = new_admin
+    }
   }
   get admin(){
     return this._admin

@@ -64,9 +64,7 @@ class CommitGuide{
             message.channel.send(next_words)
         }
         if(message.content.startsWith(".today")){
-            var todays_commits = this.tile_sizes[this.current_tile]
-            message.channel.send(this.current_date)
-            message.channel.send(this.target_image)
+            var todays_commits = this.tile_sizes[this.current_tile-1]
             message.channel.send(`todays commits: ${todays_commits}`)
             var next_words = await this.get_next_words(todays_commits)
             message.channel.send(next_words)

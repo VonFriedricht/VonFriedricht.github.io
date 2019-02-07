@@ -65,6 +65,12 @@ class CommitGuide{
             var next_words = await this.get_next_words(parameter)
             message.channel.send(next_words)
         }
+        if(message.content.startsWith(".today")){
+            var todays_commits = this.tile_sizes[this.current_tile]
+            message.channel.send(`todays commits: ${todays_commits}`)
+            var next_words = await this.get_next_words(todays_commits)
+            message.channel.send(next_words)
+        }
     }
     
     async remind(user, time){

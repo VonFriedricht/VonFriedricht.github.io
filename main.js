@@ -14,3 +14,4 @@ bot.on("ready",async function(){
 })
 
 bot.login(process.env.destiny)
+require("./CommitGuide/guide")

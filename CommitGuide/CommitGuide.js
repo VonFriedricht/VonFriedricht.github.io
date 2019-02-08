@@ -1,3 +1,5 @@
+const Discord = require("discord.js")
+
 class CommitGuide{
   constructor(bot, options){
     this.bot = bot
@@ -8,5 +10,18 @@ class CommitGuide{
     this.lyrics = options.lyrics || false
     this.tile_sizes = options.tile_sizes || [0,1,5,10]
     this.admin = options.admin || -1
+    
+    set bot(new_bot){
+      if(new_bot instanceof Discord.Client){
+         this._bot = new_bot
+      }
+      else{
+        throw "CommitGuide.bot must be Discord.Client"
+      }
+    }
+    get bot(){
+      retrun this._bot
+    }
+    
   }
 }

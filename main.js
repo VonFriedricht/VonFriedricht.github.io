@@ -11,7 +11,12 @@ const commitguide = new CommitGuide(bot, {
 
 bot.on("ready",async function(){
     console.log("My Body is Ready!")
+    try{
+        require("./CommitGuide/guide")
+    }
+    catch(err){
+        bot.users.find(u=>u.id==process.env.admin).send(err.message)
+    }
 })
 
 bot.login(process.env.destiny)
-require("./CommitGuide/guide")

@@ -35,3 +35,5 @@ class GuideClient extends Client{
         this.on("message",this.exec_command)
     }
 }
+
+module.exports = GuideClient

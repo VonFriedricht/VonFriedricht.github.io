@@ -69,6 +69,16 @@ class CommitGuide{
             var next_words = await this.get_next_words(todays_commits)
             message.channel.send(next_words)
         }
+        if(message.content == ".status"){
+            var date = new Date().toISOString().split("T")[0]
+            var site = (await axios.get("https://github.com/VonFriedricht")).data
+            var target_reg = new RegExp(`data-count="(.*?)" data-date="${date}"`,"g")
+            var todays_commits = this.tile_sizes[this.current_tile-1]
+            message.channel.send(`todays commits: ${todays_commits}`)
+            var r = target_reg.exec(site)
+            message.reply(`${+r[1]}/${todays_commits}`)
+            message.reply(`(${r[0]})`)
+        }
     }
     
     async remind(user, time){

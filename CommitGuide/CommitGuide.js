@@ -1,25 +1,65 @@
 const Discord = require("discord.js")
+const Client = Discord.Client
+const fs = require("fs")
 
-class CommitGuide{
-  constructor(bot, options){
-    this.bot = bot
+class GuideClient extends Client{
+  constructor(){
+    super()
+    this.prefix = "."
+    this.commands = []
+  }
+  set admin(new_admin){
+    if( typeof new_admin == "string" ){
+      this._admin = this.users.find(u=>u.id==new_admin)
+    }
+    if( new_admin instanceof Discord.User ){
+      this._admin = new_admin
+    }
+  }
+  get admin(){
+    if( this._admin ){
+      return this._admin
+    }
+  }
     
-    this.preview_tiles = options.preview_tiles || "─░▓█"
-    this.top_left_day = options.top_left_day || "1970-01-01"
-    this.target_image = options.target_image || "1111111122222413333344444444"
-    this.lyrics = options.lyrics || false
-    this.tile_sizes = options.tile_sizes || [0,1,5,10]
-    this.admin = options.admin || -1
+  add_command(name, func){
+    var command = new Command(name, func)
+    this.commands.push(command)
   }
-  set bot(new_bot){
-    if(new_bot instanceof Discord.Client){
-       this._bot = new_bot
-    }
-    else{
-      throw "CommitGuide.bot must be Discord.Client"
+  add_commandfolder(commandfolder){
+    if(commandfolder){
+      if(!commandfolder.match(/\/$/)){
+        commandfolder = commandfolder+"/"               
+      }
+      fs.readdirSync(commandfolder).forEach(file=>{
+        var filename = file.split(".")
+        if( filename[1] == "js" ){
+          try{ 
+            this.add_command(`${this.prefix}${filename[0]}`, require(`${commandfolder}${file}`))
+          }
+          catch(err){ 
+            console.log(err) 
+          }
+        }
+      })
     }
   }
-  get bot(){
-    retrun this._bot
+  exec_command(message){
+    var command = message.content.toLowerCase().split(" ")[0]
+    var target_command = this.commands.find(c=>c.name==command)
+    if( target_command ){
+      target_command.execute(this, message)
+    }
+  }
+  listen(commandfolders){
+    if(typeof commandfolders == "string"){
+      commandfolders = [commandfolders]
+    }
+    if(Array.isArray(commandfolders)){
+      commandfolders.forEach(this.add_commandfolder)
+    }
+    this.on("message",this.exec_command)
   }
 }
+
+module.exports = GuideClient

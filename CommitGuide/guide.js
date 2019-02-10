@@ -4,7 +4,8 @@ var client = new CommitGuide()
 
 client.on("ready",function(){
   client.listen("./CommitGuide/commands/")
-  client.admin= "397063436049186818"
+  client.admin="397063436049186818"
+  client.admin.send("nyeh!")
 })
 
 client.login(process.env.beta)

@@ -10,6 +10,9 @@ class CommitGuide extends GuideClient{
     this.lyrics = options.lyrics || false
     this.tile_sizes = options.tile_sizes || [0,1,5,10]
   }
+  get async todays_commits(){
+    return 1+1
+  }
 }
 
 module.exports = CommitGuide

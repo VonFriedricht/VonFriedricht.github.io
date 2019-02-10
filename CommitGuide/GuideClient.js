@@ -1,6 +1,7 @@
 const Discord = require("discord.js")
 const Client = Discord.Client
 const Command = require("./Command")
+const CommitGuide = require("./CommitGuide")
 const fs = require("fs")
 
 class GuideClient extends Client{
@@ -8,6 +9,7 @@ class GuideClient extends Client{
     super()
     this.prefix = "."
     this.commands = []
+    this.guide = new CommitGuide()
   }
   set admin(new_admin){
     if( typeof new_admin == "string" ){

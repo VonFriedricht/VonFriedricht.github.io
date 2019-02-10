@@ -19,3 +19,5 @@ class CommitGuide extends GuideClient{
     return this._admin
   }
 }
+
+module.exports = CommitGuide

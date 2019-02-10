@@ -15,7 +15,7 @@ class CommitGuide extends GuideClient{
     var date = new Date(req_date)
     return (await axios.get("http://aws.random.cat/meow")).data.file
   }
-  async get_made_commits(req_user="VonFriedricht", req_date=null){
+  async get_made_commits(req_user="VonFriedricht", req_date){
     // date: format YYYY-MM-DD
     var date = new Date(req_date).toISOString().split("T")[0]
 

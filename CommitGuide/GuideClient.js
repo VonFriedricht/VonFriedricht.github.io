@@ -30,7 +30,6 @@ class GuideClient extends Client{
   }
   add_commandfolder(commandfolder){
     if(commandfolder){
-      var bot = this
       if(!commandfolder.match(/\/$/)){
         commandfolder = commandfolder+"/"               
       }
@@ -38,8 +37,7 @@ class GuideClient extends Client{
         var filename = file.split(".")
         if( filename[1] == "js" ){
           try{
-            console.log(this)
-            bot.add_command(`${bot.prefix}${filename[0]}`, require(`../${commandfolder}${file}`))
+            this.add_command(`${this.prefix}${filename[0]}`, require(`../${commandfolder}${file}`))
           }
           catch(err){ 
             console.log(err) 
@@ -60,9 +58,9 @@ class GuideClient extends Client{
       commandfolders = [commandfolders]
     }
     if(Array.isArray(commandfolders)){
-      commandfolders.forEach(this.add_commandfolder)
+      commandfolders.forEach(()=>{this.add_commandfolder})
     }
-    this.on("message",this.exec_command)
+    this.on("message",()=>{this.exec_command})
   }
 }
 

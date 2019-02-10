@@ -1,6 +1,6 @@
+const axios = require("axios")
+
 module.exports = async (bot, message, args) => {
-  const axios = require("axios")
-  
   var response = []
   var user = args || "VonFriedricht"
   
@@ -13,6 +13,8 @@ module.exports = async (bot, message, args) => {
   
   // regular expression to find the data-count for the given date
   var target_reg = new RegExp(`data-count="(.*?)" data-date="${date}"`,"g")
+  message.channel.send(JSON.stringify(target_reg))
+  /*
   var todays_commits = await bot.get_todays_commits()
   var r = target_reg.exec(site)
   response.push(`todays commits: ${+r[1]}/${todays_commits}`)
@@ -21,4 +23,5 @@ module.exports = async (bot, message, args) => {
   response.push(`(${r[0]})`)
   
   message.channel.send(response.join("\n"))
+  */
 }

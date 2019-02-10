@@ -14,7 +14,7 @@ client.on("ready",function(){
   setInterval(function(){
     var reminder = `Its Day: ${client.day}-`
     remindorino(reminder, client.admin)
-  },10000)
+  },60*1000)
 })
 
 async function remindorino(reminder, target_user){

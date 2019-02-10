@@ -1,6 +1,6 @@
-const axios = require("axios")
-
 module.exports = async (bot, message, args) => {
+  const axios = require("axios")
+  
   var response = []
   var user = args || "VonFriedricht"
   

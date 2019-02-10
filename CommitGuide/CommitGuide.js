@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const GuideClient = require("./GuideClient")
+const axios = require("axios")
 
 class CommitGuide extends GuideClient{
   constructor(options={}){

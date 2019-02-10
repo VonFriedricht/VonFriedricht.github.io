@@ -27,10 +27,8 @@ class CommitGuide extends GuideClient{
 
     // regular expression to find the data-count for the given date
     var target_reg = new RegExp(`data-count="(.*?)" data-date="${date}"`,"g")
-
     var reg_result = target_reg.exec(sitecontent)
     var made_commits = reg_result[1]
-    
     return made_commits
   }
 }

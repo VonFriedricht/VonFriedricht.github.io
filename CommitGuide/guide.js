@@ -14,7 +14,7 @@ client.on("ready",function(){
   setInterval(function(){
     var reminder = `Its Day: ${client.day}`
     remindorino(reminder, client.admin)
-  },60*1000)
+  },10000)
 })
 
 client.login(process.env.beta)

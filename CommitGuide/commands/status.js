@@ -7,6 +7,9 @@ module.exports = async (bot, message, args = "VonFriedricht") => {
   // date: format YYYY-MM-DD
   var date = new Date().toISOString().split("T")[0]
   
+  response.push(data)
+  message.channel.send(response.join("\n"))
+  /*
   // getting github page
   var site = await axios.get(`https://github.com/${user}`)
   var sitecontent = site.data
@@ -21,4 +24,5 @@ module.exports = async (bot, message, args = "VonFriedricht") => {
   response.push(`(${r[0]})`)
   
   message.channel.send(response.join("\n"))
+  */
 }

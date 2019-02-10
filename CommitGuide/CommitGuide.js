@@ -12,18 +12,18 @@ class CommitGuide extends GuideClient{
     this.tile_sizes = options.tile_sizes || [0,1,5,10]
   }
   get day(){
-    var day = (new Date(req_date)-new Date(this.top_left_day))/86400000
+    var day = (new Date()-new Date(this.top_left_day))/86400000
     var day_int = Math.floor(day)
     return day_int
   }
-  async get_required_commits(req_date=new Date()){
+  async get_required_commits(){
     var daytile = this.target_image[this.day]
     var daysize = this.tile_sizes[daytile-1]
     return daysize
   }
-  async get_made_commits(req_user="VonFriedricht", req_date=new Date()){
+  async get_made_commits(req_user="VonFriedricht"){
     // date: format YYYY-MM-DD
-    var date = new Date(req_date).toISOString().split("T")[0]
+    var date = new Date().toISOString().split("T")[0]
 
     // getting github page
     var site = await axios.get(`https://github.com/${req_user}`)

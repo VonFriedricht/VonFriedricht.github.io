@@ -12,8 +12,10 @@ class CommitGuide extends GuideClient{
     this.tile_sizes = options.tile_sizes || [0,1,5,10]
   }
   async get_required_commits(req_date=new Date()){
-    var date = new Date(req_date)
-    return (await axios.get("http://aws.random.cat/meow")).data.file
+    var day = (new Date(req_date)-new Date(this.top_left_date))/86400000
+    var daytile = this.target_image[day]
+    var daysize = this.tile.sizes[daytile-1]
+    return daysize
   }
   async get_made_commits(req_user="VonFriedricht", req_date=new Date()){
     // date: format YYYY-MM-DD

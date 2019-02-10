@@ -9,15 +9,6 @@ class CommitGuide extends GuideClient{
     this.target_image = options.target_image || "1111111122222413333344444444"
     this.lyrics = options.lyrics || false
     this.tile_sizes = options.tile_sizes || [0,1,5,10]
-    //this.admin = options.admin || -1
-    
-    //this.admin.send("you shall be king")
-  }
-  set admin(new_admin){
-    this._admin = this.users.find(u=>u.id==new_admin)
-  }
-  get admin(){
-    return this._admin
   }
 }
 

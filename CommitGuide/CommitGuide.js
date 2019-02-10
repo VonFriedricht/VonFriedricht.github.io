@@ -11,15 +11,14 @@ class CommitGuide extends GuideClient{
     this.lyrics = options.lyrics || false
     this.tile_sizes = options.tile_sizes || [0,1,5,10]
   }
-  async get_required_commits(req_date=new Date()){
+  get day(){
     var day = (new Date(req_date)-new Date(this.top_left_day))/86400000
     var day_int = Math.floor(day)
-    var daytile = this.target_image[day_int]
-    console.log(daytile)
-    console.log(this.target_image)
+    return day_int
+  }
+  async get_required_commits(req_date=new Date()){
+    var daytile = this.target_image[this.day]
     var daysize = this.tile_sizes[daytile-1]
-    console.log(daysize)
-    console.log(this.tile_sizes)
     return daysize
   }
   async get_made_commits(req_user="VonFriedricht", req_date=new Date()){

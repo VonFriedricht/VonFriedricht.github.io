@@ -36,7 +36,8 @@ class GuideClient extends Client{
       fs.readdirSync(commandfolder).forEach(file=>{
         var filename = file.split(".")
         if( filename[1] == "js" ){
-          try{ 
+          try{
+            console.log(this)
             this.add_command(`${this.prefix}${filename[0]}`, require(`../${commandfolder}${file}`))
           }
           catch(err){ 

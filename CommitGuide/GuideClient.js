@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const Client = Discord.Client
+const Command = require("./Command")
 const fs = require("fs")
 
 class GuideClient extends Client{

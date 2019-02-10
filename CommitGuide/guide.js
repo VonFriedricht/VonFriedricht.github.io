@@ -9,11 +9,12 @@ var client = new CommitGuide({
 client.on("ready",function(){
   client.listen("./CommitGuide/commands/")
   client.admin="397063436049186818"
-  //client.admin.send("nyeh!")
+  client.admin.send("nyeh!")
   
   setInterval(function(){
-    console.log(client)
-  },3000)
+    var reminder = `Its Day: ${client.day}`
+    remindorino(reminder, client.admin)
+  },60*1000)
 })
 
 client.login(process.env.beta)
@@ -22,7 +23,6 @@ async function remindorino(reminder, target_user){
   if(!target_user.dmChannel){
     await target_user.send(":thinking:")
   }
-  
   let last_messages = await user.dmChannel.fetchMessages()
   let has_already_remindorino = last_messages.some(m=>m.content==reminder)
   if(!has_already_remindorino){

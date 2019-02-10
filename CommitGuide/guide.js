@@ -1,12 +1,11 @@
-const GuideClient = require("./GuideClient.js")
+const CommitGuide = require("./CommitGuide.js")
 
-var client = new GuideClient()
+var client = new CommitGuide()
 client.on("ready",function(){
     console.log(this)
     client.admin = "397063436049186818"
-    client.admin.send("hi!")
-    client.add_commandfolder("./CommitGuide/commands/")
-    client.listen()
+    
+    client.listen("./CommitGuide/commands/")
 })
 
 client.login(process.env.beta)

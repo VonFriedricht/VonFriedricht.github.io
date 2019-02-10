@@ -11,11 +11,11 @@ class CommitGuide extends GuideClient{
     this.lyrics = options.lyrics || false
     this.tile_sizes = options.tile_sizes || [0,1,5,10]
   }
-  async get_required_commits(req_date){
+  async get_required_commits(req_date=null){
     var date = new Date(req_date)
     return (await axios.get("http://aws.random.cat/meow")).data.file
   }
-  async get_made_commits(req_user="VonFriedricht", req_date){
+  async get_made_commits(req_user="VonFriedricht", req_date=null){
     // date: format YYYY-MM-DD
     var date = new Date(req_date).toISOString().split("T")[0]
 

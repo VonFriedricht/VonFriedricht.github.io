@@ -2,7 +2,7 @@ const axios = require("axios")
 
 module.exports = async (bot, message, args) => {
   var response = []
-  var user = args
+  var user = args || "VonFriedricht"
   
   // date: format YYYY-MM-DD
   var date = new Date().toISOString().split("T")[0]

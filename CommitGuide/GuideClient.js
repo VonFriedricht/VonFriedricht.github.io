@@ -9,7 +9,6 @@ class GuideClient extends Client{
     super()
     this.prefix = "."
     this.commands = []
-    this.guide = new CommitGuide()
   }
   set admin(new_admin){
     if( typeof new_admin == "string" ){

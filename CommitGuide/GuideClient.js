@@ -35,7 +35,7 @@ class GuideClient extends Client{
         var filename = file.split(".")
         if( filename[1] == "js" ){
           try{ 
-            this.add_command(`${this.prefix}${filename[0]}`, require(`${commandfolder}${file}`))
+            this.add_command(`${this.prefix}${filename[0]}`, require(`../${commandfolder}${file}`))
           }
           catch(err){ 
             console.log(err) 

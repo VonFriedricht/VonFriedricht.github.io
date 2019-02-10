@@ -13,7 +13,7 @@ module.exports = async (bot, message, args = "VonFriedricht") => {
   
   // regular expression to find the data-count for the given date
   var target_reg = new RegExp(`data-count="(.*?)" data-date="${date}"`,"g")
-  var todays_commits = bot.guide.todays_commits
+  var todays_commits = await bot.guide.todays_commits
   var r = target_reg.exec(site)
   response.push(`todays commits: ${+r[1]}/${todays_commits}`)
   

@@ -7,7 +7,7 @@ module.exports = async (bot, message, args = "VonFriedricht") => {
   // date: format YYYY-MM-DD
   var date = new Date().toISOString().split("T")[0]
   
-  // github page of VonFriedricht
+  // getting github page
   var site = await axios.get(`https://github.com/${user}`)
   var sitecontent = site.data
   

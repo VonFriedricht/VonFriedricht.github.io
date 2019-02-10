@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const GuideClient = require("./GuideClient")
 
 class CommitGuide extends GuideClient{
-  constructor(options){
+  constructor(options={}){
     super()
     this.preview_tiles = options.preview_tiles || "─░▓█"
     this.top_left_day = options.top_left_day || "1970-01-01"

@@ -9,7 +9,7 @@ var client = new CommitGuide({
 client.on("ready",function(){
   client.listen("./CommitGuide/commands/")
   client.admin="397063436049186818"
-  client.admin.send("nyeh!")
+  //client.admin.send("nyeh!")
   
   setInterval(function(){
     var reminder = `Its Day: ${client.day}`

@@ -1,13 +1,13 @@
 const axios = require("axios")
 
-module.exports = async (bot, message, args = "VonFriedricht") => {
+module.exports = async (bot, message, args) => {
   var response = []
   var user = args
   
   // date: format YYYY-MM-DD
   var date = new Date().toISOString().split("T")[0]
   
-  response.push(data)
+  response.push(date)
   message.channel.send(response.join("\n"))
   /*
   // getting github page

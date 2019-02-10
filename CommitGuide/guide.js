@@ -23,7 +23,7 @@ async function remindorino(reminder, target_user){
   if(!target_user.dmChannel){
     await target_user.send(":thinking:")
   }
-  let last_messages = await user.dmChannel.fetchMessages()
+  let last_messages = await target_user.dmChannel.fetchMessages()
   let has_already_remindorino = last_messages.some(m=>m.content==reminder)
   if(!has_already_remindorino){
      target_user.send(reminder)

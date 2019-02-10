@@ -58,9 +58,9 @@ class GuideClient extends Client{
       commandfolders = [commandfolders]
     }
     if(Array.isArray(commandfolders)){
-      commandfolders.forEach(()=>{this.add_commandfolder})
+      commandfolders.forEach((file)=>{this.add_commandfolder(file)})
     }
-    this.on("message",()=>{this.exec_command})
+    this.on("message",(message)=>{this.exec_command(message)})
   }
 }
 

@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+/*const Discord = require("discord.js")
 const bot = new Discord.Client()
 
 const CommitGuide = require("./CommitGuide.js")
@@ -20,3 +20,5 @@ bot.on("ready",async function(){
 })
 
 bot.login(process.env.destiny)
+*/
+require("./CommitGuide/guide")

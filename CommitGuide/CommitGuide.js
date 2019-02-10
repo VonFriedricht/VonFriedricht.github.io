@@ -13,7 +13,7 @@ class CommitGuide extends GuideClient{
   }
   async get_required_commits(req_date=new Date()){
     console.log(req_date)
-    var day = (new Date(req_date)-new Date(this.top_left_date))/86400000
+    var day = (new Date(req_date)-new Date(this.top_left_day))/86400000
     console.log(day)
     var daytile = this.target_image[day]
     console.log(daytile)

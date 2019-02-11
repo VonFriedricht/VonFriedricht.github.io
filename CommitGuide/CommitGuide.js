@@ -35,6 +35,43 @@ class CommitGuide extends GuideClient{
     var made_commits = reg_result[1]
     return made_commits
   }
+  async get_next_words(solutions){
+    var all = this.lyrics
+    var key = (await this.get_last_commits(5)).reverse()
+    var requested_solutions = solutions
+    var solution = []
+    for( var i = 0; i < all.length; i++ ){
+      if( all[i].toLowerCase() == key[0].toLowerCase() ){
+        for( var j = 0; j < key.length; j++ ){
+          if( all[i+j].toLowerCase() != key[j].toLowerCase() ){
+            break;
+          }
+        }
+        if( j == key.length ){
+          solution.push("###")
+          for( var k = 0; k < requested_solutions && all[i+j+k]; k++ ){
+            solution.push(all[i+j+k])
+          }
+          solution.push("###")
+        }
+      }
+    }
+    return solution
+  }
+  async get_last_commits(number=5, req_url){
+    var url = req_url || "https://github.com/VonFriedricht/Weight-of-the-World/commits/master"
+    var commits = await axios.get(url)
+
+    var commitname_reg = /message js-navigation-open.*?>(.*?)<\/a>/g
+    var commitsite_data = commits.data
+    var i = number
+    var b = ""
+    var last_commits = []
+    while( (b = commitname_reg.exec(commitsite_data)) && i-->0 ){
+      last_commits.push(b[1])
+    }
+    return last_commits
+  }
 }
 
 module.exports = CommitGuide

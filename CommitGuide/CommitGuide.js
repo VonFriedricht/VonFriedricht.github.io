@@ -52,7 +52,7 @@ class CommitGuide extends GuideClient{
           for( var k = 0; k < requested_solutions && all[i+j+k]; k++ ){
             solution.push(all[i+j+k])
           }
-          solution.push("###")
+          solution.push("###\n")
         }
       }
     }

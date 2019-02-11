@@ -8,4 +8,5 @@ module.exports = async (bot, message, args) => {
   var required_commits = await bot.get_required_commits()
   
   message.channel.send(`${made_commits}/${required_commits}`)
+  require("./next")(bot, message, required_commits-made_commits)
 }

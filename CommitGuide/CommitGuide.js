@@ -48,11 +48,11 @@ class CommitGuide extends GuideClient{
           }
         }
         if( j == key.length ){
-          solution.push("###")
+          solution.push("```")
           for( var k = 0; k < requested_solutions && all[i+j+k]; k++ ){
             solution.push(all[i+j+k])
           }
-          solution.push("###\n")
+          solution.push("```")
         }
       }
     }

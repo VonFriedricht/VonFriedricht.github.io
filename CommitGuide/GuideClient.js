@@ -9,7 +9,6 @@ class GuideClient extends Client{
     super()
     this.prefix = "."
     this.commands = []
-    this.guide = new CommitGuide()
   }
   set admin(new_admin){
     if( typeof new_admin == "string" ){
@@ -37,7 +36,7 @@ class GuideClient extends Client{
       fs.readdirSync(commandfolder).forEach(file=>{
         var filename = file.split(".")
         if( filename[1] == "js" ){
-          try{ 
+          try{
             this.add_command(`${this.prefix}${filename[0]}`, require(`../${commandfolder}${file}`))
           }
           catch(err){ 
@@ -59,9 +58,9 @@ class GuideClient extends Client{
       commandfolders = [commandfolders]
     }
     if(Array.isArray(commandfolders)){
-      commandfolders.forEach(this.add_commandfolder)
+      commandfolders.forEach((file)=>{this.add_commandfolder(file)})
     }
-    this.on("message",this.exec_command)
+    this.on("message",(message)=>{this.exec_command(message)})
   }
 }
 

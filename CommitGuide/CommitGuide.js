@@ -37,7 +37,7 @@ class CommitGuide extends GuideClient{
   }
   async get_next_words(solutions){
     var all = this.lyrics
-    var key = (await this.get_last_commits(5)).reverse()
+    var key = (await this.get_last_commits(25)).reverse()
     var requested_solutions = solutions
     var solution = []
     for( var i = 0; i < all.length; i++ ){

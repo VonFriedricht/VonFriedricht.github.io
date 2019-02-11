@@ -9,10 +9,13 @@ var client = new CommitGuide({
 client.on("ready",function(){
   client.listen("./CommitGuide/commands/")
   client.admin="397063436049186818"
-  //client.admin.send("nyeh!")
+  client.admin.send("nyeh!")
+  
+  var reminder = `Its Day: ${client.day}`
+  remindorino(reminder, client.admin)
   
   setInterval(function(){
-    var reminder = `-Its Day: ${client.day}`
+    var reminder = `Its Day: ${client.day}`
     remindorino(reminder, client.admin)
   },60*1000)
 })

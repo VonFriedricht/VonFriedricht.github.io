@@ -12,7 +12,7 @@ client.on("ready",function(){
   //client.admin.send("nyeh!")
   
   setInterval(function(){
-    var reminder = `Its Day: ${client.day}-`
+    var reminder = `Its Day: ${client.day}`
     remindorino(reminder, client.admin)
   },60*1000)
 })

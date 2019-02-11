@@ -27,7 +27,6 @@ class CommitGuide{
     * @param {Discord.Client} bot the the bot-client
     */
     async on_ready(bot){
-        console.log(this)
         if( bot.admin ){
             await bot.admin.send("booted")
         }

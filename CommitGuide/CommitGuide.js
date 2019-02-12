@@ -47,7 +47,7 @@ class CommitGuide extends GuideClient{
             break;
           }
         }
-        if( j == key.length ){
+        if( j == key.length && j > 0 ){
           solution.push("```")
           for( var k = 0; k < requested_solutions && all[i+j+k]; k++ ){
             solution.push(all[i+j+k])
@@ -56,7 +56,12 @@ class CommitGuide extends GuideClient{
         }
       }
     }
-    return solution
+    if( solution.length ){
+      return solution
+    }
+    else{
+      return "no words"
+    }
   }
   async get_last_commits(number=5, req_url){
     var url = req_url || "https://github.com/VonFriedricht/Weight-of-the-World/commits/master"

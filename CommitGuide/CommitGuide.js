@@ -57,7 +57,7 @@ class CommitGuide extends GuideClient{
       }
     }
     if( solution.length ){
-      return solution
+      return solution.join("\n").replace(/```\n```/g,"``` ```")
     }
     else{
       return "no words"

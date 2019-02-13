@@ -6,7 +6,7 @@ module.exports = async (bot, message, args) => {
   
   var made_commits = await bot.get_made_commits("VonFriedricht")
   var required_commits = await bot.get_required_commits()
-  response.push(`Commits: ${made_commits}/${required_commits}`)
+  response.push(`Commits: ${made_commits}/${required_commits}\n`)
   
   var wordcount = required_commits-made_commits
   var words = await bot.get_next_words(wordcount)

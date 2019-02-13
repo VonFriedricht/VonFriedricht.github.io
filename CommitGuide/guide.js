@@ -32,4 +32,4 @@ async function remindorino(reminder, target_user){
   }
 }
 
-client.login(process.env.beta)
+client.login(process.env.destiny)

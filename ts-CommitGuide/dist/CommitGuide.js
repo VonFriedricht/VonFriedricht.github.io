@@ -26,8 +26,16 @@ class CommitGuide extends discord_js_1.Client {
                 if (file instanceof Command_1.Command) {
                     guide.add_command(file);
                 }
-                if (Array.isArray(file) && file[0] instanceof Command_1.Command) {
-                    file.forEach(c => guide.add_command(c));
+                if (Array.isArray(file)) {
+                    let target_commands;
+                    target_commands = file.filter(c => c instanceof Command_1.Command);
+                    for (let c of target_commands) {
+                        guide.add_command(c);
+                    }
+                    target_commands = file.filter(c => typeof c == "function" && c.length == 3 && c.name != "");
+                    for (let c of target_commands) {
+                        guide.add_command(new Command_1.Command(c.name, c));
+                    }
                 }
             });
             console.log(guide.commands);

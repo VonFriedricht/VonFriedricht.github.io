@@ -30,10 +30,6 @@ export class CommitGuide extends Client {
         })
     }
 
-    /*execute_command(name: string, message: Message, args: string){
-        let target_command = 
-    }*/
-
     listen_user(user: User) {
         this.on("message",(message) => {
             if( message.author == user ){
@@ -53,10 +49,10 @@ export class CommitGuide extends Client {
     }
 
     handle_command(message: Message) {
-        var command = message.content.split(" ")[0]
+        var command = message.content.split(" ")[0].toLowerCase()
         var args = message.content.split(" ").slice(1).join(" ")
 
-        if( !command.startsWith(this.prefix) ) {
+        if( !command.startsWith(this.prefix.toLowerCase()) ) {
             return false
         }
         command = command.substr(this.prefix.length)

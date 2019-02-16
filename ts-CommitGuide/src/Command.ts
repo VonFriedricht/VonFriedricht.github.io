@@ -5,12 +5,20 @@ export type CustomCommand = (bot: Client, message: Message, args: string) => voi
 
 export class Command {
 
-    name: string // CommandName
+    _name: string // CommandName
     func: CustomCommand
 
     constructor(name: string, func: CustomCommand) {
         this.name = name
         this.func = func
+    }
+
+    set name(name: string) {
+        this._name = name.toLowerCase()
+    }
+
+    get name() {
+        return this._name
     }
 
     execute(bot?: Client, message?: Message, args?: string) {

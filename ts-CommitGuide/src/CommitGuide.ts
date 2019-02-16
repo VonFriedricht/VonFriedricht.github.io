@@ -1,5 +1,5 @@
 import { Client, Message, User, Channel } from "discord.js"
-import { Command } from "./Command"
+import { Command, CustomCommand } from "./Command"
 import { readdir } from "fs"
 
 export class CommitGuide extends Client {
@@ -22,9 +22,19 @@ export class CommitGuide extends Client {
         var guide = this
         readdir(dir, function(error, list){
             console.log(list)
-            list = list.filter(file=>file.match(/.js$/g))
-            list.forEach(file => {
-                guide.add_command(require(dir+"/"+file))
+            list = list.filter(file=>file.match(/\.js$/g))
+            list.forEach(filename => {
+                var file = require(dir+"/"+filename)
+                if( typeof file == "function" && file.length == 3 ){
+                    let commandname = filename.match(/(.*?)\.js$/)[1]
+                    guide.add_command(new Command(commandname, file))
+                }
+                if( file instanceof Command ){
+                    guide.add_command(file)
+                }
+                if( Array.isArray(file) && file[0] instanceof Command ){
+                    file.forEach(c => guide.add_command(c))
+                }
             })
             console.log(guide.commands)
         })

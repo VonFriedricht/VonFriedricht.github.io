@@ -1,6 +1,4 @@
-import { Command } from "./Command"
 import { CommitGuide } from "./CommitGuide"
-import { Client as DiscordClient } from "discord.js"
 
 var bot = new CommitGuide()
 

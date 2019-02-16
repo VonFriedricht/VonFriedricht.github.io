@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
+const Command_1 = require("./Command");
 const fs_1 = require("fs");
 class CommitGuide extends discord_js_1.Client {
     constructor() {
@@ -15,9 +16,19 @@ class CommitGuide extends discord_js_1.Client {
         var guide = this;
         fs_1.readdir(dir, function (error, list) {
             console.log(list);
-            list = list.filter(file => file.match(/.js$/g));
-            list.forEach(file => {
-                guide.add_command(require(dir + "/" + file));
+            list = list.filter(file => file.match(/\.js$/g));
+            list.forEach(filename => {
+                var file = require(dir + "/" + filename);
+                if (typeof file == "function" && file.length == 3) {
+                    let commandname = filename.match(/(.*?)\.js$/)[1];
+                    guide.add_command(new Command_1.Command(commandname, file));
+                }
+                if (file instanceof Command_1.Command) {
+                    guide.add_command(file);
+                }
+                if (Array.isArray(file) && file[0] instanceof Command_1.Command) {
+                    file.forEach(c => guide.add_command(c));
+                }
             });
             console.log(guide.commands);
         });

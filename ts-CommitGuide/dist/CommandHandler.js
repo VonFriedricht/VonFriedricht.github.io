@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
 const Command_1 = require("./Command");
 const fs_1 = require("fs");
-class CommitGuide extends discord_js_1.Client {
+class CommandHandler extends discord_js_1.Client {
     constructor() {
         super();
         this.prefix = ".";
@@ -71,5 +71,4 @@ class CommitGuide extends discord_js_1.Client {
         }
     }
 }
-exports.CommitGuide = CommitGuide;
-//# sourceMappingURL=CommitGuide.js.map
+exports.CommandHandler = CommandHandler;

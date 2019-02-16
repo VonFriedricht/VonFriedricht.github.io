@@ -10,4 +10,3 @@ function hewwo(bot, message, args) {
 function commits(bot, message, args) {
     message.reply(args);
 }
-//# sourceMappingURL=commits.js.map

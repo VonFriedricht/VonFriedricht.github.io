@@ -1,15 +1,13 @@
-import { CommitGuide } from "./CommitGuide"
+import { CommandHandler } from "./CommandHandler"
 
-var bot = new CommitGuide()
+var bot = new CommandHandler()
+bot.read_commanddir(__dirname+"/commands")
 
-async function exec() {
+async function main() {
     
-    await bot.login(process.env.beta)
     let vnft = bot.users.find(u=>u.id=="397063436049186818")
     bot.listen_user(vnft)
 
-    bot.read_commanddir(__dirname+"/commands")
-
 }
 
-exec()
+bot.login(process.env.beta).then(main)

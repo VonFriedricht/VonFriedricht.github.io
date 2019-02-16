@@ -1,5 +1,5 @@
-import { Command } from "../Command"
+import { Message, Client } from "discord.js";
 
-module.exports = new Command("ping", (bot, message, args) => {
+module.exports = (bot: Client, message: Message, args: string) => {
     message.reply("pong!")
-})
+}

@@ -15,36 +15,38 @@ class CommitGuide extends discord_js_1.Client {
     read_commanddir(dir) {
         var guide = this;
         fs_1.readdir(dir, function (error, list) {
-            console.log(list);
-            list = list.filter(file => file.match(/\.js$/g));
-            list.forEach(filename => {
+            let jsfiles = list.filter(file => file.match(/\.js$/g));
+            for (let filename of jsfiles) {
                 var file = require(dir + "/" + filename);
+                //  if an command has been exported
+                if (file instanceof Command_1.Command) {
+                    guide.add_command(file);
+                }
+                //  if an valid function has been exported
                 if (typeof file == "function" && file.length == 3) {
                     let commandname = filename.match(/(.*?)\.js$/)[1];
                     guide.add_command(new Command_1.Command(commandname, file));
                 }
-                if (file instanceof Command_1.Command) {
-                    guide.add_command(file);
-                }
+                //  if an array has been exported
                 if (Array.isArray(file)) {
                     let target_commands;
+                    //  for every command in the exported array
                     target_commands = file.filter(c => c instanceof Command_1.Command);
                     for (let c of target_commands) {
                         guide.add_command(c);
                     }
+                    //  for every valid function that can be interpreted as an command
                     target_commands = file.filter(c => typeof c == "function" && c.length == 3 && c.name != "");
                     for (let c of target_commands) {
                         guide.add_command(new Command_1.Command(c.name, c));
                     }
                 }
-            });
-            console.log(guide.commands);
+            }
         });
     }
     listen_user(user) {
         this.on("message", (message) => {
             if (message.author == user) {
-                console.log(this.commands);
                 this.handle_command(message);
             }
         });
@@ -52,7 +54,6 @@ class CommitGuide extends discord_js_1.Client {
     listen_channel(channel) {
         this.on("message", (message) => {
             if (message.channel == channel) {
-                console.log(this.commands);
                 this.handle_command(message);
             }
         });

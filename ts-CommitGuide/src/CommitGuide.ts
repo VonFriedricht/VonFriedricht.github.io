@@ -1,5 +1,5 @@
 import { Client, Message, User, Channel } from "discord.js"
-import { Command, CustomCommand } from "./Command"
+import { Command } from "./Command"
 import { readdir } from "fs"
 
 export class CommitGuide extends Client {
@@ -21,39 +21,45 @@ export class CommitGuide extends Client {
     read_commanddir(dir: string) {
         var guide = this
         readdir(dir, function(error, list){
-            console.log(list)
-            list = list.filter(file=>file.match(/\.js$/g))
-            list.forEach(filename => {
+            let jsfiles = list.filter(file=>file.match(/\.js$/g))
+            for(let filename of jsfiles) {
                 var file = require(dir+"/"+filename)
-                if( typeof file == "function" && file.length == 3 ){
+
+                //  if an command has been exported
+                if( file instanceof Command ) {
+                    guide.add_command(file)
+                }
+                
+                //  if an valid function has been exported
+                if( typeof file == "function" && file.length == 3 ) {
                     let commandname = filename.match(/(.*?)\.js$/)[1]
                     guide.add_command(new Command(commandname, file))
                 }
-                if( file instanceof Command ){
-                    guide.add_command(file)
-                }
-                if( Array.isArray(file) ){
+
+                //  if an array has been exported
+                if( Array.isArray(file) ) {
                     let target_commands;
 
+                    //  for every command in the exported array
                     target_commands = file.filter(c => c instanceof Command)
-                    for(let c of target_commands){
+                    for(let c of target_commands) {
                         guide.add_command(c)
                     }
 
-                    target_commands = file.filter(c => typeof c == "function" && c.length == 3 && c.name != "" )
-                    for(let c of target_commands){
+                    //  for every valid function that can be interpreted as an command
+                    target_commands = file.filter(c => typeof c == "function" && c.length == 3 && c.name != "")
+                    for(let c of target_commands) {
                         guide.add_command(new Command(c.name, c))
                     }
                 }
-            })
-            console.log(guide.commands)
+
+            }
         })
     }
 
     listen_user(user: User) {
         this.on("message",(message) => {
             if( message.author == user ){
-                console.log(this.commands)
                 this.handle_command(message)
             }
         })
@@ -61,8 +67,7 @@ export class CommitGuide extends Client {
 
     listen_channel(channel: Channel) {
         this.on("message",(message) => {
-            if( message.channel == channel ){
-                console.log(this.commands)
+            if( message.channel == channel ) {
                 this.handle_command(message)
             }
         })
@@ -71,12 +76,10 @@ export class CommitGuide extends Client {
     handle_command(message: Message) {
         var command = message.content.split(" ")[0].toLowerCase()
         var args = message.content.split(" ").slice(1).join(" ")
-
         if( !command.startsWith(this.prefix.toLowerCase()) ) {
             return false
         }
         command = command.substr(this.prefix.length)
-        
         let target_command = this.commands.find(c=>c.name==command)
         if( target_command ) {
             target_command.execute(this, message, args)

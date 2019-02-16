@@ -1,7 +1,7 @@
 import { Client, Message } from "discord.js";
 import { Command } from "../Command";
 
-module.exports = [commits, hewwo, new Command("nyeh!", function(a,b,c){
+module.exports = [commits, hewwo, new Command("nyeh", function(a,b,c){
     b.reply(c)
 })]
 

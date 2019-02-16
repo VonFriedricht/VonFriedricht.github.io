@@ -2,7 +2,7 @@ import { Client, Message, User, Channel } from "discord.js"
 import { Command } from "./Command"
 import { readdir } from "fs"
 
-export class CommitGuide extends Client {
+export class CommandHandler extends Client {
 
     prefix: string
     commands: Command[]

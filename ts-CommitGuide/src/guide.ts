@@ -1,4 +1,4 @@
-import { CommitGuide } from "./CommitGuide"
+import { CommandHandler } from "./CommandHandler"
 
 var bot = new CommitGuide({
     top_left_day: process.env.top_left_day,

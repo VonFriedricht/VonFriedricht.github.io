@@ -1,121 +1,96 @@
-import { CommandHandler } from "./CommandHandler"
-let axios = require("axios")
+import { Client, Message, User, Channel } from "discord.js"
+import { Command } from "./Command"
+import { readdir } from "fs"
 
-interface CommitGuideOptions {
-    preview_tiles?: string
-    top_left_day?: string | Date
-    target_image?: number[]
-    lyrics?: string[]
-    tile_sizes?: number[]
-}
+export class CommandHandler extends Client {
 
-export class CommitGuide extends CommandHandler {
+    prefix: string
+    commands: Command[]
+    allowed_commandnames: RegExp
 
-    preview_tiles: CommitGuideOptions["preview_tiles"]
-    top_left_day: CommitGuideOptions["top_left_day"]
-    target_image: CommitGuideOptions["target_image"]
-    lyrics: CommitGuideOptions["lyrics"]
-    tile_sizes: CommitGuideOptions["tile_sizes"]
-
-    constructor(options: CommitGuideOptions = {} ) {
+    constructor() {
         super()
-        this.preview_tiles = options.preview_tiles || "─░▓█"
-        this.top_left_day = options.top_left_day || "1970-01-01"
-        this.target_image = options.target_image || "1111111122222413333344444444".split("").map(e=>Number(e))
-        this.lyrics = options.lyrics || []
-        this.tile_sizes = options.tile_sizes || [0,1,5,10]
-    }
-    
-    get day() : number {
-        var day = (new Date().getTime()-new Date(this.top_left_day).getTime())/86400000
-        var day_int = Math.floor(day)
-        return day_int
-    }
-
-    async fetch_made_commits(username: string) : Promise<number> {
-
-        // today: format YYYY-MM-DD
-        let today_ISO = new Date().toISOString().split("T")[0]
-
-        // getting github page
-        let site = await axios.get(`https://github.com/${username}`)
-        let sitecontent: string = site.data
-
-        // regular expression to find the data-count for the given date
-        let target_reg = new RegExp(`data-count="(.*?)" data-date="${today_ISO}"`,"g")
-        let reg_result = target_reg.exec(sitecontent)
-        let made_commits = reg_result[1]
-
-        return Number(made_commits)
         
+        this.prefix = "."
+        this.commands = []
+        this.allowed_commandnames = /^[A-Za-z0-9_-]+$/
     }
 
-    get required_commits() : number {
-
-        let daytile = this.target_image[this.day]
-        let daysize = this.tile_sizes[daytile-1]
-        return daysize
-
-    }
-
-    async fetch_next_words(count: number) : Promise<string[][]> {
-        let words: string[] = this.lyrics
-        let header: string[] = await this.fetch_last_commits(25)
-        let next_words: string[][] = []
-
-        for(let i in words) {
-            if(words[i].toLowerCase() == header[0].toLowerCase()){
-
-                let j: string
-                for(j in header){
-                    let word_pointer = Number(i)+Number(j)
-                    if( words[word_pointer].toLowerCase() != header[j].toLowerCase() ){
-                        break;
-                    }
-                }
-
-                if(Number(j)+1 == header.length && Number(j) > 0){
-                    let wordgroup: string[] = []
-
-                    let word_pointer = Number(i)+Number(j)
-                    for( let k = 0; k < count && words[word_pointer+(+k)]; k++ ) {
-                        wordgroup.push(words[word_pointer+(+k)])
-                    }
-                    next_words.push(wordgroup)
-                }
-                
-            }
-        }
-
-        if( next_words.length ){
-            return next_words
+    add_command(command: Command) : void {
+        if( command.name.match(this.allowed_commandnames) ){
+            this.commands.push(command)
         }
         else{
-            return [["no words"]]
+            console.log(`Command "${this.prefix}${command.name}" not added because it does not fit ${this.allowed_commandnames}`)
         }
     }
 
-    async fetch_next_words_toString(count: number) : Promise<string> {
-        let wordgroups = await this.fetch_next_words(count)
-        return wordgroups.map(wordgroup => `\`\`\`${wordgroup.join("\n")}\`\`\``).join(" ")
+    read_commanddir(dir: string) : void {
+        var guide = this
+        readdir(dir, function(error, list){
+            let jsfiles = list.filter(file=>file.match(/\.js$/g))
+            for(let filename of jsfiles) {
+                var file = require(dir+"/"+filename)
+
+                //  if an command has been exported
+                if( file instanceof Command ) {
+                    guide.add_command(file)
+                }
+                
+                //  if an valid function has been exported
+                if( typeof file == "function" && file.length == 3 ) {
+                    let commandname = filename.match(/(.*?)\.js$/)[1]
+                    guide.add_command(new Command(commandname, file))
+                }
+
+                //  if an array has been exported
+                if( Array.isArray(file) ) {
+                    let target_commands;
+
+                    //  for every command in the exported array
+                    target_commands = file.filter(c => c instanceof Command)
+                    for(let c of target_commands) {
+                        guide.add_command(c)
+                    }
+
+                    //  for every valid function that can be interpreted as an command
+                    target_commands = file.filter(c => typeof c == "function" && c.length == 3 && c.name != "")
+                    for(let c of target_commands) {
+                        guide.add_command(new Command(c.name, c))
+                    }
+                }
+
+            }
+        })
     }
 
-    async fetch_last_commits(count: number, url?: string) : Promise<string[]> {
+    listen_user(user: User) : void {
+        this.on("message",(message) => {
+            if( message.author == user ){
+                this.handle_command(message)
+            }
+        })
+    }
 
-        let site = await axios.get(url ? url : "https://github.com/VonFriedricht/Weight-of-the-World/commits/master")
-        let sitecontent: string = site.data
+    listen_channel(channel: Channel) : void {
+        this.on("message",(message) => {
+            if( message.channel == channel ) {
+                this.handle_command(message)
+            }
+        })
+    }
 
-        let commit_net = /message js-navigation-open.*?>(.*?)<\/a>/g
-
-        let commit: string = null
-        let commits: string[] = []
-
-        for(let i = 0; i < count && (commit=commit_net.exec(sitecontent)[1]); i++) {
-            commits.push(commit)
+    handle_command(message: Message) : boolean {
+        var command = message.content.split(" ")[0].toLowerCase()
+        var args = message.content.split(" ").slice(1).join(" ")
+        if( !command.startsWith(this.prefix.toLowerCase()) ) {
+            return false
         }
-
-        return commits.reverse()
-
+        command = command.substr(this.prefix.length)
+        let target_command = this.commands.find(c=>c.name==command)
+        if( target_command ) {
+            target_command.execute(this, message, args)
+        }
     }
 
 }

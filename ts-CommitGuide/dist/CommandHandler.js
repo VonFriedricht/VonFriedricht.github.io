@@ -1,82 +1,80 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const CommandHandler_1 = require("./CommandHandler");
-let axios = require("axios");
-class CommitGuide extends CommandHandler_1.CommandHandler {
-    constructor(options = {}) {
+const discord_js_1 = require("discord.js");
+const Command_1 = require("./Command");
+const fs_1 = require("fs");
+class CommandHandler extends discord_js_1.Client {
+    constructor() {
         super();
-        this.preview_tiles = options.preview_tiles || "─░▓█";
-        this.top_left_day = options.top_left_day || "1970-01-01";
-        this.target_image = options.target_image || "1111111122222413333344444444".split("").map(e => Number(e));
-        this.lyrics = options.lyrics || [];
-        this.tile_sizes = options.tile_sizes || [0, 1, 5, 10];
+        this.prefix = ".";
+        this.commands = [];
+        this.allowed_commandnames = /^[A-Za-z0-9_-]+$/;
     }
-    get day() {
-        var day = (new Date().getTime() - new Date(this.top_left_day).getTime()) / 86400000;
-        var day_int = Math.floor(day);
-        return day_int;
-    }
-    async fetch_made_commits(username) {
-        // today: format YYYY-MM-DD
-        let today_ISO = new Date().toISOString().split("T")[0];
-        // getting github page
-        let site = await axios.get(`https://github.com/${username}`);
-        let sitecontent = site.data;
-        // regular expression to find the data-count for the given date
-        let target_reg = new RegExp(`data-count="(.*?)" data-date="${today_ISO}"`, "g");
-        let reg_result = target_reg.exec(sitecontent);
-        let made_commits = reg_result[1];
-        return Number(made_commits);
-    }
-    get required_commits() {
-        let daytile = this.target_image[this.day];
-        let daysize = this.tile_sizes[daytile - 1];
-        return daysize;
-    }
-    async fetch_next_words(count) {
-        let words = this.lyrics;
-        let header = await this.fetch_last_commits(25);
-        let next_words = [];
-        for (let i in words) {
-            if (words[i].toLowerCase() == header[0].toLowerCase()) {
-                let j;
-                for (j in header) {
-                    let word_pointer = Number(i) + Number(j);
-                    if (words[word_pointer].toLowerCase() != header[j].toLowerCase()) {
-                        break;
-                    }
-                }
-                if (Number(j) + 1 == header.length && Number(j) > 0) {
-                    let wordgroup = [];
-                    let word_pointer = Number(i) + Number(j);
-                    for (let k = 0; k < count && words[word_pointer + (+k)]; k++) {
-                        wordgroup.push(words[word_pointer + (+k)]);
-                    }
-                    next_words.push(wordgroup);
-                }
-            }
-        }
-        if (next_words.length) {
-            return next_words;
+    add_command(command) {
+        if (command.name.match(this.allowed_commandnames)) {
+            this.commands.push(command);
         }
         else {
-            return [["no words"]];
+            console.log(`Command "${this.prefix}${command.name}" not added because it does not fit ${this.allowed_commandnames}`);
         }
     }
-    async fetch_next_words_toString(count) {
-        let wordgroups = await this.fetch_next_words(count);
-        return wordgroups.map(wordgroup => `\`\`\`${wordgroup.join("\n")}\`\`\``).join(" ");
+    read_commanddir(dir) {
+        var guide = this;
+        fs_1.readdir(dir, function (error, list) {
+            let jsfiles = list.filter(file => file.match(/\.js$/g));
+            for (let filename of jsfiles) {
+                var file = require(dir + "/" + filename);
+                //  if an command has been exported
+                if (file instanceof Command_1.Command) {
+                    guide.add_command(file);
+                }
+                //  if an valid function has been exported
+                if (typeof file == "function" && file.length == 3) {
+                    let commandname = filename.match(/(.*?)\.js$/)[1];
+                    guide.add_command(new Command_1.Command(commandname, file));
+                }
+                //  if an array has been exported
+                if (Array.isArray(file)) {
+                    let target_commands;
+                    //  for every command in the exported array
+                    target_commands = file.filter(c => c instanceof Command_1.Command);
+                    for (let c of target_commands) {
+                        guide.add_command(c);
+                    }
+                    //  for every valid function that can be interpreted as an command
+                    target_commands = file.filter(c => typeof c == "function" && c.length == 3 && c.name != "");
+                    for (let c of target_commands) {
+                        guide.add_command(new Command_1.Command(c.name, c));
+                    }
+                }
+            }
+        });
     }
-    async fetch_last_commits(count, url) {
-        let site = await axios.get(url ? url : "https://github.com/VonFriedricht/Weight-of-the-World/commits/master");
-        let sitecontent = site.data;
-        let commit_net = /message js-navigation-open.*?>(.*?)<\/a>/g;
-        let commit = null;
-        let commits = [];
-        for (let i = 0; i < count && (commit = commit_net.exec(sitecontent)[1]); i++) {
-            commits.push(commit);
+    listen_user(user) {
+        this.on("message", (message) => {
+            if (message.author == user) {
+                this.handle_command(message);
+            }
+        });
+    }
+    listen_channel(channel) {
+        this.on("message", (message) => {
+            if (message.channel == channel) {
+                this.handle_command(message);
+            }
+        });
+    }
+    handle_command(message) {
+        var command = message.content.split(" ")[0].toLowerCase();
+        var args = message.content.split(" ").slice(1).join(" ");
+        if (!command.startsWith(this.prefix.toLowerCase())) {
+            return false;
         }
-        return commits.reverse();
+        command = command.substr(this.prefix.length);
+        let target_command = this.commands.find(c => c.name == command);
+        if (target_command) {
+            target_command.execute(this, message, args);
+        }
     }
 }
-exports.CommitGuide = CommitGuide;
+exports.CommandHandler = CommandHandler;

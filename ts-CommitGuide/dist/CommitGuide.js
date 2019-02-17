@@ -48,7 +48,7 @@ class CommitGuide extends CommandHandler_1.CommandHandler {
                 }
                 if (Number(j) + 1 == header.length && Number(j) > 0) {
                     let wordgroup = [];
-                    let word_pointer = Number(i) + Number(j);
+                    let word_pointer = Number(i) + Number(j) + 1;
                     for (let k = 0; k < count && words[word_pointer + (+k)]; k++) {
                         wordgroup.push(words[word_pointer + (+k)]);
                     }
@@ -65,7 +65,7 @@ class CommitGuide extends CommandHandler_1.CommandHandler {
     }
     async fetch_next_words_toString(count) {
         let wordgroups = await this.fetch_next_words(count);
-        return wordgroups.map(wordgroup => `\`\`\`${wordgroup.join("\n")}\`\`\``).join(" ");
+        return wordgroups.map(wordgroup => `\`${wordgroup.join("\n")}\``).join(" ");
     }
     async fetch_last_commits(count, url) {
         let site = await axios.get(url ? url : "https://github.com/VonFriedricht/Weight-of-the-World/commits/master");

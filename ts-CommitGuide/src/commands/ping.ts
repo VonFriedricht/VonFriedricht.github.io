@@ -1,5 +1,8 @@
-import { Message, Client } from "discord.js";
+import { Command } from "../Command"
+import { Client, Message } from "discord.js"
 
-module.exports = (bot: Client, message: Message, args: string) => {
+let ping = new Command ("ping", function (bot: Client, message: Message, args: string) {
     message.reply("pong!")
-}
+})
+
+module.exports = ping 

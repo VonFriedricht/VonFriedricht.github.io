@@ -8,9 +8,15 @@ class CommandHandler extends discord_js_1.Client {
         super();
         this.prefix = ".";
         this.commands = [];
+        this.allowed_commandnames = /^[A-Za-z0-9_-]+$/;
     }
     add_command(command) {
-        this.commands.push(command);
+        if (command.name.match(this.allowed_commandnames)) {
+            this.commands.push(command);
+        }
+        else {
+            console.log(`Command "${this.prefix}${command.name}" not added because it does not fit ${this.allowed_commandnames}`);
+        }
     }
     read_commanddir(dir) {
         var guide = this;

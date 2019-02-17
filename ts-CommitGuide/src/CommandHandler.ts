@@ -6,19 +6,26 @@ export class CommandHandler extends Client {
 
     prefix: string
     commands: Command[]
+    allowed_commandnames: RegExp
 
     constructor() {
         super()
         
         this.prefix = "."
         this.commands = []
+        this.allowed_commandnames = /^[A-Za-z0-9_-]+$/
     }
 
-    add_command(command: Command) {
-        this.commands.push(command)
+    add_command(command: Command) : void {
+        if( command.name.match(this.allowed_commandnames) ){
+            this.commands.push(command)
+        }
+        else{
+            console.log(`Command "${this.prefix}${command.name}" not added because it does not fit ${this.allowed_commandnames}`)
+        }
     }
 
-    read_commanddir(dir: string) {
+    read_commanddir(dir: string) : void {
         var guide = this
         readdir(dir, function(error, list){
             let jsfiles = list.filter(file=>file.match(/\.js$/g))
@@ -57,7 +64,7 @@ export class CommandHandler extends Client {
         })
     }
 
-    listen_user(user: User) {
+    listen_user(user: User) : void {
         this.on("message",(message) => {
             if( message.author == user ){
                 this.handle_command(message)
@@ -65,7 +72,7 @@ export class CommandHandler extends Client {
         })
     }
 
-    listen_channel(channel: Channel) {
+    listen_channel(channel: Channel) : void {
         this.on("message",(message) => {
             if( message.channel == channel ) {
                 this.handle_command(message)
@@ -73,7 +80,7 @@ export class CommandHandler extends Client {
         })
     }
 
-    handle_command(message: Message) {
+    handle_command(message: Message) : boolean {
         var command = message.content.split(" ")[0].toLowerCase()
         var args = message.content.split(" ").slice(1).join(" ")
         if( !command.startsWith(this.prefix.toLowerCase()) ) {

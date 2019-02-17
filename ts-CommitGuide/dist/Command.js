@@ -6,13 +6,7 @@ class Command {
         this.func = func;
     }
     set name(name) {
-        if (name.match(/^[A-Za-z0-9]+$/)) {
-            this._name = name.toLowerCase();
-        }
-        else {
-            let illegal_letters = name.replace(/[A-Za-z0-9]/g, "");
-            throw `Commandname "${name}" must be /^[A-Za-z0-9]+$/, but found: "${illegal_letters}"`;
-        }
+        this._name = name;
     }
     get name() {
         return this._name;

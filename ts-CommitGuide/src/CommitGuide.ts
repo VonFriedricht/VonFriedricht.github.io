@@ -97,7 +97,7 @@ export class CommitGuide extends CommandHandler {
 
     async fetch_next_words_toString(count: number) : Promise<string> {
         let wordgroups = await this.fetch_next_words(count)
-        return wordgroups.map(wordgroup => `\`${wordgroup.join("\n")}\``).join(" ")
+        return wordgroups.map(wordgroup => `\`${wordgroup.join("\n")}\``).join("\n\n")
     }
 
     async fetch_last_commits(count: number, url?: string) : Promise<string[]> {

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var bot = new CommitGuide({
+const CommitGuide_1 = require("./CommitGuide");
+var bot = new CommitGuide_1.CommitGuide({
     top_left_day: process.env.top_left_day,
     target_image: process.env.commit_image.split("").map(e => Number(e)),
     lyrics: process.env.lyrics.split("+")

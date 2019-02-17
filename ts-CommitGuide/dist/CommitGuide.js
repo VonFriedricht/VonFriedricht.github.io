@@ -65,7 +65,7 @@ class CommitGuide extends CommandHandler_1.CommandHandler {
     }
     async fetch_next_words_toString(count) {
         let wordgroups = await this.fetch_next_words(count);
-        return wordgroups.map(wordgroup => `\`${wordgroup.join("\n")}\``).join(" ");
+        return wordgroups.map(wordgroup => `\`${wordgroup.join("\n")}\``).join("\n\n");
     }
     async fetch_last_commits(count, url) {
         let site = await axios.get(url ? url : "https://github.com/VonFriedricht/Weight-of-the-World/commits/master");

@@ -2,7 +2,7 @@ import { Command } from "../Command"
 import { Message } from "discord.js"
 import { CommitGuide } from "../CommitGuide";
 
-let commits_name = "ts-commits"
+let commits_name = "commits"
 
 async function commits_func(bot: CommitGuide, message: Message, args: string) {
     let response = []

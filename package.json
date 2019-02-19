@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node dist/main.js",
+    "test": "node dist/main.secret.js",
     "postinstall": "tsc"
   },
   "repository": {

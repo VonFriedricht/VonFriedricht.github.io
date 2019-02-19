@@ -8,7 +8,7 @@ var bot = new CommitGuide({
 
 bot.read_commanddir(__dirname+"/commands")
 
-bot.login(process.env.beta).then(()=>{
+bot.login(process.env.destiny).then(()=>{
     let vnft = bot.users.find(u=>u.id=="397063436049186818")
     bot.listen_user(vnft)
 })

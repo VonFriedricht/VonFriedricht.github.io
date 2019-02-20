@@ -1,10 +1,7 @@
-import { Command } from "../Command"
 import { Message } from "discord.js"
 import { CommitGuide } from "../CommitGuide";
 
-let commits_name = "commits"
-
-async function commits_func(bot: CommitGuide, message: Message, args: string) {
+async function commits(bot: CommitGuide, message: Message, args: string) {
     let response = []
     let user = args || "VonFriedricht"
 
@@ -19,4 +16,4 @@ async function commits_func(bot: CommitGuide, message: Message, args: string) {
     message.channel.send(response.join("\n"))
 }
 
-module.exports = new Command(commits_name, commits_func)
+module.exports = commits

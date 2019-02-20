@@ -1,3 +1,4 @@
+import { CommitGuide } from "../CommitGuide"
 import { Message } from "discord.js"
 
 function say(bot: CommitGuide, message: Message, args: string) {

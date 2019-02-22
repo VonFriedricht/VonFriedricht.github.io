@@ -1,6 +1,7 @@
 import { Client, Message, User, Channel } from "discord.js"
 import { Command } from "./Command"
 import { readdir } from "fs"
+import { PassiveScript } from "./PassiveScript";
 
 export class CommandHandler extends Client {
 
@@ -17,10 +18,10 @@ export class CommandHandler extends Client {
     }
 
     add_command(command: Command) : void {
-        if( command.name.match(this.allowed_commandnames) ){
+        if( command.name.match(this.allowed_commandnames) ) {
             this.commands.push(command)
         }
-        else{
+        else {
             console.log(`Command "${this.prefix}${command.name}" not added because it does not fit ${this.allowed_commandnames}`)
         }
     }
@@ -60,6 +61,22 @@ export class CommandHandler extends Client {
                     }
                 }
 
+            }
+        })
+    }
+
+    exec_passivedir(dir: string) : void {
+        var guide = this
+        readdir(dir, function(error, list) {
+            let jsfiles = list.filter(file=>file.match(/\.js$/g))
+            for(let filename of jsfiles) {
+                var file = require(dir+"/"+filename)
+                if( file instanceof PassiveScript ) {
+                    file.exec(guide)
+                }
+                if( typeof file == "function" && file.length == 1 ) {
+                    file(guide)
+                }
             }
         })
     }

@@ -1,4 +1,4 @@
-import { Client, Message } from "discord.js"
+import { Client } from "discord.js"
 
 export type PassiveFunc = (bot: Client) => void
 

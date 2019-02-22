@@ -20,6 +20,6 @@ var script: PassiveFunc = async function(bot: CommitGuide) {
     }
 }
 
-var daily_commitcheck = new PassiveScript(script, 5*sec)
+var daily_commitcheck = new PassiveScript(script, hour)
 
 module.exports = daily_commitcheck

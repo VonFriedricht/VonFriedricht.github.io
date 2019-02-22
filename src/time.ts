@@ -1,5 +1,7 @@
 export let ms = 1
+
 export let s = 1000*ms
+export let sec = 1000*ms
 
 export let min = 60*s
 

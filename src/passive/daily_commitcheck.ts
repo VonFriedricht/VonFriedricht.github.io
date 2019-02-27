@@ -4,7 +4,7 @@ import { hour, min, sec } from "../time";
 
 var script: PassiveFunc = async function(bot: CommitGuide) {
     let vnft = bot.users.find(u=>u.id=="397063436049186818")
-    let flag = `Current Day: ${bot.day}a`
+    let flag = `Current Day: ${bot.day}`
 
     if( !vnft.dmChannel ) {
         vnft.send("🤔")

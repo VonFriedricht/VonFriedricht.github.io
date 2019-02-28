@@ -7,7 +7,7 @@ export class PassiveScript {
     func: PassiveFunc
     interval: number
     
-    constructor(func: PassiveFunc, interval: number) {
+    constructor(func: PassiveFunc, interval: number = -1) {
         this.func = func
         this.interval = interval
     }
@@ -15,10 +15,15 @@ export class PassiveScript {
     exec(bot: Client) {
         var target_client: Client = bot
         var target_script: PassiveScript = this
-
-        setInterval(function() {
+        
+        if( this.interval > 0 ) {
+            setInterval(function() {
+                target_script.func(target_client)
+            }, this.interval)
+        }
+        else{
             target_script.func(target_client)
-        }, this.interval)
+        }
     }
     
 }

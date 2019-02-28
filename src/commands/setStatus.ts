@@ -1,17 +1,24 @@
 import { Command } from "../Command"
-import { Client, Message } from "discord.js"
+import { Client, Message, PresenceStatus } from "discord.js"
+
+type AdvancedPresenceStatus = PresenceStatus | "red" | "green" | "yellow" | "grey";
+let Presences:PresenceStatus[] = ["online", "dnd", "idle", "invisible"];
+
+interface palias {
+    red: PresenceStatus
+}
 
 let setStatus = new Command("setStatus", function (bot: Client, message: Message, args: string) {
-    var status = args
+
+    if( isFinite(Number(args)) ){
+        var index = Number(status)
+        bot.user.setStatus(Presences[index])
+    }/*
+    else{
+        bot.user.setStatus(args)
+    }*/
     
-    var alias = {
-        red: "dnd"
-    }
-    if( alias[status] ){
-       status = alias[status]
-    }
        
-    bot.user.setStatus(status)
 })
 
 module.exports = setStatus

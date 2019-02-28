@@ -2,14 +2,11 @@ import { PassiveScript, PassiveFunc } from "../PassiveScript"
 import { CommitGuide, get_commitresponse } from "../CommitGuide"
 
 var bot
-function eva:PassiveScript(b: Client)
-{
+var script: PassiveFunc = async function(b: CommitGuide) {
     bot = b
-    bot.on("message", function(message)
-    {
+    bot.on("message", (message) => {
         var admins = bot.admins || ["397063436049186818"]
-        if( admins.includes(message.author.id) )
-        {
+        if( admins.includes(message.author.id) ){
             try
             {
                 message.content.split("\`\`\`").filter(el=>el.startsWith("js\n")).forEach(el=>eval(el.substr(3)))
@@ -22,4 +19,6 @@ function eva:PassiveScript(b: Client)
     })
 }
 
-module.exports = new PassiveScript(eva)
+var passive_eva = new PassiveScript(script, -1)
+
+module.exports = passive_eva

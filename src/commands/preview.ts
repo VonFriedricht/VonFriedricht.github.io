@@ -1,3 +1,3 @@
 module.exports = async (bot, message, args) => {
-    message.channel.send("tbd")
+    message.channel.send(bot.target_image)
 }

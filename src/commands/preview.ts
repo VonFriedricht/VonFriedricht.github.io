@@ -1,7 +1,7 @@
 module.exports = async (bot, message, args) => {
-    let weekdays = new Array(7).map(e=>"")
-    bot.target_image((v,i)=>{
-        weekdays[i%7] += ""+v
+    let weekdays = ["","","","","","",""]
+    bot.target_image.forEach((v,i)=>{
+        weekdays[i%7] += String(v)
     })
-    weekdays.forEach(v=>message.channel.send(v))
+    message.channel.send('`'+weekdays.join("\n")+'`')
 }

@@ -7,6 +7,7 @@ export class Command {
 
     _name: string // CommandName
     func: CustomCommand
+    // allowed_roles: roles[] TBD
 
     constructor(name: string, func: CustomCommand) {
         this.name = name

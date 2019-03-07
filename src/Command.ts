@@ -7,7 +7,7 @@ export class Command {
 
     _name: string // CommandName
     func: CustomCommand
-    // allowed_roles: roles[] TBD
+    allowed_roles: string[] //roles[] TBD
 
     constructor(name: string, func: CustomCommand) {
         this.name = name
@@ -22,9 +22,27 @@ export class Command {
         return this._name
     }
 
+    isPermitted(member: any){
+        if( this.allowed_roles.length > 0 ){
+           return true
+        }
+        if( this.allowed_roles.includes("*") ){
+            return true
+        }
+        if( member.roles.some(r=>this.allowed_roles.includes(r.name)) ){
+            return true
+        }
+        return false
+    }
+    
     execute(bot: Client, message: Message, args: string) {
-        console.log(`Executing "${this.name}" with args: "${args}"`)
-        this.func(bot, message, args)
+        if( isPermitted(message.member) ){
+            console.log(`Executing "${this.name}" with args: "${args}"`)
+            this.func(bot, message, args)
+        }
+        else{
+            console.log(`${message.author.username} is not permitted to do ${this.name}`)
+        }
     }
 
 }

@@ -30,21 +30,24 @@ export class Command {
         return this._name
     }
 
-    isPermitted(member: any){
+    isPermitted(member: any, channel: any){
         if( this.allowed_roles.length > 0 ){
            return true
         }
         if( this.allowed_roles.includes("*") ){
             return true
         }
-        if( member.roles.some(r=>this.allowed_roles.includes(r.name)) ){
+        if( channel.type == "text" && member.roles.some(r=>this.allowed_roles.includes(r.name)) ){
+            return true
+        }
+        if( channel.type == "dm" && this.allowed_dm ){
             return true
         }
         return false
     }
     
     execute(bot: Client, message: Message, args: string) {
-        if( this.isPermitted(message.member) ){
+        if( this.isPermitted(message.member, message.channel) ){
             console.log(`Executing "${this.name}" with args: "${args}"`)
             this.func(bot, message, args)
         }

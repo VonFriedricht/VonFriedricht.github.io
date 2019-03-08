@@ -19,7 +19,7 @@ export class Command {
         this.name = name
         this.func = func
         this.allowed_roles = options.roles || ["*"]
-        this.allowed_roles = options.dm || true
+        this.allowed_dm = options.dm || true
     }
 
     set name(name: string) {

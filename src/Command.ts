@@ -44,7 +44,7 @@ export class Command {
     }
     
     execute(bot: Client, message: Message, args: string) {
-        if( isPermitted(message.member) ){
+        if( this.isPermitted(message.member) ){
             console.log(`Executing "${this.name}" with args: "${args}"`)
             this.func(bot, message, args)
         }

@@ -1,4 +1,4 @@
-import { Client, Message } from "discord.js"
+import { Client, Message, GuildMember } from "discord.js"
 
 // export type CommandName = /^[A-Za-z0-9]+$/ ♥ please make it happen
 export type CustomCommand = (bot: Client, message: Message, args: string) => void
@@ -30,7 +30,7 @@ export class Command {
         return this._name
     }
 
-    isPermitted(member: any, channel: any){
+    isPermitted(member: GuildMember, channel: any){
         if( this.allowed_roles.length > 0 ){
            return true
         }

@@ -3,6 +3,11 @@ import { Client, Message } from "discord.js"
 // export type CommandName = /^[A-Za-z0-9]+$/ ♥ please make it happen
 export type CustomCommand = (bot: Client, message: Message, args: string) => void
 
+interface CommandOptions{
+    roles?: string[];
+    dm?: boolean
+}
+
 export class Command {
 
     _name: string // CommandName
@@ -10,9 +15,11 @@ export class Command {
     allowed_roles: string[] //roles[] TBD
     allowed_dm: boolean
 
-    constructor(name: string, func: CustomCommand) {
+    constructor(name: string, func: CustomCommand, options: CommandOptions = {}) {
         this.name = name
         this.func = func
+        this.allowed_roles = options.roles || ["*"]
+        this.allowed_roles = options.dm || true
     }
 
     set name(name: string) {

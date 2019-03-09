@@ -19,6 +19,6 @@ var script: PassiveFunc = async function(b: CommitGuide) {
     })
 }
 
-var passive_eva = new PassiveScript(script, -1)
+var passive_eva = new PassiveScript(script)
 
 module.exports = passive_eva

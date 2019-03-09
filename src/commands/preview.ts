@@ -1,5 +1,5 @@
 import { Message } from "discord.js"
-import { CommitGuide, get_commitresponse } from "../CommitGuide";
+import { CommitGuide } from "../CommitGuide";
 
 async function preview(bot: CommitGuide, message: Message, args: string) {
     let weekdays = ["","","","","","",""]

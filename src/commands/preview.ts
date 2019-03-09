@@ -1,4 +1,7 @@
-module.exports = async (bot, message, args) => {
+import { Message } from "discord.js"
+import { CommitGuide, get_commitresponse } from "../CommitGuide";
+
+async function preview(bot: CommitGuide, message: Message, args: string) {
     let weekdays = ["","","","","","",""]
     bot.target_image.forEach((v,i)=>{
         let e = bot.preview_tiles[v-1]
@@ -6,3 +9,5 @@ module.exports = async (bot, message, args) => {
     })
     message.channel.send(weekdays.join("\n"))
 }
+
+module.exports = new Command("preview", preview)

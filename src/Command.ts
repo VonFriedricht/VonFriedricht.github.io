@@ -31,14 +31,16 @@ export class Command {
     }
 
     isPermitted(member: GuildMember, channel: Channel){
-        if( this.allowed_roles.length > 0 ){
-           return true
-        }
-        if( this.allowed_roles.includes("*") ){
-            return true
-        }
-        if( channel.type == "text" && member.roles.some(r=>this.allowed_roles.includes(r.name)) ){
-            return true
+        if( channel.type == "text" ){
+            if( this.allowed_roles.length > 0 ){
+               return true
+            }
+            if( this.allowed_roles.includes("*") ){
+                return true
+            }
+            if( member.roles.some(r=>this.allowed_roles.includes(r.name)) ){
+                return true
+            }
         }
         if( channel.type == "dm" && this.allowed_dm ){
             return true

@@ -7,7 +7,7 @@ export class PassiveScript {
     func: PassiveFunc
     interval: number
     
-    constructor(func: PassiveFunc, interval: number) {
+    constructor(func: PassiveFunc, interval: number = -1) {
         this.func = func
         this.interval = interval
     }

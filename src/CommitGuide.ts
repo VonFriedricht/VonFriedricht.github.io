@@ -10,11 +10,11 @@ interface CommitGuideOptions {
 }
 
 export class CommitGuide extends CommandHandler {
-  preview_tiles: CommitGuideOptions.preview_tiles;
-  top_left_day: CommitGuideOptions.top_left_day;
-  target_image: CommitGuideOptions.target_image;
-  lyrics: CommitGuideOptions.lyrics;
-  tile_sizes: CommitGuideOptions.tile_sizes;
+  preview_tiles: CommitGuideOptions["preview_tiles"];
+  top_left_day: CommitGuideOptions["top_left_day"];
+  target_image: CommitGuideOptions["target_image"];
+  lyrics: CommitGuideOptions["lyrics"];
+  tile_sizes: CommitGuideOptions["tile_sizes"];
 
   constructor(options: CommitGuideOptions = {}) {
     super();
@@ -59,42 +59,42 @@ export class CommitGuide extends CommandHandler {
     return daysize;
   }
 
-    async fetch_next_words(count: number) : Promise<string[][]> {
-        let words: string[] = this.lyrics
-        let header: string[] = await this.fetch_last_commits(25)
-        let next_words: string[][] = []
+  async fetch_next_words(count: number) : Promise<string[][]> {
+    let words: string[] = this.lyrics
+    let header: string[] = await this.fetch_last_commits(25)
+    let next_words: string[][] = []
 
-        for(let i in words) {
-            if(words[i].toLowerCase() == header[0].toLowerCase()){
+    for(let i in words) {
+      if(words[i].toLowerCase() == header[0].toLowerCase()){
 
-                let j: string
-                for(j in header){
-                    let word_pointer = Number(i)+Number(j)
-                    if( words[word_pointer].toLowerCase() != header[j].toLowerCase() ){
-                        break;
-                    }
-                }
+        let j: string
+        for(j in header){
+          let word_pointer = Number(i)+Number(j)
+          if( typeof words[word_pointer] == "undefined" || words[word_pointer].toLowerCase() != header[j].toLowerCase() ){
+            break;
+          }
+        }
 
-                if(Number(j)+1 == header.length && Number(j) > 0){
-                    let wordgroup: string[] = []
+        if(Number(j)+1 == header.length && Number(j) > 0){
+          let wordgroup: string[] = []
 
-                    let word_pointer = Number(i)+Number(j)+1
-                    for( let k = 0; k < count && words[word_pointer+(+k)]; k++ ) {
-                        wordgroup.push(words[word_pointer+(+k)])
-                    }
-                    next_words.push(wordgroup)
-                }
+          let word_pointer = Number(i)+Number(j)+1
+          for( let k = 0; k < count && words[word_pointer+(+k)]; k++ ) {
+            wordgroup.push(words[word_pointer+(+k)])
+          }
+          next_words.push(wordgroup)
+        }
                 
-            }
-        }
+      }
+    }
 
-        if( next_words.length ){
-            return next_words
-        }
-        else{
-            return [["no words"]]
-        }
-}
+    if( next_words.length ){
+      return next_words
+    }
+    else{
+      return [["no words"]]
+    }
+  }
 
   async fetch_next_words_toString(count: number): Promise<string> {
     let wordgroups = await this.fetch_next_words(count);

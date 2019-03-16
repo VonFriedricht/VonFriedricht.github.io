@@ -96,13 +96,6 @@ export class CommitGuide extends CommandHandler {
         }
 }
 
-    if (next_words.length) {
-      return next_words;
-    } else {
-      return [["no words"]];
-    }
-  }
-
   async fetch_next_words_toString(count: number): Promise<string> {
     let wordgroups = await this.fetch_next_words(count);
     return wordgroups

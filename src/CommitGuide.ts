@@ -59,32 +59,42 @@ export class CommitGuide extends CommandHandler {
     return daysize;
   }
 
-  async fetch_next_words(count: number): Promise<string[][]> {
-    let words: string[] = this.lyrics;
-    let header: string[] = await this.fetch_last_commits(25);
-    let next_words: string[][] = [];
+    async fetch_next_words(count: number) : Promise<string[][]> {
+        let words: string[] = this.lyrics
+        let header: string[] = await this.fetch_last_commits(25)
+        let next_words: string[][] = []
 
-    for (let i in words) {
-      if (words[i].toLowerCase() == header[0].toLowerCase()) {
-        let j: string;
-        for (j in header) {
-          let word_pointer = Number(i) + Number(j);
-          if (words[word_pointer].toLowerCase() != header[j].toLowerCase()) {
-            break;
-          }
+        for(let i in words) {
+            if(words[i].toLowerCase() == header[0].toLowerCase()){
+
+                let j: string
+                for(j in header){
+                    let word_pointer = Number(i)+Number(j)
+                    if( words[word_pointer].toLowerCase() != header[j].toLowerCase() ){
+                        break;
+                    }
+                }
+
+                if(Number(j)+1 == header.length && Number(j) > 0){
+                    let wordgroup: string[] = []
+
+                    let word_pointer = Number(i)+Number(j)+1
+                    for( let k = 0; k < count && words[word_pointer+(+k)]; k++ ) {
+                        wordgroup.push(words[word_pointer+(+k)])
+                    }
+                    next_words.push(wordgroup)
+                }
+                
+            }
         }
 
-        if (Number(j) + 1 == header.length && Number(j) > 0) {
-          let wordgroup: string[] = [];
-
-          let word_pointer = Number(i) + Number(j) + 1;
-          for (let k = 0; k < count && words[word_pointer + +k]; k++) {
-            wordgroup.push(words[word_pointer + +k]);
-          }
-          next_words.push(wordgroup);
+        if( next_words.length ){
+            return next_words
         }
-      }
-    }
+        else{
+            return [["no words"]]
+        }
+}
 
     if (next_words.length) {
       return next_words;

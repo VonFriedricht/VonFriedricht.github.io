@@ -1,3 +1,4 @@
+import { Command } from "../Command";
 import { CommitGuide } from "../CommitGuide";
 import { Message } from "discord.js";
 

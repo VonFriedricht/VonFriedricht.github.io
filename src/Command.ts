@@ -48,7 +48,7 @@ export class Command {
     }
     */
     if (channel.type == "dm" && this.allowed_dm) {
-      channel.send("OK")
+      console.log("OK")
       return true;
     }
     console.log("NOPE")

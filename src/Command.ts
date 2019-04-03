@@ -34,6 +34,7 @@ export class Command {
   }
 
   isPermitted(member: GuildMember, channel: Channel) {
+    /*
     if (channel.type == "text") {
       if (this.allowed_roles.length > 0) {
         return true;
@@ -45,9 +46,12 @@ export class Command {
         return true;
       }
     }
+    */
     if (channel.type == "dm" && this.allowed_dm) {
+      channel.send("OK")
       return true;
     }
+    channel.send("NOT OK")
     return false;
   }
 

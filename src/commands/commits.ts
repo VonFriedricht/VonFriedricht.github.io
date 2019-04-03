@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { Command } from "../Command";
 import { CommitGuide, get_commitresponse } from "../CommitGuide";
 
 export async function commits(bot: CommitGuide, message: Message, args: string) {

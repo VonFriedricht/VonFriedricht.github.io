@@ -10,4 +10,7 @@ function sayd(bot: CommitGuide, message: Message, args: string) {
   message.delete();
 }
 
-module.exports = [say, sayd];
+module.exports = [
+  new Command("say", say),
+  new Command("sayd", sayd)
+];

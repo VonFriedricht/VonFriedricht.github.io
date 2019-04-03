@@ -1,6 +1,6 @@
 import { Client, Message, GuildMember, Channel } from "discord.js";
 
-// export type CommandName = /^[A-Za-z0-9]+$/ ♥ please make it happen
+// export type CommandName = /^[A-Za-z0-9]+$/ → would be nice.
 export type CustomCommand = (
   bot: Client,
   message: Message,

@@ -51,7 +51,7 @@ export class Command {
       channel.send("OK")
       return true;
     }
-    channel.send("NOT OK")
+    console.log("NOPE")
     return false;
   }
 

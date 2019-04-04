@@ -23,6 +23,7 @@ export class Command {
     this.func = func;
     this.allowed_roles = options.roles || ["*"];
     this.allowed_dm = options.dm || true;
+    console.log(this)
   }
 
   set name(name: string) {
@@ -47,6 +48,7 @@ export class Command {
       }
     }
     */
+    console.log(this)
     if (channel.type == "dm" && this.allowed_dm) {
       console.log("OK")
       return true;

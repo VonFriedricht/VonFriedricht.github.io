@@ -22,7 +22,7 @@ export class Command {
     this.name = name;
     this.func = func;
     this.allowed_roles = options.roles || ["*"];
-    this.allowed_dm = options.dm || true;
+    this.allowed_dm = typeof options.dm != "undefined" ? options.dm : true;
     console.log(this)
   }
 

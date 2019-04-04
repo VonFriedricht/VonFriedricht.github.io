@@ -1,8 +1,10 @@
 import { PassiveScript, PassiveFunc } from "../PassiveScript";
 import { hour } from "../time";
+import { CommitGuide } from "../CommitGuide";
 
 async function script(bot: CommitGuide) {
   let vnft = bot.users.find(u => u.id == "397063436049186818"); // lol, make it an ENV
+  let user = "VonFriedricht"; // lol this too
   
   if (!vnft.dmChannel) {
     vnft.send("🤔");

@@ -1,7 +1,7 @@
 import { PassiveScript, PassiveFunc } from "../PassiveScript";
 import { hour } from "../time";
 
-async function main(bot: CommitGuide): PassiveFunc {
+async function main(bot: CommitGuide) {
   let vnft = bot.users.find(u => u.id == "397063436049186818"); // lol, make it an ENV
   
   if (!vnft.dmChannel) {

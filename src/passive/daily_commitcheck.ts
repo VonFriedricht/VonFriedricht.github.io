@@ -3,7 +3,7 @@ import { CommitGuide, get_commitresponse } from "../CommitGuide";
 import { hour, min, sec } from "../time";
 
 async function script(bot: CommitGuide): PassiveFunc {
-  let vnft = bot.users.find(u => u.id == "397063436049186818");
+  let vnft = bot.users.find(u => u.id == "397063436049186818");  // lol, make it an ENV
   let flag = `Current Day: ${bot.day}`;
 
   if (!vnft.dmChannel) {

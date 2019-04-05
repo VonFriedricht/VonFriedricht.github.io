@@ -1,5 +1,5 @@
 import { PassiveScript, PassiveFunc } from "../PassiveScript";
-import { hour } from "../time";
+import { hour, minute } from "../time";
 import { CommitGuide } from "../CommitGuide";
 
 async function script(bot: CommitGuide) {
@@ -11,9 +11,13 @@ async function script(bot: CommitGuide) {
     return false;
   } else {
     let made_commits = await bot.fetch_made_commits(user)
-    vnft.send(made_commits)
+    let required_commits = await bot.required_commits(user)
+    let done = made_commits >= required_commits
+    if( !done ){
+      vnft.send([made_commits,required_commits,done].join(", "))
+    }
   }
 }
 
-var out_of_time = new PassiveScript(script, hour);
+var out_of_time = new PassiveScript(script, hour+minute);
 module.exports = out_of_time;

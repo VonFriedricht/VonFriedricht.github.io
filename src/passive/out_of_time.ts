@@ -10,8 +10,8 @@ async function script(bot: CommitGuide) {
     vnft.send("🤔");
     return false;
   } else {
-    let made_commits = await bot.fetch_made_commits(user)
-    let required_commits = await bot.required_commits(user)
+    let made_commits: number = await bot.fetch_made_commits(user)
+    let required_commits: number = bot.required_commits
     let done = made_commits >= required_commits
     if( !done ){
       vnft.send([made_commits,required_commits,done].join(", "))

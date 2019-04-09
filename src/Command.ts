@@ -36,6 +36,7 @@ export class Command {
 
   isPermitted(member: GuildMember, channel: Channel) {
     /*
+    tbd(?)
     if (channel.type == "text") {
       if (this.allowed_roles.length > 0) {
         return true;

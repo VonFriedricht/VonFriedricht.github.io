@@ -14,7 +14,11 @@ async function script(bot: CommitGuide) {
     let required_commits: number = bot.required_commits
     let done = made_commits >= required_commits
     if( !done ){
-      vnft.send([made_commits,required_commits,done].join(", "))
+      let time_short = new Date().getHours() > 15
+      if( time_short ){
+        // remind
+        vnft.send([made_commits,required_commits,done].join(", "))
+      }
     }
   }
 }

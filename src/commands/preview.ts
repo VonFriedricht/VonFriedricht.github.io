@@ -8,7 +8,7 @@ async function preview(bot: CommitGuide, message: Message, args: string) {
     let e = bot.preview_tiles[v - 1];
   
     if( args == "now" && i == bot.day ){
-      e = "#"
+      e = `||${e}||`
     }
  
     weekdays[i % 7] += e + e;

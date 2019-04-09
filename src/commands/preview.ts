@@ -6,13 +6,12 @@ async function preview(bot: CommitGuide, message: Message, args: string) {
   let weekdays = ["", "", "", "", "", "", ""];
   bot.target_image.forEach((v, i) => {
     let e = bot.preview_tiles[v - 1];
-    
-    if( args == "now" && i == bot.day ){
-      e = "##"
-    }
-    
-    weekdays[i % 7] += e + e;
   
+    if( args == "now" && i == bot.day ){
+      e = "#"
+    }
+ 
+    weekdays[i % 7] += e + e;
   });
   message.channel.send(weekdays.join("\n"));
 }

@@ -49,12 +49,9 @@ export class Command {
       }
     }
     */
-    console.log(this)
     if (channel.type == "dm" && this.allowed_dm) {
-      console.log("OK")
       return true;
     }
-    console.log("NOPE")
     return false;
   }
 

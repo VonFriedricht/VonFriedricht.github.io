@@ -23,5 +23,5 @@ async function script(bot: CommitGuide) {
   }
 }
 
-var out_of_time = new PassiveScript(script, hour+minute);
+var out_of_time = new PassiveScript(script, 0.5*hour+minute);
 module.exports = out_of_time;

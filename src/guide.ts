@@ -9,7 +9,7 @@ var bot = new CommitGuide({
 bot.read_commanddir(__dirname + "/commands");
 bot.exec_passivedir(__dirname + "/passive");
 
-bot.login(process.env.destiny).then(() => {
+bot.login(process.env.discord_token).then(() => {
   let vnft = bot.users.find(u => u.id == "397063436049186818");
   bot.listen_user(vnft);
 });

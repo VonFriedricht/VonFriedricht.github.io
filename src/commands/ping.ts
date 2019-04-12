@@ -5,4 +5,8 @@ function ping(bot: Client, message: Message, args: string) {
   message.reply("pong!");
 }
 
-module.exports = new Command("ping", ping, { dm: false });
+let options = {
+  dm: false
+}
+
+module.exports = new Command("ping", ping, options);

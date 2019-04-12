@@ -49,10 +49,10 @@ export class Command {
       }
     }
     */
-    if (channel.type == "dm" && this.allowed_dm) {
-      return true;
+    if (channel.type == "dm" && this.allowed_dm == false) {
+      return false;
     }
-    return false;
+    return true;
   }
 
   execute(bot: Client, message: Message, args: string) {

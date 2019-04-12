@@ -1,6 +1,6 @@
 import { CommitGuide } from "./CommitGuide";
 
-var bot = new CommitGuide({
+const bot = new CommitGuide({
   top_left_day: process.env.top_left_day,
   target_image: process.env.commit_image.split("").map(e => Number(e)),
   lyrics: process.env.lyrics.split("+")

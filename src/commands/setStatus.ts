@@ -4,7 +4,7 @@ import { Client, Message, PresenceStatus } from "discord.js";
 let Presences: PresenceStatus[] = ["online", "dnd", "idle", "invisible"];
 let PresencesString: string[] = ["online", "dnd", "idle", "invisible"];
 
-function setStatus(bot: Client, message: Message, args: string){
+function setStatus(bot: Client, message: Message, args: string) {
   if (isFinite(Number(args))) {
     var index = Number(status);
     bot.user.setStatus(Presences[index]);

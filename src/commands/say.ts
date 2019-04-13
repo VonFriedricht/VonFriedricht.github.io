@@ -11,7 +11,4 @@ function sayd(bot: CommitGuide, message: Message, args: string) {
   message.delete();
 }
 
-module.exports = [
-  new Command("say", say),
-  new Command("sayd", sayd)
-];
+module.exports = [new Command("say", say), new Command("sayd", sayd)];

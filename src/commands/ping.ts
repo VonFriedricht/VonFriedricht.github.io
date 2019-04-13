@@ -7,6 +7,6 @@ function ping(bot: Client, message: Message, args: string) {
 
 let options = {
   dm: false
-}
+};
 
 module.exports = new Command("ping", ping, options);

@@ -1,10 +1,10 @@
 export let ms = 1;
 
 export let s = 1000 * ms;
-export let sec = 1000 * ms;
+export let sec = s;
 
 export let min = 60 * s;
-export let minute = 60 * s;
+export let minute = min;
 
 export let h = 60 * min;
 export let hour = h;

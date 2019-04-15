@@ -3,13 +3,12 @@ import { CommitGuide } from "../CommitGuide";
 import { Command } from "../Command";
 
 async function preview(bot: CommitGuide, message: Message, args: string) {
-  let preview: string
+  let preview: string;
 
-  if( args == "now" ){
-    preview = generatePreview(bot.target_image, bot.preview_tiles, bot.day)
-  }
-  else{
-    preview = generatePreview(bot.target_image, bot.preview_tiles)
+  if (args == "now") {
+    preview = generatePreview(bot.target_image, bot.preview_tiles, bot.day);
+  } else {
+    preview = generatePreview(bot.target_image, bot.preview_tiles);
   }
 
   message.channel.send(preview);
@@ -17,11 +16,11 @@ async function preview(bot: CommitGuide, message: Message, args: string) {
 
 module.exports = new Command("preview", preview);
 
-function generatePreview(image, tiles, day = -1) : string{
+function generatePreview(image, tiles, day = -1): string {
   let weekdays = ["", "", "", "", "", "", ""];
 
-  for( let i in image ){
-    let v = image[i]
+  for (let i in image) {
+    let v = image[i];
     let e = tiles[v - 1];
 
     // Marking the targeted day
@@ -32,5 +31,5 @@ function generatePreview(image, tiles, day = -1) : string{
     weekdays[Number(i) % 7] += e + e;
   }
 
-  return weekdays.join("\n")
+  return weekdays.join("\n");
 }

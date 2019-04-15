@@ -23,7 +23,7 @@ export class Command {
     this.func = func;
     this.allowed_roles = options.roles || ["*"];
     this.allowed_dm = typeof options.dm != "undefined" ? options.dm : true;
-    console.log(this)
+    console.log(`loaded command ${this.name}`)
   }
 
   set name(name: string) {

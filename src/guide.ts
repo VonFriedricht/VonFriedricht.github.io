@@ -10,6 +10,6 @@ bot.read_commanddir(__dirname + "/commands");
 bot.exec_passivedir(__dirname + "/passive");
 
 bot.login(process.env.discord_token).then(() => {
-  let vnft = bot.users.find(u => u.id == "397063436049186818");
-  bot.listen_user(vnft);
+  let admin = bot.users.find(u => u.id == process.env.admin);
+  bot.listen_user(admin);
 });

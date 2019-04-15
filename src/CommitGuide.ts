@@ -107,10 +107,10 @@ export class CommitGuide extends CommandHandler {
     let commit: string = null;
     let commits: string[] = [];
 
-    while( commits.length < count && (commit = commit_net.exec(sitecontent)[1]) ){
+    while (commits.length < count && (commit = commit_net.exec(sitecontent)[1])) {
       commits.push(commit);
     }
-    
+
     return commits.reverse();
   }
 }

@@ -23,39 +23,25 @@ export class Command {
     this.func = func;
     this.allowed_roles = options.roles || ["*"];
     this.allowed_dm = typeof options.dm != "undefined" ? options.dm : true;
-    console.log(`loaded command ${this.name}`)
+    console.log(`loaded command ${this.name}`);
   }
 
   set name(name: string) {
     this._name = name;
   }
 
-  get name() {
+  get name(): string {
     return this._name;
   }
 
-  isPermitted(member: GuildMember, channel: Channel) {
-    /*
-    tbd(?)
-    if (channel.type == "text") {
-      if (this.allowed_roles.length > 0) {
-        return true;
-      }
-      if (this.allowed_roles.includes("*")) {
-        return true;
-      }
-      if (member.roles.some(r => this.allowed_roles.includes(r.name))) {
-        return true;
-      }
-    }
-    */
+  isPermitted(member: GuildMember, channel: Channel): boolean {
     if (channel.type == "dm" && this.allowed_dm == false) {
       return false;
     }
     return true;
   }
 
-  execute(bot: Client, message: Message, args: string) {
+  execute(bot: Client, message: Message, args: string): void {
     if (this.isPermitted(message.member, message.channel)) {
       console.log(`Executing "${this.name}" with args: "${args}"`);
       this.func(bot, message, args);

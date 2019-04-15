@@ -16,7 +16,6 @@ async function script(bot: CommitGuide) {
     if (!done) {
       let time_short = new Date().getHours() > 15;
       if (time_short) {
-        // remind
         let reminder = `${made_commits} by ${required_commits} done`;
         vnft.send(reminder);
       }

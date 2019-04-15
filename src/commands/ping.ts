@@ -1,12 +1,8 @@
 import { Command } from "../Command";
 import { Client, Message } from "discord.js";
 
-function ping(bot: Client, message: Message, args: string) {
+function ping(bot: Client, message: Message, args: string): void {
   message.reply("pong!");
 }
 
-let options = {
-  dm: false
-};
-
-module.exports = new Command("ping", ping, options);
+module.exports = new Command("ping", ping, { dm: false });

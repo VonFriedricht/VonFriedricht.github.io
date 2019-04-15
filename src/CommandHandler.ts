@@ -21,9 +21,7 @@ export class CommandHandler extends Client {
       this.commands.push(command);
     } else {
       console.log(
-        `Command "${this.prefix}${
-          command.name
-        }" not added because it does not fit ${this.allowed_commandnames}`
+        `Command "${this.prefix}${command.name}" not added because it does not fit ${this.allowed_commandnames}`
       );
     }
   }
@@ -57,9 +55,7 @@ export class CommandHandler extends Client {
           }
 
           //  for every valid function that can be interpreted as an command
-          target_commands = file.filter(
-            c => typeof c == "function" && c.length == 3 && c.name != ""
-          );
+          target_commands = file.filter(c => typeof c == "function" && c.length == 3 && c.name != "");
           for (let c of target_commands) {
             guide.add_command(new Command(c.name, c));
           }

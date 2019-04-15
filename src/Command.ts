@@ -1,11 +1,7 @@
 import { Client, Message, GuildMember, Channel } from "discord.js";
 
 // export type CommandName = /^[A-Za-z0-9]+$/ → would be nice.
-export type CustomCommand = (
-  bot: Client,
-  message: Message,
-  args: string
-) => void;
+export type CustomCommand = (bot: Client, message: Message, args: string) => void;
 
 interface CommandOptions {
   roles?: string[];
@@ -46,9 +42,7 @@ export class Command {
       console.log(`Executing "${this.name}" with args: "${args}"`);
       this.func(bot, message, args);
     } else {
-      console.log(
-        `${message.author.username} is not permitted to do ${this.name}`
-      );
+      console.log(`${message.author.username} is not permitted to do ${this.name}`);
     }
   }
 }

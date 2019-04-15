@@ -20,16 +20,13 @@ export class CommitGuide extends CommandHandler {
     super();
     this.preview_tiles = options.preview_tiles || "─░▓█";
     this.top_left_day = options.top_left_day || "1970-01-01";
-    this.target_image =
-      options.target_image ||
-      "1111111122222413333344444444".split("").map(e => Number(e));
+    this.target_image = options.target_image || "1111111122222413333344444444".split("").map(e => Number(e));
     this.lyrics = options.lyrics || [];
     this.tile_sizes = options.tile_sizes || [0, 1, 5, 10];
   }
 
   get day(): number {
-    var day =
-      (new Date().getTime() - new Date(this.top_left_day).getTime()) / 86400000;
+    var day = (new Date().getTime() - new Date(this.top_left_day).getTime()) / 86400000;
     var day_int = Math.floor(day);
     return day_int;
   }
@@ -43,10 +40,7 @@ export class CommitGuide extends CommandHandler {
     let sitecontent: string = site.data;
 
     // regular expression to find the data-count for the given date
-    let target_reg = new RegExp(
-      `data-count="(.*?)" data-date="${today_ISO}"`,
-      "g"
-    );
+    let target_reg = new RegExp(`data-count="(.*?)" data-date="${today_ISO}"`, "g");
     let reg_result = target_reg.exec(sitecontent);
     let made_commits = reg_result[1];
 
@@ -98,17 +92,14 @@ export class CommitGuide extends CommandHandler {
 
   async fetch_next_words_toString(count: number): Promise<string> {
     let wordgroups = await this.fetch_next_words(count);
-    return wordgroups
-      .map(wordgroup => `\`${wordgroup.join("\n")}\``)
-      .join("\n\n");
+    return wordgroups.map(wordgroup => `\`${wordgroup.join("\n")}\``).join("\n\n");
   }
 
   async fetch_last_commits(count: number, url?: string): Promise<string[]> {
-    let site = await axios.get(
-      url
-        ? url
-        : "https://github.com/VonFriedricht/Weight-of-the-World/commits/master"
-    );
+    if (!url) {
+      url = "https://github.com/VonFriedricht/Weight-of-the-World/commits/master";
+    }
+    let site = await axios.get(url);
     let sitecontent: string = site.data;
 
     let commit_net = /message js-navigation-open.*?>(.*?)<\/a>/g;
@@ -116,11 +107,7 @@ export class CommitGuide extends CommandHandler {
     let commit: string = null;
     let commits: string[] = [];
 
-    for (
-      let i = 0;
-      i < count && (commit = commit_net.exec(sitecontent)[1]);
-      i++
-    ) {
+    for (let i = 0; i < count && (commit = commit_net.exec(sitecontent)[1]); i++) {
       commits.push(commit);
     }
 
@@ -128,7 +115,7 @@ export class CommitGuide extends CommandHandler {
   }
 }
 
-export async function get_commitresponse(bot: CommitGuide, args?: string) {
+export async function get_commitresponse(bot: CommitGuide, args?: string): Promise<string> {
   let response = [];
   let user = args || "VonFriedricht";
 

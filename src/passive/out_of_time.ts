@@ -2,7 +2,7 @@ import { PassiveScript, PassiveFunc } from "../PassiveScript";
 import { hour, minute } from "../time";
 import { CommitGuide } from "../CommitGuide";
 
-async function script(bot: CommitGuide) {
+async function script(bot: CommitGuide): Promise<boolean | void> {
   let vnft = bot.users.find(u => u.id == "397063436049186818"); // lol, make it an ENV
   let user = "VonFriedricht"; // lol this too
 

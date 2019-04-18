@@ -2,7 +2,7 @@ import { Message } from "discord.js";
 import { CommitGuide } from "../CommitGuide";
 import { Command } from "../Command";
 
-async function preview(bot: CommitGuide, message: Message, args: string) {
+async function preview(bot: CommitGuide, message: Message, args: string): Promise<void> {
   let preview: string;
 
   if (args == "now") {

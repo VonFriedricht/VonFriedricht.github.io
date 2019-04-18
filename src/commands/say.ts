@@ -2,11 +2,11 @@ import { Command } from "../Command";
 import { CommitGuide } from "../CommitGuide";
 import { Message } from "discord.js";
 
-function say(bot: CommitGuide, message: Message, args: string) {
+function say(bot: CommitGuide, message: Message, args: string): void {
   message.channel.send(args);
 }
 
-function sayd(bot: CommitGuide, message: Message, args: string) {
+function sayd(bot: CommitGuide, message: Message, args: string): void {
   message.channel.send(args);
   message.delete();
 }

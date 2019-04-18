@@ -4,22 +4,24 @@ import { Command } from "./Command";
 import { fetchJS } from "../tools/fetchJS";
 
 export class CommandHandler extends Client {
-  commands: any;
+  commands: Command[];
   scripts: any;
 
   constructor() {
     super();
     this.commands = [];
     let master = this;
-    this.on("message", message => this.onMessage(master, message));
+    this.on("message", message => this.onMessage(message));
   }
 
-  onMessage(bot: CommandHandler, message: Message) {
-    let command = message.content.match(/\.(.*?)(\s|$)/);
-    if (!command) return false;
-    if (command[1] == "commits") {
-      console.log(bot.commands)
-      console.log(this.commands)
+  onMessage(message: Message) {
+    let request = message.content.match(/\.(.*?)(\s|$)/);
+    if (!request) return false;
+    let commandName = request[1].toLowerCase();
+
+    let command: Command = this.commands.find(c => c.name == commandName);
+    if (command) {
+      console.log(command.execute(this, message));
     }
   }
 
@@ -29,12 +31,12 @@ export class CommandHandler extends Client {
 
     let isDir = fs.statSync(target_path).isDirectory();
     if (isDir) {
-      let allJS = fetchJS(target_path)
-      for(let file of allJS){
-        let command = require(file)
-        if(command.name && command.funct && command.funct.length == 3){
-          console.log(`loaded ${command.name}`)
-          this.commands.push(command)
+      let allJS = fetchJS(target_path);
+      for (let file of allJS) {
+        let command = require(file);
+        if (command.name && command.funct && command.funct.length == 3) {
+          console.log(`loaded ${command.name}`);
+          this.commands.push(command);
         }
       }
     }

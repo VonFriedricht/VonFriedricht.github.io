@@ -3,15 +3,18 @@ import { Client, Message } from "discord.js";
 type CommandFunction = (bot: Client, message: Message, args: string) => any;
 
 export class Command {
-  _name: String;
+  _name: string;
   _funct: CommandFunction;
 
-  constructor() {}
+  constructor(name?: string, funct?: CommandFunction) {
+    this.name = name;
+    this.funct = funct;
+  }
 
-  set name(name: String) {
+  set name(name: string) {
     this._name = name;
   }
-  get name(): String {
+  get name(): string {
     return this._name;
   }
 
@@ -22,5 +25,9 @@ export class Command {
     return this._funct;
   }
 
-  execute(bot: Client, message: Message, args: String) {}
+  execute(bot: Client, message: Message) {
+    let params = message.content.match(/.*?\s(.*$)/);
+    let args: string = params ? params[1] : "";
+    this.funct(bot, message, args);
+  }
 }

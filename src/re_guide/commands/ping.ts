@@ -1,5 +1,9 @@
-import { Client, Message } from "discord.js";
+import { Message } from "discord.js";
+import { Guide } from "../classes/Guide";
+import { Command } from "../classes/Command";
 
-export function command(bot: Client, message: Message, args: string): void {
-  message.channel.send("pong!");
+function ping(bot: Guide, message: Message, args: string){
+  message.channel.send("Pong!");
 }
+
+module.exports = new Command("ping", ping)

@@ -50,9 +50,10 @@ export class CommandHandler extends Client {
     if (isDir) {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
+        console.log(file);
         let script = require(file);
         if (script && script.length == 1) {
-          script(this)
+          script(this);
         }
       }
     }

@@ -48,7 +48,13 @@ export class CommandHandler extends Client {
 
     let isDir = fs.statSync(target_path).isDirectory();
     if (isDir) {
-      this.scripts = fetchJS(target_path);
+      let allJS = fetchJS(target_path);
+      for (let file of allJS) {
+        let script = require(file);
+        if (script && script.length == 3) {
+          script(this)
+        }
+      }
     }
   }
 }

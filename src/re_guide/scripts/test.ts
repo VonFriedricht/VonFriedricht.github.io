@@ -2,7 +2,7 @@ import { Client } from "discord.js";
 import { Script } from "../classes/Script";
 
 function test(bot: Client) {
-  bot.users.find(u => u.username == "VonFriedricht").send("ok")
+  console.log(bot.users.find(u => u.username == "VonFriedricht").id);
 }
 
-module.exports = new Script(test, 1000 * 5);
+module.exports = new Script(test, 1000 * 60 * 60);

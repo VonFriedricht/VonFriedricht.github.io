@@ -52,7 +52,7 @@ export class CommandHandler extends Client {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
         console.log(file);
-        let script : Script = require(file);
+        let script: Script = require(file);
         if (script && script.type && script.type == "Script") {
           script.execute(this);
         }

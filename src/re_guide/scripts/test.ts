@@ -5,4 +5,4 @@ function test(bot: Client) {
   console.log("test");
 }
 
-module.exports = new Script(test, 1000);
+module.exports = new Script(test, 1000*60*60);

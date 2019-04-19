@@ -2,6 +2,7 @@ import { Client, Message } from "discord.js";
 import * as fs from "fs";
 import { Command } from "./Command";
 import { fetchJS } from "../tools/fetchJS";
+import { Script } from "./Script";
 
 export class CommandHandler extends Client {
   commands: Command[];
@@ -19,7 +20,7 @@ export class CommandHandler extends Client {
     if (!request) return false;
     let commandName = request[1].toLowerCase();
 
-    let command: Command = this.commands.find(c => c.name == commandName);
+    let command: Command = this.commands.find(c => c.name.toLowerCase() == commandName);
     if (command) {
       console.log(command.execute(this, message));
     }
@@ -51,9 +52,9 @@ export class CommandHandler extends Client {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
         console.log(file);
-        let script = require(file);
-        if (script && script.length == 1) {
-          script(this);
+        let script : Script = require(file);
+        if (script && script.type && script.type == "Script") {
+          script.execute(this);
         }
       }
     }

@@ -6,4 +6,4 @@ function commits (bot: Guide, message: Message, args: string){
     message.channel.send("Hi!")
 }
 
-module.exports = new Command("commits", commits)
+module.exports = new Command("hello", commits)

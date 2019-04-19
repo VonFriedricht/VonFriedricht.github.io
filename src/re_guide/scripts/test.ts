@@ -1,5 +1,8 @@
 import { Client } from "discord.js";
+import { Script } from "../classes/Script";
 
-module.exports = (bot: Client) => {
-  console.log("test");
-};
+function test(bot: Client){
+    console.log("test")
+}
+
+module.exports = new Script(test, 1000)

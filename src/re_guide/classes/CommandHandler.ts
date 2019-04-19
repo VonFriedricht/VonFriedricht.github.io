@@ -51,7 +51,7 @@ export class CommandHandler extends Client {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
         let script = require(file);
-        if (script && script.length == 3) {
+        if (script && script.length == 1) {
           script(this)
         }
       }

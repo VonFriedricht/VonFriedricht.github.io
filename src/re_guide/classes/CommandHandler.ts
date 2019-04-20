@@ -6,16 +6,18 @@ import { Script } from "./Script";
 
 export class CommandHandler extends Client {
   commands: Command[];
-  scripts: any;
+  scripts: Script[];
+  scriptsTriggered: boolean;
 
   constructor() {
     super();
     this.commands = [];
-    let master = this;
-    this.on("message", message => this.onMessage(message));
+    this.scripts = [];
+    this.on("message", message => this.commandListener(message));
+    this.on("ready", () => this.scriptTrigger());
   }
 
-  onMessage(message: Message) {
+  commandListener(message: Message) {
     let request = message.content.match(/\.(.*?)(\s|$)/);
     if (!request) return false;
     let commandName = request[1].toLowerCase();
@@ -23,6 +25,13 @@ export class CommandHandler extends Client {
     let command: Command = this.commands.find(c => c.name.toLowerCase() == commandName);
     if (command) {
       console.log(command.execute(this, message));
+    }
+  }
+
+  scriptTrigger() {
+    let notTriggeredScripts = this.scripts.filter(s => s.triggered == false);
+    for (let script of notTriggeredScripts) {
+      script.trigger(this);
     }
   }
 
@@ -54,7 +63,10 @@ export class CommandHandler extends Client {
         console.log(file);
         let script: Script = require(file);
         if (script && script.type && script.type == "Script") {
-          script.execute(this);
+          this.scripts.push(script);
+          if (this.readyTimestamp !== null) {
+            script.trigger(this);
+          }
         }
       }
     }

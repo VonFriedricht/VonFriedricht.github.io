@@ -1,4 +1,3 @@
-import { Guide } from "../../classes/Guide";
 import { Message, Client } from "discord.js";
 import { Command } from "../../classes/Command";
 

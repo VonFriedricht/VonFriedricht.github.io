@@ -66,14 +66,20 @@ export class CommandHandler extends Client {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
         console.log(file);
-        let script: Script = require(file);
-        if (script && script.type && script.type == "Script") {
-          this.scripts.push(script);
-          if (this.readyTimestamp !== null) {
-            script.trigger(this);
+        let scripts: Script[] | Script = require(file);
+        if( !Array.isArray(scripts) ){
+          scripts = [scripts]
+        }
+        for(let script of scripts){
+          if(script.type == "Script"){
+            this.scripts.push(script);
+            if (this.readyTimestamp !== null) {
+              script.trigger(this);
+            }
           }
         }
       }
     }
   }
+  
 }

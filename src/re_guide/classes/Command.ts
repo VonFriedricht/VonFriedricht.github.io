@@ -5,10 +5,12 @@ type CommandFunction = (bot: Client, message: Message, args: string) => any;
 export class Command {
   _name: string;
   _funct: CommandFunction;
+  type: string;
 
   constructor(name?: string, funct?: CommandFunction) {
     this.name = name;
     this.funct = funct;
+    this.type = "Command"
   }
 
   set name(name: string) {

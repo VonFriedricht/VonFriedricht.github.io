@@ -44,7 +44,7 @@ export class CommandHandler extends Client {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
         let command = require(file);
-        if (command.name && command.funct && command.funct.length == 3) {
+        if (command.type == "Command") {
           console.log(`loaded ${command.name}`);
           this.commands.push(command);
         }

@@ -67,11 +67,11 @@ export class CommandHandler extends Client {
       for (let file of allJS) {
         console.log(file);
         let scripts: Script[] | Script = require(file);
-        if( !Array.isArray(scripts) ){
-          scripts = [scripts]
+        if (!Array.isArray(scripts)) {
+          scripts = [scripts];
         }
-        for(let script of scripts){
-          if(script.type == "Script"){
+        for (let script of scripts) {
+          if (script.type == "Script") {
             this.scripts.push(script);
             if (this.readyTimestamp !== null) {
               script.trigger(this);
@@ -81,5 +81,4 @@ export class CommandHandler extends Client {
       }
     }
   }
-  
 }

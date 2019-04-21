@@ -1,0 +1,4 @@
+following prettier command is being used.
+(please help me get the * stuff go away)
+
+$ prettier --print-width 120 --write ./src/{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*}

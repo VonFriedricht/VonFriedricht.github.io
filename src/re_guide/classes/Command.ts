@@ -10,7 +10,7 @@ export class Command {
   constructor(name?: string, funct?: CommandFunction) {
     this.name = name;
     this.funct = funct;
-    this.type = "Command"
+    this.type = "Command";
   }
 
   set name(name: string) {

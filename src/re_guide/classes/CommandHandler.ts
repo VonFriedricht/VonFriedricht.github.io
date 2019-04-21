@@ -43,10 +43,15 @@ export class CommandHandler extends Client {
     if (isDir) {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
-        let command = require(file);
-        if (command.type == "Command") {
-          console.log(`loaded ${command.name}`);
-          this.commands.push(command);
+        let commands: Command[] | Command = require(file);
+        if (!Array.isArray(commands)) {
+          commands = [commands];
+        }
+        for (let command of commands) {
+          if (command.type == "Command") {
+            console.log(`loaded ${command.name}`);
+            this.commands.push(command);
+          }
         }
       }
     }

@@ -1,9 +1,17 @@
 import { Guide } from "../../classes/Guide";
-import { Message } from "discord.js";
+import { Message, Client } from "discord.js";
 import { Command } from "../../classes/Command";
 
-function commits(bot: Guide, message: Message, args: string) {
-  message.channel.send("Hi!");
+let hello = new Command()
+hello.name = "hello"
+hello.funct = function(bot: Client, message: Message, args: string){
+  message.channel.send("Hi!")
 }
 
-module.exports = new Command("hello", commits);
+let hewwo = new Command()
+hewwo.name = "hewwo"
+hewwo.funct = function(bot: Client, message: Message, args: string){
+  message.channel.send("oh please no.")
+}
+
+module.exports = [hello, hewwo]

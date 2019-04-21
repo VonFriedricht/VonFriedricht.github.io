@@ -1,15 +1,15 @@
 import { Client } from "discord.js";
 
-export type ScriptFunction = (bot:Client) => any
+export type ScriptFunction = (bot: Client) => any;
 
 export class Script {
-  funct: ScriptFunction
+  funct: ScriptFunction;
   intervalTime: number;
   interval: NodeJS.Timeout;
   type: String;
   triggered: boolean;
 
-  constructor(funct:ScriptFunction, interval:number) {
+  constructor(funct: ScriptFunction, interval: number) {
     this.funct = funct;
     this.intervalTime = interval;
     this.type = "Script";

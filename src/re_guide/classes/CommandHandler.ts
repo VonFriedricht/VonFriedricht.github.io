@@ -28,12 +28,12 @@ export class CommandHandler extends Client {
     }
   }
 
-  addCommand(command: Command){
+  addCommand(command: Command) {
     console.log(`loaded ${command.name}`);
     this.commands.push(command);
   }
 
-  addScript(script: Script){
+  addScript(script: Script) {
     this.scripts.push(script);
     if (this.readyTimestamp !== null) {
       script.trigger(this);
@@ -55,13 +55,13 @@ export class CommandHandler extends Client {
     if (isDir) {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
-        let commands: Command[] | Command = require(file);
+        let commands: Command | Command[] = require(file);
         if (!Array.isArray(commands)) {
           commands = [commands];
         }
         for (let command of commands) {
           if (command.type == "Command") {
-            this.addCommand(command)
+            this.addCommand(command);
           }
         }
       }
@@ -77,13 +77,13 @@ export class CommandHandler extends Client {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
         console.log(file);
-        let scripts: Script[] | Script = require(file);
+        let scripts: Script | Script[] = require(file);
         if (!Array.isArray(scripts)) {
           scripts = [scripts];
         }
         for (let script of scripts) {
           if (script.type == "Script") {
-            this.addScript(script)
+            this.addScript(script);
           }
         }
       }

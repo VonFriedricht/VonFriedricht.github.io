@@ -28,6 +28,18 @@ export class CommandHandler extends Client {
     }
   }
 
+  addCommand(command: Command){
+    console.log(`loaded ${command.name}`);
+    this.commands.push(command);
+  }
+
+  addScript(script: Script){
+    this.scripts.push(script);
+    if (this.readyTimestamp !== null) {
+      script.trigger(this);
+    }
+  }
+
   scriptTrigger() {
     let notTriggeredScripts = this.scripts.filter(s => s.triggered == false);
     for (let script of notTriggeredScripts) {
@@ -49,8 +61,7 @@ export class CommandHandler extends Client {
         }
         for (let command of commands) {
           if (command.type == "Command") {
-            console.log(`loaded ${command.name}`);
-            this.commands.push(command);
+            this.addCommand(command)
           }
         }
       }
@@ -72,10 +83,7 @@ export class CommandHandler extends Client {
         }
         for (let script of scripts) {
           if (script.type == "Script") {
-            this.scripts.push(script);
-            if (this.readyTimestamp !== null) {
-              script.trigger(this);
-            }
+            this.addScript(script)
           }
         }
       }

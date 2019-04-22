@@ -1,5 +1,4 @@
 import { Message, Client } from "discord.js";
-import { Guide } from "../classes/Guide";
 import { Command } from "../classes/Command";
 
 const ping = new Command();

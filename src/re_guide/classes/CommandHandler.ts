@@ -24,7 +24,7 @@ export class CommandHandler extends Client {
 
     let command: Command = this.commands.find(c => c.name.toLowerCase() == commandName);
     if (command) {
-      console.log(command.execute(this, message));
+      command.execute(this, message);
     }
   }
 
@@ -76,7 +76,6 @@ export class CommandHandler extends Client {
     if (isDir) {
       let allJS = fetchJS(target_path);
       for (let file of allJS) {
-        console.log(file);
         let scripts: Script | Script[] = require(file);
         if (!Array.isArray(scripts)) {
           scripts = [scripts];

@@ -28,7 +28,7 @@ export class Command {
   }
 
   execute(bot: Client, message: Message) {
-    console.log(`Executing: `, this)
+    console.log(`Executing: `, this);
     let params = message.content.match(/.*?\s(.*$)/);
     let args: string = params ? params[1] : "";
     this.funct(bot, message, args);

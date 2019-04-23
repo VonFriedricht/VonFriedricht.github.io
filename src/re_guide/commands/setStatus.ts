@@ -13,11 +13,9 @@ const translations = {
 const setStatus = new Command();
 setStatus.name = "setStatus";
 setStatus.funct = function(bot: Client, message: Message, args: string) {
-  args = args.toLowerCase()
-  console.log(args)
+  args = args.toLowerCase();
   args = translations[args] || args;
   let presence = Presences.find(p => p == args);
-  console.log(presence)
   if (presence) {
     bot.user.setStatus(presence);
   }

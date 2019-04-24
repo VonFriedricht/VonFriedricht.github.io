@@ -2,9 +2,9 @@ import { Message } from "discord.js";
 import { Guide } from "../../classes/Guide";
 import { Command } from "../../classes/Command";
 
-const preview = new Command()
-preview.name = "preview"
-preview.funct = function(bot: Guide, message: Message, args: string){
+const preview = new Command();
+preview.name = "preview";
+preview.funct = function(bot: Guide, message: Message, args: string) {
   let preview: string;
 
   if (args == "now") {
@@ -14,7 +14,7 @@ preview.funct = function(bot: Guide, message: Message, args: string){
   }
 
   message.channel.send(preview);
-}
+};
 
 function generatePreview(image, tiles, day = -1): string {
   let weekdays = ["", "", "", "", "", "", ""];

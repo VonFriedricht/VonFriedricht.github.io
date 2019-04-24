@@ -7,4 +7,4 @@ setActivity.funct = function(bot: Client, message: Message, args: string) {
   bot.user.setActivity(args);
 };
 
-module.exports = [setActivity];
+module.exports = setActivity;

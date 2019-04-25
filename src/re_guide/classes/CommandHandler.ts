@@ -1,7 +1,7 @@
 import { Client, Message } from "discord.js";
 import * as fs from "fs";
 import { Command } from "./Command";
-import { fetchJS } from "../tools/fetchJS";
+import { fetchJS } from "vnft-tools";
 import { Script } from "./Script";
 
 export class CommandHandler extends Client {

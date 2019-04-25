@@ -22,3 +22,5 @@ export function fetchJS(folder): string[] {
 
   return files;
 }
+
+module.exports = fetchJS

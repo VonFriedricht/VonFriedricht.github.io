@@ -2,11 +2,8 @@
     "compilerOptions": {  
         "module": "commonjs",  
         "target": "esnext",
-        "outDir": "dist",
+        "outDir": "src/dist",
         "rootDir": "src"
     },
-    "exclude": [
-        "CommandHandler/**",
-        "Tools/**"
-    ]
+    "include": ["typings/index.d.ts"]
 }  

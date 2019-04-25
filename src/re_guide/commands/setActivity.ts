@@ -1,4 +1,4 @@
-import { Command } from "../classes/Command";
+import { Command } from "vnft-commandhandler";
 import { Client, Message } from "discord.js";
 
 const setActivity = new Command();

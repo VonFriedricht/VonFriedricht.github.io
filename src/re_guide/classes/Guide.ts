@@ -1,5 +1,4 @@
-import { CommandHandler } from "./CommandHandler";
-
+import { CommandHandler } from "vnft-commandhandler"
 export class Guide extends CommandHandler {
   target_image: number[];
   top_left_day: Date;

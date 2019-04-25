@@ -1,5 +1,5 @@
 import { Message, Client } from "discord.js";
-import { Command } from "../classes/Command";
+import { Command } from "vnft-commandhandler";
 
 const ping = new Command();
 ping.name = "ping";

@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 import { Guide } from "../../classes/Guide";
-import { Command } from "../../classes/Command";
+import { Command } from "vnft-commandhandler";
 
 const preview = new Command();
 preview.name = "preview";

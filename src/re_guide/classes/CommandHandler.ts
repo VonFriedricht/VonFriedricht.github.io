@@ -22,9 +22,7 @@ export class CommandHandler extends Client {
     if (!request) return false;
     let commandName = request[1].toLowerCase();
 
-    let command: Command = this.commands.find(
-      c => c.name.toLowerCase() == commandName
-    );
+    let command: Command = this.commands.find(c => c.name.toLowerCase() == commandName);
     if (command) {
       command.execute(this, message);
     }

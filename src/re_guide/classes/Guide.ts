@@ -13,8 +13,7 @@ export class Guide extends CommandHandler {
   }
 
   get day(): number {
-    var day =
-      (new Date().getTime() - new Date(this.top_left_day).getTime()) / 86400000;
+    var day = (new Date().getTime() - new Date(this.top_left_day).getTime()) / 86400000;
     var day_int = Math.floor(day);
     return day_int;
   }

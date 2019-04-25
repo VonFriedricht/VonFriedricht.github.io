@@ -1,8 +1,8 @@
-{  
-    "compilerOptions": {  
-        "module": "commonjs",  
-        "target": "esnext",
-        "outDir": "src/dist",
-        "rootDir": "src"
-    }
-}  
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "outDir": "src/dist",
+    "rootDir": "src"
+  }
+}

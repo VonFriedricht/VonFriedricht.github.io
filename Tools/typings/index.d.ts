@@ -3,8 +3,5 @@
 export function fetchJS(folder: any): any;
 
 export namespace fetchJS {
-    const prototype: {
-    };
-
+  const prototype: {};
 }
-

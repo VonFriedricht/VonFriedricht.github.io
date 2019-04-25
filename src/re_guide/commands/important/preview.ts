@@ -27,3 +27,5 @@ function generatePreview(image, tiles, day = -1): string {
   }
   return weekdays.join("\n");
 }
+
+module.exports = preview

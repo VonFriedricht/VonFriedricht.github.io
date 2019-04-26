@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
+    "target": "es6",
     "module": "commonjs",
-    "target": "esnext",
-    "outDir": "src/dist",
-    "rootDir": "src"
-  }
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./src/dist",
+    "removeComments": true
+  },
+  "exclude":["node_modules"],
+  "include":["./src/**/*.ts"]
 }

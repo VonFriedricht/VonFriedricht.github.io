@@ -1,4 +1,4 @@
-import { CommandHandler } from "vnft-commandhandler"
+import { CommandHandler } from "vnft-commandhandler";
 
 export class Guide extends CommandHandler {
   target_image: number[];

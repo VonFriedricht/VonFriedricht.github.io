@@ -26,7 +26,7 @@ export class CommandHandler extends Client {
    * @param {Message} message - The Discord Message that should be checked for a Command.
    */
   commandListener(message: Message) {
-    let regexPrefix = this.prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    let regexPrefix = this.prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     let requestReg = new RegExp(`^${regexPrefix}(.*?)(\\s|$)`);
 
     let request = message.content.match(requestReg);
@@ -63,6 +63,9 @@ export class CommandHandler extends Client {
     }
   }
 
+  /**
+   * Triggers all scripts that hasn't been triggered yet
+   */
   scriptTrigger() {
     let notTriggeredScripts = this.scripts.filter(s => s.triggered == false);
     for (let script of notTriggeredScripts) {
@@ -70,6 +73,10 @@ export class CommandHandler extends Client {
     }
   }
 
+  /**
+   * Loads all exported Commands inside of the given Path (goes also through the subfolders)
+   * @param target_path - The Path that should be crawled for exported Commands
+   */
   loadCommands(target_path: string) {
     let exists = fs.existsSync(target_path);
     if (!exists) return false;
@@ -91,6 +98,10 @@ export class CommandHandler extends Client {
     }
   }
 
+  /**
+   * Adds all exported Scripts inside of the given Path
+   * @param target_path - The Path that should be crawled for exported Scripts
+   */
   loadScripts(target_path: string) {
     let exists = fs.existsSync(target_path);
     if (!exists) return false;

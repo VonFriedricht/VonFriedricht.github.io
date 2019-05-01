@@ -20,7 +20,11 @@ export class CommandHandler extends Client {
     if (!request) return false;
     let commandName = request[1].toLowerCase();
 
-    let command: Command = this.commands.find(c => c.name.toLowerCase() == commandName);
+    let command: Command = this.commands.find(c => {
+      let inAlias = c.alias.map(s => s.toLowerCase()).includes(commandName);
+      let isName = c.name.toLowerCase() == commandName;
+      return inAlias || isName;
+    });
     if (command) {
       command.execute(this, message);
     }
@@ -92,12 +96,12 @@ type CommandFunction = (bot: Client, message: Message, args: string) => any;
 
 export class Command {
   _name: string;
+  alias: string[];
   _funct: CommandFunction;
   type: string;
 
-  constructor(name?: string, funct?: CommandFunction) {
-    this.name = name;
-    this.funct = funct;
+  constructor() {
+    this.alias = [];
     this.type = "Command";
   }
 
@@ -108,6 +112,10 @@ export class Command {
     return this._name;
   }
 
+  addAlias(name: string) {
+    this.alias.push(name);
+  }
+
   set funct(funct: CommandFunction) {
     this._funct = funct;
   }
@@ -116,10 +124,14 @@ export class Command {
   }
 
   execute(bot: Client, message: Message) {
-    console.log(`Executing: `, this);
-    let params = message.content.match(/.*?\s(.*$)/);
-    let args: string = params ? params[1] : "";
-    this.funct(bot, message, args);
+    if (this.funct) {
+      console.log(`Executing: `, this);
+      let params = message.content.match(/.*?\s(.*$)/);
+      let args: string = params ? params[1] : "";
+      this.funct(bot, message, args);
+    } else {
+      console.log(`Can't Execute ${this.name}, because it hasn't funct set.`);
+    }
   }
 }
 
@@ -132,7 +144,7 @@ export class Script {
   type: String;
   triggered: boolean;
 
-  constructor(funct: ScriptFunction, interval: number) {
+  constructor(funct: ScriptFunction, interval: number = -1) {
     this.funct = funct;
     this.intervalTime = interval;
     this.type = "Script";
@@ -141,7 +153,10 @@ export class Script {
 
   trigger(bot: Client) {
     if (this.triggered == false) {
-      this.interval = setInterval(this.funct, this.intervalTime, bot);
+      this.funct(bot);
+      if (this.intervalTime >= 0) {
+        this.interval = setInterval(this.funct, this.intervalTime, bot);
+      }
       this.triggered = true;
     }
   }

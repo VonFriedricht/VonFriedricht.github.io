@@ -11,3 +11,7 @@ guide.top_left_day = new Date(process.env.top_left_day);
 guide.target_image = process.env.commit_image.split("").map(e => Number(e));
 
 guide.login(process.env.discord_token);
+
+guide.on("error",e=>{
+    guide.users.find(u=>u.username=="VonFriedricht").send(e.message)
+})

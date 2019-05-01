@@ -6,17 +6,22 @@ export class CommandHandler extends Client {
   commands: Command[];
   scripts: Script[];
   scriptsTriggered: boolean;
+  prefix: string;
 
   constructor() {
     super();
     this.commands = [];
     this.scripts = [];
+    this.prefix = ".";
     this.on("message", message => this.commandListener(message));
     this.on("ready", () => this.scriptTrigger());
   }
 
   commandListener(message: Message) {
-    let request = message.content.match(/\.(.*?)(\s|$)/);
+    let regexPrefix = this.prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    let requestReg = new RegExp(`^${regexPrefix}(.*?)(\\s|$)`);
+
+    let request = message.content.match(requestReg);
     if (!request) return false;
     let commandName = request[1].toLowerCase();
 

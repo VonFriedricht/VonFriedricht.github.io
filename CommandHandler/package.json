@@ -1,6 +1,6 @@
 {
   "name": "vnft-commandhandler",
-  "version": "1.0.18d",
+  "version": "1.0.19c",
   "description": "",
   "main": "src/dist/vnft-commandhandler",
   "scripts": {

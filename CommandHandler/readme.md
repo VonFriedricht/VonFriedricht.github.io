@@ -17,12 +17,10 @@ Discord CommandHandler for TypeScript or JavaScript
     - intervalTime
 * [Examples](#examples)
 
-## Classes
-
-### CommandHandler
+## Class: CommandHandler
 The extended discord.js Client
 
-##### `prefix` *wip*
+##### `prefix`
 The prefix for the Commands, `.` is default 
 
 ##### `loadCommands(path)`
@@ -31,8 +29,8 @@ loads all exported Command-Instances of the given Path
 ##### `loadScripts(path)`
 loads all exported Script-Instances of the given Path and triggers them after the Client had a successful login
 
-### Command
 
+## Class: Command
 ##### `name`
 The main trigger for the command (without prefix)
 
@@ -43,16 +41,14 @@ filled with an function with the parameters `(bot: Client, message: Message, arg
 Alternative Names for the Command which should trigger the `Command.funct`
 
 
-
-### Script
-
-
+## Class: Script
 ##### `funct`
 filled with an function with the parameters `(bot: Client)`
 
 ##### `intervalTime`
 time in ms in which it should be repeated (negative number disables the repeat, -1 if no interval set)
 
-### Examples
+
+## Examples
 
 *wip*

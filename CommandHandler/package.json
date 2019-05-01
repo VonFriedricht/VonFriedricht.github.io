@@ -1,11 +1,11 @@
 {
   "name": "vnft-commandhandler",
-  "version": "1.0.20",
+  "version": "1.0.21g",
   "description": "",
-  "main": "src/dist/vnft-commandhandler",
+  "main": "lib/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm src/dist/* && tsc"
+    "build": "rm lib/* && tsc"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +13,5 @@
     "discord.js": "^11.4.2",
     "vnft-tools": "latest"
   },
-  "types": "src/dist/vnft-commandhandler"
+  "types": "lib/"
 }

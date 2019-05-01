@@ -5,7 +5,7 @@
   "main": "src/dist/vnft-commandhandler",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm ./src/dist/* && tsc"
+    "build": "rm src/dist/* && tsc"
   },
   "author": "",
   "license": "ISC",

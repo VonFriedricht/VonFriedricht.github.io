@@ -1,3 +1,3 @@
 import { fetchJS } from "./fetchJS";
 
-export { fetchJS }
+export { fetchJS };

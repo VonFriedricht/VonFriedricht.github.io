@@ -8,6 +8,10 @@ export class CommandHandler extends Client {
   scriptsTriggered: boolean;
   prefix: string;
 
+  /**
+   * The constructor of the CommandHandler class.
+   * @constructor
+   */
   constructor() {
     super();
     this.commands = [];
@@ -17,6 +21,10 @@ export class CommandHandler extends Client {
     this.on("ready", () => this.scriptTrigger());
   }
 
+  /**
+   * Checks an Message for a Command and executes it if one has been found.
+   * @param {Message} message - The Discord Message that should be checked for a Command.
+   */
   commandListener(message: Message) {
     let regexPrefix = this.prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     let requestReg = new RegExp(`^${regexPrefix}(.*?)(\\s|$)`);
@@ -35,11 +43,19 @@ export class CommandHandler extends Client {
     }
   }
 
+  /**
+   * Adds a Command to the List of known Commands
+   * @param {Command} command - The Command that should be added.
+   */
   addCommand(command: Command) {
     console.log(`loaded ${command.name}`);
     this.commands.push(command);
   }
 
+  /**
+   * Adds a Script to the List of known Scripts. Triggers it if Discord Client already ready.
+   * @param {Script} script - The Script that should be added.
+   */
   addScript(script: Script) {
     this.scripts.push(script);
     if (this.readyTimestamp !== null) {

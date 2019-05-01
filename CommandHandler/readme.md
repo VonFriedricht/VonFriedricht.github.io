@@ -46,7 +46,8 @@ Alternative Names for the Command which should trigger the `Command.funct`
 filled with an function with the parameters `(bot: Client)`
 
 ##### `intervalTime`
-time in ms in which it should be repeated (negative number disables the repeat, -1 if no interval set)
+time in ms in which it should be repeated  
+(negative number disables the repeat, -1 is default value)
 
 
 ## Examples

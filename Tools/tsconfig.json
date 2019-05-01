@@ -4,8 +4,7 @@
     "module": "commonjs",
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./src/dist",
-    "removeComments": true
+    "outDir": "./lib"
   },
   "exclude":["node_modules"],
   "include":["./src/**/*.ts"]

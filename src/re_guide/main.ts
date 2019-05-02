@@ -3,7 +3,7 @@ import * as path from "path";
 
 let guide = new Guide();
 
-guide.prefix = "#";
+guide.prefix = ".";
 
 guide.loadCommands(path.join(__dirname, "commands"));
 guide.loadScripts(path.join(__dirname, "scripts"));

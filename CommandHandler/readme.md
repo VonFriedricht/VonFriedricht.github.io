@@ -49,22 +49,26 @@ filled with an function with the parameters `(bot: Client)`
 
 ##### `intervalTime`
 time in ms in which it should be repeated  
-(negative number disables the repeat, -1 is default value)
+(negative numbers are disabling the repeat, -1 is the default value)
 
 
 ## Examples
 
-#### JavaScipt
-``` 
+### **JavaScipt**
+#### Structure for this example
+```
 .
-├── main.js  
-└── commands/  
-    ├── ping.js  
-    └── rickroll.js  
+├── main.js
+├── commands/
+│   ├── ping.js
+│   └── rickroll.js
+└── scripts/
+    ├── tbd
+    └── tbd
 ``` 
-
+#### Code
+##### main.js
 ```js
-// main.js
 const { CommandHandler } = require("vnft-commandhandler");
 const path = require("path");
 
@@ -75,8 +79,9 @@ client.loadCommands(path.join(__dirname, "commands"));
 
 client.login("Discord Token");
 ```
+
+##### commands/ping.js
 ```js
-// commands/ping.js
 const { Command } = require("vnft-commandhandler");
 
 const pingCommand = new Command();
@@ -87,8 +92,9 @@ pingCommand.funct = (bot, message, args) => {
 
 module.exports = pingCommand;
 ```
+
+##### commands/rickroll.js
 ```js
-// commands/rickroll.js
 const { Command } = require("vnft-commandhandler");
 
 const rick = new Command();
@@ -101,16 +107,22 @@ rick.funct = (bot, message, args) => {
 module.exports = rick;
 ```
 
-#### TypeScript
+### **TypeScript**
+#### Structure for this example:
 ``` 
 src/
-├── main.ts  
-└── commands/  
-    ├── ping.ts  
-    └── rickroll.ts  
+├── main.ts
+├── commands/
+│   ├── ping.ts
+│   └── rickroll.ts  
+└── scripts/
+    ├── tbd
+    └── tbd
 ``` 
+#### Code
+
+##### main.ts
 ```ts
-// main.ts
 import { CommandHandler } from "vnft-commandhandler";
 import * as path from "path";
 
@@ -121,8 +133,9 @@ client.loadCommands(path.join(__dirname, "commands"));
 
 client.login("Discord Token");
 ```
+
+##### commands/ping.ts
 ```ts
-// commands/ping.ts
 import { Command } from "vnft-commandhandler";
 import { Client, Message } from "discord.js";
 
@@ -134,8 +147,9 @@ ping.funct = (bot: Client, message: Message, args: string) => {
 
 module.exports = ping;
 ```
+
+##### commands/rickroll.ts
 ```ts
-// commands/rickroll.ts
 import { Command } from "vnft-commandhandler";
 import { Client, Message } from "discord.js";
 

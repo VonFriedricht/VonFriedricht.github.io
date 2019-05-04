@@ -12,7 +12,7 @@ pingCommand.funct = (bot, message, args) => {
 const rick = new Command();
 rick.name = "rick";
 rick.addAlias("roll");
-pingCommand.funct = (bot, message, args) => {
+rick.funct = (bot, message, args) => {
   message.reply("https://youtu.be/dQw4w9WgXcQ");
 };
 

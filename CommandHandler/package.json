@@ -1,6 +1,6 @@
 {
   "name": "vnft-commandhandler",
-  "version": "1.0.21g",
+  "version": "1.0.23",
   "description": "Discord CommandHandler for TypeScript or JavaScript",
   "main": "lib/src",
   "types": "lib/src",

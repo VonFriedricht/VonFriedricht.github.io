@@ -52,4 +52,51 @@ time in ms in which it should be repeated
 
 ## Examples
 
-*wip*
+#### JavaScipt
+`
+├── main.js
+└── commands/
+    ├── ping.js
+    └── rickroll.js
+`
+
+```js
+// main.js
+const { CommandHandler } = require("vnft-commandhandler");
+const path = require("path");
+
+const client = new CommandHandler();
+client.prefix = "!";
+
+client.loadCommands(path.join(__dirname, "commands"));
+
+client.login("Discord Token");
+```
+```js
+// commands/ping.js
+const { Command } = require("vnft-commandhandler");
+
+const pingCommand = new Command();
+pingCommand.name = "ping";
+pingCommand.funct = (bot, message, args) => {
+  message.reply("Pong!");
+};
+
+module.exports = pingCommand;
+```
+```js
+// commands/rick.js
+const { Command } = require("vnft-commandhandler");
+
+const rick = new Command();
+rick.name = "rick";
+rick.addAlias("roll");
+rick.funct = (bot, message, args) => {
+  message.reply("https://youtu.be/dQw4w9WgXcQ");
+};
+
+module.exports = rick;
+```
+
+#### TypeScript
+tbd

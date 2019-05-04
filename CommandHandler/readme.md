@@ -4,18 +4,20 @@ Discord CommandHandler for TypeScript or JavaScript
 ## Table of Contents
 
 * [Classes](#classes)
-  * [CommandHandler](#commandhandler)
-    - prefix
-    - loadCommands(path)
-    - loadScripts(path)
-  * [Command](#command)
-    - name
-    - funct
-    - addAlias(name)
-  * [Script](#script)
-    - funct
-    - intervalTime
+  * [CommandHandler](#class-commandhandler)
+    - [prefix](#prefix)
+    - [loadCommands(path)](#loadcommandspath)
+    - [loadScripts(path)](#loadscriptspath)
+  * [Command](#class-command)
+    - [name](#name)
+    - [funct](#funct)
+    - [addAlias(name)](#addaliasname)
+  * [Script](#class-script)
+    - [funct](#funct-1)
+    - [intervalTime](#intervaltime)
 * [Examples](#examples)
+    - [JavaScript](#javascipt)
+    - [TypeScript](#typescript)
 
 ## Class: CommandHandler
 The extended discord.js Client

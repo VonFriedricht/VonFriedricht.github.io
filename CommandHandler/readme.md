@@ -53,12 +53,12 @@ time in ms in which it should be repeated
 ## Examples
 
 #### JavaScipt
-`
-├── main.js
-└── commands/
-    ├── ping.js
-    └── rickroll.js
-`
+``` 
+├── main.js  
+└── commands/  
+    ├── ping.js  
+    └── rickroll.js  
+``` 
 
 ```js
 // main.js

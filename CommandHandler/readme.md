@@ -56,6 +56,7 @@ time in ms in which it should be repeated
 
 #### JavaScipt
 ``` 
+.
 ├── main.js  
 └── commands/  
     ├── ping.js  
@@ -87,7 +88,7 @@ pingCommand.funct = (bot, message, args) => {
 module.exports = pingCommand;
 ```
 ```js
-// commands/rick.js
+// commands/rickroll.js
 const { Command } = require("vnft-commandhandler");
 
 const rick = new Command();
@@ -101,4 +102,48 @@ module.exports = rick;
 ```
 
 #### TypeScript
-tbd
+``` 
+src/
+├── main.ts  
+└── commands/  
+    ├── ping.ts  
+    └── rickroll.ts  
+``` 
+```ts
+// main.ts
+import { CommandHandler } from "vnft-commandhandler";
+import * as path from "path";
+
+const client = new CommandHandler();
+client.prefix = "!";
+
+client.loadCommands(path.join(__dirname, "commands"));
+
+client.login("Discord Token");
+```
+```ts
+// commands/ping.ts
+import { Command } from "vnft-commandhandler";
+import { Client, Message } from "discord.js";
+
+const ping = new Command();
+ping.name = "ping";
+ping.funct = (bot: Client, message: Message, args: string) => {
+  message.reply("Pong");
+};
+
+module.exports = ping;
+```
+```ts
+// commands/rickroll.ts
+const { Command } = require("vnft-commandhandler");
+
+const rick = new Command();
+rick.name = "rick";
+rick.addAlias("roll");
+rick.funct = (bot, message, args) => {
+  message.reply("https://youtu.be/dQw4w9WgXcQ");
+};
+
+module.exports = rick;
+```

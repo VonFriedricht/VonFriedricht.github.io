@@ -136,12 +136,13 @@ module.exports = ping;
 ```
 ```ts
 // commands/rickroll.ts
-const { Command } = require("vnft-commandhandler");
+import { Command } from "vnft-commandhandler";
+import { Client, Message } from "discord.js";
 
 const rick = new Command();
 rick.name = "rick";
 rick.addAlias("roll");
-rick.funct = (bot, message, args) => {
+rick.funct = (bot: Client, message: Message, args: string) => {
   message.reply("https://youtu.be/dQw4w9WgXcQ");
 };
 

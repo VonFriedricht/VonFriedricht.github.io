@@ -1,17 +1,26 @@
 {
   "name": "vnft-commandhandler",
   "version": "1.0.21g",
-  "description": "",
-  "main": "lib/",
+  "description": "Discord CommandHandler for TypeScript or JavaScript",
+  "main": "lib/src",
+  "types": "lib/src",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm lib/* && tsc"
+    "test": "node lib",
+    "build": "rm -rf lib && tsc"
   },
-  "author": "",
+  "keywords": [
+    "discord",
+    "bot",
+    "node",
+    "discordapp",
+    "command",
+    "commandhandler"
+  ],
+  "author": "VonFriedricht",
   "license": "ISC",
+  "runkitExampleFilename": "./docs/runkit-example/ping.ts",
   "dependencies": {
     "discord.js": "^11.4.2",
     "vnft-tools": "latest"
-  },
-  "types": "lib/"
+  }
 }

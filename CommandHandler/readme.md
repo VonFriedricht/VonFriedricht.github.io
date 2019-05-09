@@ -52,6 +52,10 @@ Limtes the Users that can use the command to those who are described in the whit
 Without whitelist: everyone is allowed that isn't in described in the blacklist
 With whitelist: only whitelisted are allowed that arent in a blacklist of the command
 
+##### `addRoleWhitelist`
+
+##### `addRoleBlacklist`
+
 ## Class: Script
 ##### `funct`
 filled with an function with the parameters `(bot: Client)`

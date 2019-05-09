@@ -53,9 +53,27 @@ export class Command {
 
   isPermitted(author: User, roles?: Role[]): boolean {
     if (roles) {
+      let hasWhitelist = this.whitelist.users.length > 0 || this.whitelist.roles.length > 0;
+      let hasBlacklist = this.blacklist.users.length > 0 || this.blacklist.roles.length > 0;
+
+      if (hasWhitelist == true && hasBlacklist == false) {
+        return this.whitelist.users.some(w => w(author)) || this.whitelist.roles.some(w => roles.some(r => w(r)));
+      }
+      if (hasWhitelist == false && hasBlacklist == true) {
+        return !(this.blacklist.users.some(w => w(author)) || this.blacklist.roles.some(w => roles.some(r => w(r))));
+      }
+      if (hasWhitelist == true && hasBlacklist == true) {
+        return (
+          (this.whitelist.users.some(w => w(author)) || this.whitelist.roles.some(w => roles.some(r => w(r)))) &&
+          !(this.blacklist.users.some(w => w(author)) || this.blacklist.roles.some(w => roles.some(r => w(r))))
+        );
+      }
+      if (hasWhitelist == false && hasBlacklist == false) {
+        return true;
+      }
     }
 
-    if (!roles || 1) {
+    if (!roles) {
       let hasWhitelist = this.whitelist.users.length > 0;
       let hasBlacklist = this.blacklist.users.length > 0;
 

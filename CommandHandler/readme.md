@@ -61,7 +61,8 @@ time in ms in which it should be repeated
 ├── main.js
 ├── commands/
 │   ├── ping.js
-│   └── rickroll.js
+│   ├── neko.js
+│   └── setActivity.js
 └── scripts/
     ├── tbd
     └── tbd
@@ -93,18 +94,35 @@ pingCommand.funct = (bot, message, args) => {
 module.exports = pingCommand;
 ```
 
-##### commands/rickroll.js
+##### commands/neko.js
+```js
+const { Command } = require("vnft-commandhandler");
+const axios = require("axios");
+
+const neko = new Command();
+neko.name = "neko";
+neko.addAlias("cat");
+neko.funct = async (bot, message, args) => {
+  var meow = await axios.get("http://aws.random.cat/meow");
+  message.reply(meow.data.file);
+};
+
+module.exports = neko;
+```
+
+##### commands/activity.js
 ```js
 const { Command } = require("vnft-commandhandler");
 
-const rick = new Command();
-rick.name = "rick";
-rick.addAlias("roll");
-rick.funct = (bot, message, args) => {
-  message.reply("https://youtu.be/dQw4w9WgXcQ");
+const activity = new Command();
+activity.name = "setActivity";
+activity.addAlias("activity");
+activity.funct = async (bot, message, args) => {
+  await bot.user.setActivity(args);
+  message.reply(`Status Updated`);
 };
 
-module.exports = rick;
+module.exports = activity;
 ```
 
 ### **TypeScript**
@@ -114,7 +132,8 @@ src/
 ├── main.ts
 ├── commands/
 │   ├── ping.ts
-│   └── rickroll.ts  
+│   ├── neko.ts
+│   └── setActivity.ts
 └── scripts/
     ├── tbd
     └── tbd
@@ -141,6 +160,7 @@ import { Client, Message } from "discord.js";
 
 const ping = new Command();
 ping.name = "ping";
+
 ping.funct = (bot: Client, message: Message, args: string) => {
   message.reply("Pong");
 };
@@ -148,17 +168,36 @@ ping.funct = (bot: Client, message: Message, args: string) => {
 module.exports = ping;
 ```
 
-##### commands/rickroll.ts
+##### commands/neko.ts
+```ts
+import { Command } from "vnft-commandhandler";
+import { Client, Message } from "discord.js";
+import axios from "axios";
+
+const neko = new Command();
+neko.name = "neko";
+neko.addAlias("cat");
+
+neko.funct = async (bot: Client, message: Message, args: string) => {
+  let meow = await axios.get("http://aws.random.cat/meow");
+  message.reply(meow.data.file);
+};
+
+module.exports = neko;
+```
+
+##### commands/setActivity.ts
 ```ts
 import { Command } from "vnft-commandhandler";
 import { Client, Message } from "discord.js";
 
-const rick = new Command();
-rick.name = "rick";
-rick.addAlias("roll");
-rick.funct = (bot: Client, message: Message, args: string) => {
-  message.reply("https://youtu.be/dQw4w9WgXcQ");
+const activity = new Command();
+activity.name = "setActivity";
+activity.addAlias("activity");
+activity.funct = async (bot: Client, message: Message, args: string) => {
+  await bot.user.setActivity(args);
+  message.reply(`Activity Updated!`);
 };
 
-module.exports = rick;
+module.exports = activity;
 ```

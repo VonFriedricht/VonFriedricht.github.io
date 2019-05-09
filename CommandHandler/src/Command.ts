@@ -1,6 +1,11 @@
-import { Client, Message } from "discord.js";
+import { Client, Message, User } from "discord.js";
 
 export type CommandFunction = (bot: Client, message: Message, args: string) => any;
+
+export interface permissionlist {
+  roles?: Object[],
+  users?: Object[]
+}
 
 export class Command {
   _name: string;
@@ -8,9 +13,33 @@ export class Command {
   _funct: CommandFunction;
   type: string;
 
+  whitelist: permissionlist | true; 
+    // tbd roles and users that are allowed to use this command
+    /*
+      {
+          roles: [
+            {name: "Admin"},
+            {id: "13212332453214"}
+          ],
+          users: [
+            {username: "VonFriedricht", discriminator: "0000"},
+            {id: "2134021709809874"}
+          ]
+       } 
+       should get help with .whitelistUser()
+                            .whitelistRole()
+    */
+
+
+  blacklist: permissionlist | false;
+    // tbd roles and users that are not allowed to use this command
+
   constructor() {
     this.alias = [];
     this.type = "Command";
+
+    this.whitelist = true;
+    this.blacklist = false;
   }
 
   set name(name: string) {
@@ -29,6 +58,10 @@ export class Command {
   }
   get funct(): CommandFunction {
     return this._funct;
+  }
+
+  isPermitted(author: User){
+    if( this.whitelist === true && this.blacklist === false ) return true
   }
 
   execute(bot: Client, message: Message) {

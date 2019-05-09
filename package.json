@@ -25,7 +25,7 @@
     "express": "^4.16.4",
     "nodemon": "^1.18.11",
     "typescript": "^3.4.2",
-    "vnft-commandhandler": "^1.0.27",
+    "vnft-commandhandler": "^1.0.29-b",
     "vnft-tools": "latest"
   },
   "engines": {

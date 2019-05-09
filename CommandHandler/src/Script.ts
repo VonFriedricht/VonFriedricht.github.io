@@ -9,15 +9,14 @@ export class Script {
   type: String;
   triggered: boolean;
 
-  constructor(funct: ScriptFunction, interval: number = -1) {
-    this.funct = funct;
-    this.intervalTime = interval;
+  constructor() {
+    this.intervalTime = -1;
     this.type = "Script";
     this.triggered = false;
   }
 
   trigger(bot: Client) {
-    if (this.triggered == false) {
+    if (this.triggered == false && this.funct) {
       this.funct(bot);
       if (this.intervalTime >= 0) {
         this.interval = setInterval(this.funct, this.intervalTime, bot);

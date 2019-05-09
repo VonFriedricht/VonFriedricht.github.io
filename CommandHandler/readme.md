@@ -42,6 +42,12 @@ filled with an function with the parameters `(bot: Client, message: Message, arg
 ##### `addAlias(name)`
 Alternative Names for the Command which should trigger the `Command.funct`
 
+##### `addUserWhitelist( u => u.id == "397063436049186818" )`
+Limtes the Users that can use the command to those who are described in the whitelist
+
+##### `addUserBlacklist( u => u.id == "535483764395081759" )`
+Without whitelist: everyone is allowed that isn't in described in the blacklist
+With whitelist: only whitelisted are allowed that arent in a blacklist of the command
 
 ## Class: Script
 ##### `funct`

@@ -5,8 +5,12 @@ const test = new Script();
 
 test.funct = (bot: Client) => {
     let vnft = bot.users.find(u=>u.id=="397063436049186818")
-    vnft.send(" ")
-    console.log(vnft.dmChannel)
+    if( !vnft.dmChannel ){
+        vnft.send(" ").catch()
+    }
+    else{
+        console.log(vnft.dmChannel)
+    }
 }
 
 test.intervalTime = 60000

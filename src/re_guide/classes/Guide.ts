@@ -9,7 +9,7 @@ export class Guide extends CommandHandler {
 
   constructor() {
     super();
-    this.tile_sizes = [0,1,5,10];
+    this.tile_sizes = [0, 1, 5, 10];
     this.target_image = [1, 2, 3, 4];
     this.top_left_day = new Date();
     this.preview_tiles = ["A", "B", "C", "D", "E"];
@@ -20,13 +20,12 @@ export class Guide extends CommandHandler {
     var day_int = Math.floor(day);
     return day_int;
   }
-  
+
   get requiredCommits(): number {
     let daytile = this.target_image[this.day];
     let daysize = this.tile_sizes[daytile - 1];
     return daysize;
   }
-
 
   async fetchMadeCommits(username: string): Promise<number> {
     // today: format YYYY-MM-DD
@@ -44,8 +43,7 @@ export class Guide extends CommandHandler {
     return Number(made_commits);
   }
 
-  async nextWords(wordcount: number): Promise<String[][]>{
-    return [["tbd"],["tbd","tbd"]]
+  async nextWords(wordcount: number): Promise<String[][]> {
+    return [["tbd"], ["tbd", "tbd"]];
   }
-
 }

@@ -5,10 +5,14 @@
         "preserveConstEnums": true,
         "target": "esnext",
         "outDir": "dist",
-        "rootDir": "src"
+        "rootDir": "src",
+        "baseUrl": "src"
     },
     "exclude": [
         "CommandHandler/**",
         "Tools/**"
-    ]
+    ],
+    "paths": {
+        "classes/*": ["re_guide/classes/*"],
+    }
 }  

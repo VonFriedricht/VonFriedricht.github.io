@@ -9,7 +9,11 @@ commits.funct = async (bot:Guide, message, args) => {
     
     let made = await bot.fetchMadeCommits("VonFriedricht")
     let required = bot.requiredCommits
-    message.channel.send(`Commits: ${made}/ ${required}`)
+    message.channel.send(`Commits: ${made} / ${required}`)
+
+    let wordcount = required - made;
+    let wordgroups = await bot.nextWords(wordcount);
+    message.channel.send(wordgroups.join("\n"));
 };
 
 module.exports = commits;

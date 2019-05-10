@@ -44,4 +44,8 @@ export class Guide extends CommandHandler {
     return Number(made_commits);
   }
 
+  async nextWords(wordcount: number): Promise<Array<String>>{
+    return ["tbd"]
+  }
+
 }

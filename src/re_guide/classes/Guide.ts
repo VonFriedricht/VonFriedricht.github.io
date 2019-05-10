@@ -1,4 +1,5 @@
 import { CommandHandler } from "vnft-commandhandler";
+import axios from "axios";
 
 export class Guide extends CommandHandler {
   target_image: number[];
@@ -20,10 +21,27 @@ export class Guide extends CommandHandler {
     return day_int;
   }
   
-  get required_commits(): number {
+  get requiredCommits(): number {
     let daytile = this.target_image[this.day];
     let daysize = this.tile_sizes[daytile - 1];
     return daysize;
+  }
+
+
+  async fetchMadeCommits(username: string): Promise<number> {
+    // today: format YYYY-MM-DD
+    let today_ISO = new Date().toISOString().split("T")[0];
+
+    // getting github page
+    let site = await axios.get(`https://github.com/` + username);
+    let sitecontent: string = site.data;
+
+    // regular expression to find the data-count for the given date
+    let target_reg = new RegExp(`data-count="(.*?)" data-date="${today_ISO}"`, "g");
+    let reg_result = target_reg.exec(sitecontent);
+    let made_commits = reg_result[1];
+
+    return Number(made_commits);
   }
 
 }

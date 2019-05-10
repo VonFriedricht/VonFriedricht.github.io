@@ -4,9 +4,12 @@ import { Guide } from "re_guide/classes/Guide";
 const commits = new Command();
 commits.name = "commits";
 
-commits.funct = (bot:Guide, message, args) => {
+commits.funct = async (bot:Guide, message, args) => {
     message.channel.send(`Current Day: ${bot.day}`);
-    message.channel.send(`${bot.required_commits}`)
+    
+    let made = await bot.fetchMadeCommits("VonFriedricht")
+    let required = bot.requiredCommits
+    message.channel.send(`Commits: ${made}/ ${required}`)
 };
 
 module.exports = commits;

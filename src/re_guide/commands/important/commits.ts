@@ -13,7 +13,9 @@ commits.funct = async (bot:Guide, message, args) => {
 
     let wordcount = required - made;
     let wordgroups = await bot.nextWords(wordcount);
-    message.channel.send(wordgroups.join("\n"));
+    for( let wordgroup of wordgroups ){
+        message.channel.send(`\`${wordgroup.join("\n")}\``);
+    }
 };
 
 module.exports = commits;

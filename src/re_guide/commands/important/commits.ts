@@ -6,6 +6,7 @@ commits.name = "commits";
 
 commits.funct = (bot:Guide, message, args) => {
     message.channel.send(`Current Day: ${bot.day}`);
+    message.channel.send(`${bot.required_commits}`)
 };
 
 module.exports = commits;

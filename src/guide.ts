@@ -6,7 +6,6 @@ const bot = new CommitGuide({
   lyrics: process.env.lyrics.split("+")
 });
 
-bot.read_commanddir(__dirname + "/commands");
 bot.exec_passivedir(__dirname + "/passive");
 
 bot.login(process.env.discord_token).then(() => {

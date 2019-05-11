@@ -26,7 +26,7 @@
     "nodemon": "^1.18.11",
     "typescript": "^3.4.2",
     "vnft-commandhandler": "^1.0.29-b",
-    "vnft-tools": "latest"
+    "vnft-tools": "^1.0.9-b"
   },
   "engines": {
     "node": "10.5.0"

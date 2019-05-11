@@ -1,5 +1,6 @@
 import { Script } from "vnft-commandhandler";
 import { Guide } from "re_guide/classes/Guide";
+import { time } from "vnft-tools";
 
 const outOfTime = new Script();
 
@@ -26,6 +27,6 @@ outOfTime.funct = async (bot: Guide) => {
   }
 };
 
-outOfTime.intervalTime = 60000;
+outOfTime.intervalTime = time.minute;
 
 module.exports = outOfTime;

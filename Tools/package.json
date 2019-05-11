@@ -1,6 +1,6 @@
 {
   "name": "vnft-tools",
-  "version": "1.0.8",
+  "version": "1.0.9b",
   "description": "",
   "main": "./lib",
   "scripts": {

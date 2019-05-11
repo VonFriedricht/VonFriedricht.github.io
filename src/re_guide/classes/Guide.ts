@@ -6,6 +6,7 @@ export class Guide extends CommandHandler {
   top_left_day: Date;
   preview_tiles: string[];
   tile_sizes: number[];
+  lyrics: string[];
 
   constructor() {
     super();
@@ -13,6 +14,7 @@ export class Guide extends CommandHandler {
     this.target_image = [1, 2, 3, 4];
     this.top_left_day = new Date();
     this.preview_tiles = ["A", "B", "C", "D", "E"];
+    this.lyrics = ["no", "lyrics", "set"];
   }
 
   get day(): number {
@@ -43,7 +45,56 @@ export class Guide extends CommandHandler {
     return Number(made_commits);
   }
 
+  async fetchLastCommits(count: number, url?: string): Promise<string[]> {
+    if (!url) {
+      url = "https://github.com/VonFriedricht/Weight-of-the-World/commits/master";
+    }
+    let site = await axios.get(url);
+    let sitecontent: string = site.data;
+
+    let commit_net = /message js-navigation-open.*?>(.*?)<\/a>/g;
+
+    let commit: string = null;
+    let commits: string[] = [];
+
+    while (commits.length < count && (commit = commit_net.exec(sitecontent)[1])) {
+      commits.push(commit);
+    }
+
+    return commits.reverse();
+  }
+
   async nextWords(wordcount: number): Promise<String[][]> {
-    return [["tbd"], ["tbd", "tbd"]];
+    return [await this.fetchLastCommits(wordcount)];
+    /*
+    let words: string[] = this.lyrics;
+    let header: string[] = await this.fetch_last_commits(25);
+    let next_words: string[][] = [];
+
+    for (let i in words) {
+      if (words[i].toLowerCase() == header[0].toLowerCase()) {
+        let j: string;
+        for (j in header) {
+          let word_pointer = Number(i) + Number(j);
+          if (
+            typeof words[word_pointer] == "undefined" ||
+            words[word_pointer].toLowerCase() != header[j].toLowerCase()
+          ) {
+            break;
+          }
+        }
+
+        if (Number(j) + 1 == header.length && Number(j) > 0) {
+          let wordgroup: string[] = [];
+
+          let word_pointer = Number(i) + Number(j) + 1;
+          for (let k = 0; k < count && words[word_pointer + +k]; k++) {
+            wordgroup.push(words[word_pointer + +k]);
+          }
+          next_words.push(wordgroup);
+        }
+      }
+    }
+    */
   }
 }

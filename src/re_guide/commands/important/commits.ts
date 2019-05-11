@@ -1,10 +1,11 @@
 import { Command } from "vnft-commandhandler/lib/src";
 import { Guide } from "re_guide/classes/Guide";
+import { Message } from "discord.js";
 
 const commits = new Command();
 commits.name = "commits";
 
-commits.funct = async (bot: Guide, message, args) => {
+commits.funct = async (bot: Guide, message: Message, args: string) => {
   // Message:  Current Day: day
   message.channel.send(`Current Day: ${bot.day}`);
 

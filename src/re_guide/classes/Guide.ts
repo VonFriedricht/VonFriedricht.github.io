@@ -65,20 +65,18 @@ export class Guide extends CommandHandler {
   }
 
   async nextWords(wordcount: number): Promise<String[][]> {
-    return [await this.fetchLastCommits(wordcount)];
-    /*
-    let words: string[] = this.lyrics;
-    let header: string[] = await this.fetch_last_commits(25);
+    let lyrics: string[] = this.lyrics;
+    let header: string[] = await this.fetchLastCommits(25);
     let next_words: string[][] = [];
 
-    for (let i in words) {
-      if (words[i].toLowerCase() == header[0].toLowerCase()) {
+    for (let i in lyrics) {
+      if (lyrics[i].toLowerCase() == header[0].toLowerCase()) {
         let j: string;
         for (j in header) {
           let word_pointer = Number(i) + Number(j);
           if (
-            typeof words[word_pointer] == "undefined" ||
-            words[word_pointer].toLowerCase() != header[j].toLowerCase()
+            typeof lyrics[word_pointer] == "undefined" ||
+            lyrics[word_pointer].toLowerCase() != header[j].toLowerCase()
           ) {
             break;
           }
@@ -88,13 +86,14 @@ export class Guide extends CommandHandler {
           let wordgroup: string[] = [];
 
           let word_pointer = Number(i) + Number(j) + 1;
-          for (let k = 0; k < count && words[word_pointer + +k]; k++) {
-            wordgroup.push(words[word_pointer + +k]);
+          for (let k = 0; k < wordcount && lyrics[word_pointer + +k]; k++) {
+            wordgroup.push(lyrics[word_pointer + +k]);
           }
           next_words.push(wordgroup);
         }
       }
     }
-    */
+
+    return next_words;
   }
 }

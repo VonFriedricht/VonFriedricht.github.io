@@ -14,4 +14,4 @@ let week: number = 7 * day;
 let month: number = 30 * day;
 let year: number = 12 * month;
 
-export {ms, s, sec, min, minute, h, hour, day, week, month, year}
+export { ms, s, sec, min, minute, h, hour, day, week, month, year };

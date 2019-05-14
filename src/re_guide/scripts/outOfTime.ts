@@ -7,7 +7,7 @@ const outOfTime = new Script();
 outOfTime.funct = async (bot: Guide) => {
   let vnft = bot.users.find(u => u.id == "397063436049186818");
   let user = "VonFriedricht";
-  
+
   if (!vnft.dmChannel) {
     vnft.send(" ").catch(console.log);
   } else {
@@ -23,7 +23,6 @@ outOfTime.funct = async (bot: Guide) => {
         vnft.send(reminder);
       }
     }
-
   }
 };
 

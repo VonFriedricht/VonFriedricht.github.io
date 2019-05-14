@@ -20,7 +20,7 @@
   "license": "ISC",
   "runkitExampleFilename": "./docs/examples/runkit.ts",
   "dependencies": {
-    "discord.js": "^11.4.2",
-    "vnft-tools": "latest"
+    "discord.js": "^11.5.0",
+    "vnft-tools": "^1.0.9-b"
   }
 }

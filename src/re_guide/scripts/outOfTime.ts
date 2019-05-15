@@ -26,6 +26,6 @@ outOfTime.funct = async (bot: Guide) => {
   }
 };
 
-outOfTime.intervalTime = time.minute;
+outOfTime.intervalTime = time.hour / 2;
 
 module.exports = outOfTime;

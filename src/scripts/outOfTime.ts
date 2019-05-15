@@ -9,7 +9,9 @@ outOfTime.funct = async (bot: Guide) => {
   let user = "VonFriedricht";
 
   if (!vnft.dmChannel) {
-    vnft.send(" ").catch(e=>{return});
+    vnft.send(" ").catch(e => {
+      return;
+    });
   } else {
     let made: number = await bot.fetchMadeCommits(user);
     let required: number = bot.requiredCommits;

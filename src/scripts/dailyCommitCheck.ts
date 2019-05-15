@@ -10,7 +10,9 @@ check.funct = async (bot: Guide): Promise<boolean | void> => {
   let flag = `Current Day: ${bot.day}`;
 
   if (!vnft.dmChannel) {
-    vnft.send(" ").catch(e=>{return});
+    vnft.send(" ").catch(e => {
+      return;
+    });
   } else {
     let messages = await vnft.dmChannel.fetchMessages();
     let has_send = messages.some(m => m.content == flag);

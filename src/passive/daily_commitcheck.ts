@@ -1,6 +1,6 @@
 import { PassiveScript, PassiveFunc } from "../PassiveScript";
 import { CommitGuide, get_commitresponse } from "../CommitGuide";
-import { hour, min, sec } from "../time";
+import { time } from "vnft-tools";
 
 async function script(bot: CommitGuide): Promise<boolean | void> {
   let vnft = bot.users.find(u => u.id == "397063436049186818"); // lol, make it an ENV
@@ -19,6 +19,6 @@ async function script(bot: CommitGuide): Promise<boolean | void> {
   }
 }
 
-var daily_commitcheck = new PassiveScript(script, hour);
+var daily_commitcheck = new PassiveScript(script, time.hour);
 
 module.exports = daily_commitcheck;

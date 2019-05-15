@@ -1,5 +1,5 @@
 import { Command } from "vnft-commandhandler/lib/src";
-import { Guide } from "re_guide/classes/Guide";
+import { Guide } from "classes/Guide";
 import { Message } from "discord.js";
 
 const next = new Command();

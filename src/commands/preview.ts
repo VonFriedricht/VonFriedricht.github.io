@@ -5,9 +5,9 @@ import { Guide } from "classes/Guide";
 const Canvas = require("canvas");
 const colors = [null, "#ebedf0", "#c6e48b", "#7bc96f", "#196127"];
 
-const test = new Command();
-test.name = "test";
-test.funct = async (bot: Guide, message, args) => {
+const preview = new Command();
+preview.name = "preview";
+preview.funct = async (bot: Guide, message, args) => {
   const pixels = bot.target_image;
 
   const canvas = Canvas.createCanvas(Math.ceil(pixels.length / 7) * 11, 11 * 7);
@@ -35,4 +35,4 @@ test.funct = async (bot: Guide, message, args) => {
   message.channel.send(args, attachment);
 };
 
-module.exports = test;
+module.exports = preview;

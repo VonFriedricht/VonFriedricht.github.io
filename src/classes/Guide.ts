@@ -2,28 +2,28 @@ import { CommandHandler } from "vnft-commandhandler";
 import axios from "axios";
 
 export class Guide extends CommandHandler {
-  target_image: number[];
-  top_left_day: Date;
-  tile_sizes: number[];
+  targetImage: number[];
+  topLeftDay: Date;
+  tileSizes: number[];
   lyrics: string[];
 
   constructor() {
     super();
-    this.tile_sizes = [0, 1, 5, 10];
-    this.target_image = [1, 2, 3, 4];
-    this.top_left_day = new Date();
+    this.tileSizes = [0, 1, 5, 10];
+    this.targetImage = [1, 2, 3, 4];
+    this.topLeftDay = new Date();
     this.lyrics = ["no", "lyrics", "set"];
   }
 
   get day(): number {
-    var day = (new Date().getTime() - new Date(this.top_left_day).getTime()) / 86400000;
+    var day = (new Date().getTime() - new Date(this.topLeftDay).getTime()) / 86400000;
     var day_int = Math.floor(day);
     return day_int;
   }
 
   get requiredCommits(): number {
-    let daytile = this.target_image[this.day];
-    let daysize = this.tile_sizes[daytile - 1];
+    let daytile = this.targetImage[this.day];
+    let daysize = this.tileSizes[daytile - 1];
     return daysize;
   }
 

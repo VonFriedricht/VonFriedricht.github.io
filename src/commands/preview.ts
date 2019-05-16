@@ -8,7 +8,7 @@ const colors = [null, "#ebedf0", "#c6e48b", "#7bc96f", "#196127"];
 const preview = new Command();
 preview.name = "preview";
 preview.funct = async (bot: Guide, message, args) => {
-  const pixels = bot.target_image;
+  const pixels = bot.targetImage;
 
   const canvas = Canvas.createCanvas(Math.ceil(pixels.length / 7) * 11, 11 * 7);
   const ctx = canvas.getContext("2d");

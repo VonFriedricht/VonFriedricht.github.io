@@ -4,7 +4,6 @@ import axios from "axios";
 export class Guide extends CommandHandler {
   target_image: number[];
   top_left_day: Date;
-  preview_tiles: string[];
   tile_sizes: number[];
   lyrics: string[];
 
@@ -13,7 +12,6 @@ export class Guide extends CommandHandler {
     this.tile_sizes = [0, 1, 5, 10];
     this.target_image = [1, 2, 3, 4];
     this.top_left_day = new Date();
-    this.preview_tiles = ["A", "B", "C", "D", "E"];
     this.lyrics = ["no", "lyrics", "set"];
   }
 

@@ -9,21 +9,20 @@ outOfTime.funct = async (bot: Guide) => {
   let user = "VonFriedricht";
 
   if (!vnft.dmChannel) {
-    vnft.send(" ").catch(e => {
+    await vnft.send(" ").catch(e => {
       return;
     });
-  } else {
-    let made: number = await bot.fetchMadeCommits(user);
-    let required: number = bot.requiredCommits;
+  }
+  let made: number = await bot.fetchMadeCommits(user);
+  let required: number = bot.requiredCommits;
 
-    let done = made >= required;
+  let done = made >= required;
 
-    if (!done) {
-      let timeShort = new Date().getHours() > 15;
-      if (timeShort) {
-        let reminder = `${made} by ${required} done`;
-        vnft.send(reminder);
-      }
+  if (!done) {
+    let timeShort = new Date().getHours() > 15;
+    if (timeShort) {
+      let reminder = `${made} by ${required} done`;
+      vnft.send(reminder);
     }
   }
 };

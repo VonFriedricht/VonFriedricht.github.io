@@ -15,10 +15,16 @@ test.funct = async (bot: Guide, message, args) => {
 
   let x = 0;
   let y = 0;
+  let day = 0;
   for (let pixel of pixels) {
+    if (day == bot.day) {
+      ctx.fillStyle = "red";
+      ctx.fillRect(x * 11 - 1, y * 11 - 1, 12, 12);
+    }
     ctx.fillStyle = colors[pixel];
     ctx.fillRect(x * 11, y * 11, 10, 10);
     y++;
+    day++;
     if (y == 7) {
       x++;
       y = 0;

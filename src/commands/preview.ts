@@ -12,7 +12,8 @@ preview.funct = async (bot: Guide, message, args) => {
 
   const pixelSize = 12;
   const pixelMargin = 2;
-  const pixelSpace = (pixelSize + pixelMargin);
+  const pixelSpace = pixelSize + pixelMargin;
+  const highlightSize = 2;
 
   const pixelRows = Math.ceil(pixels.length / 7);
 
@@ -23,14 +24,20 @@ preview.funct = async (bot: Guide, message, args) => {
   let y = 0;
   let day = 0;
   for (let pixel of pixels) {
-    let pixelX = x * pixelSpace
-    let pixelY = y * pixelSpace
+    let pixelX = x * pixelSpace;
+    let pixelY = y * pixelSpace;
     if (day == bot.day) {
       ctx.fillStyle = "red";
-      ctx.fillRect(pixelX - 1, pixelY - 1, pixelSize + 2, pixelSize + 2);
+      ctx.fillRect(
+        pixelX - highlightSize,
+        pixelY - highlightSize,
+        pixelSize + highlightSize * 2,
+        pixelSize + highlightSize * 2
+      );
     }
     ctx.fillStyle = colors[pixel];
     ctx.fillRect(pixelX, pixelY, pixelSize, pixelSize);
+
     y++;
     day++;
     if (y == 7) {

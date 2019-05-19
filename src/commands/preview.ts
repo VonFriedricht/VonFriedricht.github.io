@@ -29,8 +29,8 @@ preview.funct = async (bot: Guide, message, args) => {
     if (day == bot.day) {
       ctx.fillStyle = "red";
       ctx.fillRect(
-        pixelX - highlightSize,
-        pixelY - highlightSize,
+        pixelX - highlightSize + pixelMargin/2,
+        pixelY - highlightSize + pixelMargin/2,
         pixelSize + highlightSize * 2,
         pixelSize + highlightSize * 2
       );

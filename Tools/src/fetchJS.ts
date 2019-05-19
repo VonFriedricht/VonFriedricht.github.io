@@ -1,6 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
 
+/**
+ * fetches all .js files in a folder and its subfolders
+ * @param {string} folder - Path to the folder
+ */
 export function fetchJS(folder): string[] {
   let folderContent = fs.readdirSync(folder);
   let files = [];

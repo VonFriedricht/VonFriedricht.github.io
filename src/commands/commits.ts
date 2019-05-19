@@ -21,7 +21,7 @@ commits.funct = async (bot: Guide, message: Message, args: string) => {
   for (let wordgroup of wordgroups) {
     response.push(`\`${wordgroup.join("\n")}\``);
   }
-  message.channel.send(response.join("\n"));
+  message.channel.send(response.join("\n\n"));
 };
 
 module.exports = commits;

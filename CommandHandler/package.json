@@ -2,8 +2,8 @@
   "name": "vnft-commandhandler",
   "version": "1.0.29b",
   "description": "Discord CommandHandler for TypeScript or JavaScript",
-  "main": "lib/src",
-  "types": "lib/src",
+  "main": "lib",
+  "types": "lib",
   "scripts": {
     "test": "node lib",
     "build": "rm -rf lib && tsc"

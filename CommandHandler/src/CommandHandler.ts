@@ -125,4 +125,11 @@ export class CommandHandler extends Client {
       }
     }
   }
+
+  /**
+   * adds a .help command
+   */
+  enableHelp(){
+    this.addCommand(require("./help"));
+  }
 }

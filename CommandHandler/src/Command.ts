@@ -90,14 +90,6 @@ export class Command {
         return true;
       }
     }
-    /*
-    if( 
-      ( this.whitelist.users.some(w=>w(author)) || this.whitelist.roles.some(w=>roles.some(r=>w(r))) )
-      &&
-      !( this.blacklist.users.some(b=>b(author)) || this.blacklist.roles.some(b=>roles.some(r=>b(r))) )
-    ){
-      return true
-    }*/
 
     return false;
   }

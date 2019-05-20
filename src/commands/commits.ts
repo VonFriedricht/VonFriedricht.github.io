@@ -1,4 +1,4 @@
-import { Command } from "vnft-commandhandler/lib/src";
+import { Command } from "vnftjs";
 import { Guide } from "classes/Guide";
 import { Message } from "discord.js";
 

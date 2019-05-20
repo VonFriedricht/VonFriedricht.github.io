@@ -1,4 +1,4 @@
-import { Command } from "vnft-commandhandler";
+import { Command } from "vnftjs";
 import { Client, Message, PresenceStatus } from "discord.js";
 
 const Presences: PresenceStatus[] = ["online", "idle", "dnd", "invisible"];

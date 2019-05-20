@@ -1,4 +1,4 @@
-import { CommandHandler } from "vnft-commandhandler";
+import { CommandHandler } from "vnftjs";
 import axios from "axios";
 
 export class Guide extends CommandHandler {

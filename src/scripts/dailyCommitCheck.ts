@@ -30,7 +30,7 @@ check.funct = async (bot: Guide): Promise<boolean | void> => {
       for (let wordgroup of wordgroups) {
         response.push(`\`${wordgroup.join("\n")}\``);
       }
-      vnft.send(response.join("\n"));
+      vnft.send(response.join("\n\n"));
     }
   }
 };

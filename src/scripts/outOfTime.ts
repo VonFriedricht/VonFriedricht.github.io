@@ -25,8 +25,7 @@ outOfTime.funct = async (bot: Guide) => {
     if (!alreadySendFlag) {
       vnft.send(flag);
     }
-  }
-  else {
+  } else {
     let timeShort = new Date().getHours() > 15;
     if (timeShort) {
       let reminder = `${made} by ${required} done`;

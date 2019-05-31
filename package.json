@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/main.js",
     "test": "node dist/secret.main.js",
+    "secret": "npm run build && node dist/secret.main.js",
     "build": "rm -rf dist/* && tsc",
     "postinstall": "tsc"
   },

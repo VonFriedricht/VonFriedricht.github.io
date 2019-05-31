@@ -15,8 +15,8 @@ check.funct = async (bot: Guide): Promise<boolean | void> => {
     });
   } else {
     let messages = await vnft.dmChannel.fetchMessages();
-    let has_send = messages.some(m => m.content == flag);
-    if (!has_send) {
+    let alreadySent = messages.some(m => m.content == flag);
+    if (!alreadySent) {
       vnft.send(flag);
       // Message:  Commits: Made / Required
       let made = await bot.fetchMadeCommits("VonFriedricht");

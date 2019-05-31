@@ -18,7 +18,15 @@ outOfTime.funct = async (bot: Guide) => {
 
   let done = made >= required;
 
-  if (!done) {
+  if (done) {
+    let flag = "Done!";
+    let messages = await vnft.dmChannel.fetchMessages();
+    let alreadySendFlag = messages.some(m => m.content == flag);
+    if (!alreadySendFlag) {
+      vnft.send(flag);
+    }
+  }
+  else {
     let timeShort = new Date().getHours() > 15;
     if (timeShort) {
       let reminder = `${made} by ${required} done`;

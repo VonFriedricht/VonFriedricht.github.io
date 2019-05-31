@@ -3,6 +3,7 @@ import { Guide } from "classes/Guide";
 import { time } from "vnft-tools";
 
 const outOfTime = new Script();
+outOfTime.intervalTime = time.hour / 2;
 
 outOfTime.funct = async (bot: Guide) => {
   let vnft = bot.users.find(u => u.id == "397063436049186818");
@@ -34,7 +35,5 @@ outOfTime.funct = async (bot: Guide) => {
     }
   }
 };
-
-outOfTime.intervalTime = time.hour / 2;
 
 module.exports = outOfTime;

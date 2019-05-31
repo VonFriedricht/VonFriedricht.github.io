@@ -26,9 +26,10 @@ outOfTime.funct = async (bot: Guide) => {
       vnft.send(flag);
     }
   } else {
+    let nextWord = await bot.nextWords(1)
     let timeShort = new Date().getHours() > 15;
     if (timeShort) {
-      let reminder = `${made} by ${required} done`;
+      let reminder = `${made} by ${required} done\nNext Word: ${nextWord}`;
       vnft.send(reminder);
     }
   }

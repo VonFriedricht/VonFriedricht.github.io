@@ -5,11 +5,11 @@
   "main": "main.js",
   "scripts": {
     "start": "node dist/main.js",
-    "test": "node dist/secret.main.js",
+    "test": "npm run build && mocha",
     "secret": "npm run build && node dist/secret.main.js",
     "build": "rm -rf dist/* && tsc",
     "prettier": "prettier --print-width 120 --write ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*}.ts",
-    "postinstall": "tsc"
+    "postinstall": "tsc && mocha"
   },
   "repository": {
     "type": "git",

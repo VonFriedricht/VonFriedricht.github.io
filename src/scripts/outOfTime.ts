@@ -20,7 +20,7 @@ outOfTime.funct = async (bot: Guide) => {
   let done = made >= required;
 
   if (done) {
-    let flag = "Done!";
+    let flag = `Day ${bot.day} Done!`;
     let messages = await vnft.dmChannel.fetchMessages();
     let alreadySent = messages.some(m => m.content == flag);
     if (!alreadySent) {

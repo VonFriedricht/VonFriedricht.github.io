@@ -5,14 +5,14 @@
         "preserveConstEnums": true,
         "target": "esnext",
         "outDir": "dist",
-        "rootDir": "src",
-        "baseUrl": "src"
+        "types": ["node", "mocha"]
     },
+    "include":[
+      "./src/**/*.ts",
+      "./test/**/*.ts"
+    ],
     "exclude": [
         "CommandHandler/**",
         "Tools/**"
-    ],
-    "paths": {
-        "classes/*": ["re_guide/classes/*"],
-    }
+    ]
 }  

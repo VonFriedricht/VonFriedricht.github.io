@@ -1,6 +1,6 @@
 import { Script } from "vnftjs";
 import { time } from "vnft-tools";
-import { Guide } from "classes/Guide";
+import { Guide } from "../classes/Guide";
 
 const check = new Script();
 check.intervalTime = time.hour;

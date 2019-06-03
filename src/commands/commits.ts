@@ -1,5 +1,5 @@
 import { Command } from "vnftjs";
-import { Guide } from "classes/Guide";
+import { Guide } from "../classes/Guide";
 import { Message } from "discord.js";
 
 const commits = new Command();

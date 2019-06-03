@@ -1,5 +1,5 @@
 import { Script } from "vnftjs";
-import { Guide } from "classes/Guide";
+import { Guide } from "../classes/Guide";
 import { time } from "vnft-tools";
 
 const outOfTime = new Script();

@@ -1,6 +1,6 @@
 import { Command } from "vnftjs";
 import { Attachment } from "discord.js";
-import { Guide } from "classes/Guide";
+import { Guide } from "../classes/Guide";
 
 const Canvas = require("canvas");
 

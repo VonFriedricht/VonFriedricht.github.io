@@ -16,4 +16,4 @@ next.funct = async (bot: Guide, message: Message, args: string = "5"): Promise<v
   message.channel.send(response.join("\n"));
 };
 
-module.exports = next;
+export = next;

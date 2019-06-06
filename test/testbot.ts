@@ -1,6 +1,7 @@
 import * as assert from "assert";
 import { CommandHandler } from "vnftjs";
 import * as path from "path";
+import { Message, DMChannel } from "discord.js";
 
 describe("setup", async () => {
   const client = new CommandHandler();

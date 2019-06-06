@@ -21,4 +21,4 @@ setStatus.funct = function(bot: Client, message: Message, args: string) {
   }
 };
 
-module.exports = setStatus;
+export = setStatus;

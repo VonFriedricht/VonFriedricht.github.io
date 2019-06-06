@@ -12,4 +12,4 @@ activity.funct = async (bot: Client, message: Message, args: string) => {
 
 activity.addUserWhitelist(u => u.id == "397063436049186818");
 
-module.exports = activity;
+export = activity;

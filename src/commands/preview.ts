@@ -50,4 +50,4 @@ preview.funct = async (bot: Guide, message, args) => {
   message.channel.send(args, attachment);
 };
 
-module.exports = preview;
+export = preview;

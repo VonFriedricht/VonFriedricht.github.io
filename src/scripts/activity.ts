@@ -8,7 +8,7 @@ activity.intervalTime = time.hour;
 activity.funct = async (client: Guide) => {
   const done = await client.fetchMadeCommits("VonFriedricht");
   const required = client.requiredCommits;
-  if (done == required) {
+  if (done >= required) {
     client.user.setActivity(`Done!`);
   } else {
     const progress = `${done} / ${required}`;

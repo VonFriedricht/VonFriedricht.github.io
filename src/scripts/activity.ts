@@ -6,7 +6,7 @@ const activity = new Script();
 activity.intervalTime = time.minute * 5;
 
 activity.funct = async (client: Guide) => {
-  const done = await client.fetchMadeCommits("VonFriedricht");
+  const done = await client.fetchMadeCommits(client.githubUser);
   const required = client.requiredCommits;
   if (done >= required) {
     client.user.setActivity(`Done!`);

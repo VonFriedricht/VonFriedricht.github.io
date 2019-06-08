@@ -10,7 +10,7 @@ commits.funct = async (bot: Guide, message: Message, args: string) => {
   message.channel.send(`Current Day: ${bot.day}`);
 
   // Message:  Commits: Made / Required
-  let made = await bot.fetchMadeCommits("VonFriedricht");
+  let made = await bot.fetchMadeCommits(bot.githubUser);
   let required = bot.requiredCommits;
   message.channel.send(`Commits: ${made} / ${required}`);
 

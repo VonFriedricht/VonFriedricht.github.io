@@ -6,7 +6,7 @@ const check = new Script();
 check.intervalTime = time.hour;
 
 check.funct = async (bot: Guide): Promise<boolean | void> => {
-  let vnft = bot.users.find(u => u.id == "397063436049186818"); // lol, make it an ENV
+  let vnft = bot.discordUser;
   let flag = `Current Day: ${bot.day}`;
 
   if (!vnft.dmChannel) {

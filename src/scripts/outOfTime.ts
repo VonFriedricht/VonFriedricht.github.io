@@ -6,15 +6,14 @@ const outOfTime = new Script();
 outOfTime.intervalTime = time.hour / 2;
 
 outOfTime.funct = async (bot: Guide) => {
-  let vnft = bot.users.find(u => u.id == "397063436049186818");
-  let user = "VonFriedricht";
+  let vnft = bot.discordUser;
 
   if (!vnft.dmChannel) {
     await vnft.send(" ").catch(e => {
       return;
     });
   }
-  let made: number = await bot.fetchMadeCommits(user);
+  let made: number = await bot.fetchMadeCommits(bot.githubUser);
   let required: number = bot.requiredCommits;
 
   let done = made >= required;

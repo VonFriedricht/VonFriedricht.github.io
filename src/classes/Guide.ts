@@ -101,25 +101,11 @@ export class Guide extends CommandHandler {
     return next_words;
   }
 
-  set discordUser(user: User | string | findTerm ) {
-    if (user instanceof User) {
-      this._discordUser = user;
-    }
-    else if (typeof user == "string") {
-      user = this.users.find(u => u.id == user);
-      if (user) {
-        this._discordUser = user;
-      }
-    }
-    else {
-      user = this.users.find(user);
-      if (user) {
-        this._discordUser = user;
-      }
-    }
+  set discordUser(user: User){
+    this._discordUser = user;
   }
 
-  get discordUser() {
+  get discordUser() : User {
     return this._discordUser;
   }
 }

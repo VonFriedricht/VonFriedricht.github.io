@@ -16,7 +16,7 @@ guide.on("error", e => {
   guide.users.find(u => u.username == "VonFriedricht").send(e.message);
 });
 
-guide.login(process.env.discord_token).then(()=>{
+guide.login(process.env.discord_token).then(() => {
   guide.discordUser = guide.users.find(u => u.username == "VonFriedricht");
   guide.githubUser = "VonFriedricht";
 });

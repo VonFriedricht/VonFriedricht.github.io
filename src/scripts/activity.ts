@@ -15,6 +15,6 @@ activity.funct = async (client: Guide) => {
     const nextword = await client.nextWords(1);
     client.user.setActivity(`${progress} ${nextword}`);
   }
-}
+};
 
 module.exports = activity;

@@ -1,11 +1,17 @@
 import { CommandHandler } from "vnftjs";
 import axios from "axios";
+import { User } from "discord.js";
+
+type findTerm = (target: any) => boolean
 
 export class Guide extends CommandHandler {
   targetImage: number[];
   topLeftDay: Date;
   tileSizes: number[];
   lyrics: string[];
+  
+  githubUser: string;
+  _discordUser: User;
 
   constructor() {
     super();
@@ -93,5 +99,27 @@ export class Guide extends CommandHandler {
     }
 
     return next_words;
+  }
+
+  set discordUser(user: User | string | findTerm ) {
+    if (user instanceof User) {
+      this._discordUser = user;
+    }
+    else if (typeof user == "string") {
+      user = this.users.find(u => u.id == user);
+      if (user) {
+        this._discordUser = user;
+      }
+    }
+    else {
+      user = this.users.find(user);
+      if (user) {
+        this._discordUser = user;
+      }
+    }
+  }
+
+  get discordUser() {
+    return this._discordUser;
   }
 }

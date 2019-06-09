@@ -52,7 +52,7 @@ export class Guide extends CommandHandler {
 
   async fetchLastCommits(count: number, url?: string): Promise<string[]> {
     if (!url) {
-      url = this.githubUrl+"/commits/master";
+      url = this.githubUrl + "/commits/master";
     }
     let site = await axios.get(url);
     let sitecontent: string = site.data;
@@ -107,14 +107,14 @@ export class Guide extends CommandHandler {
   }
 
   get discordUser(): User {
-    return this._discordUser || this.users.find(u => u.username == "VonFriedricht");;
+    return this._discordUser || this.users.find(u => u.username == "VonFriedricht");
   }
 
   set githubUser(user: string) {
     this._githubUser = user;
   }
 
-  get githubUser(){
+  get githubUser() {
     return this._githubUser || "VonFriedricht";
   }
 

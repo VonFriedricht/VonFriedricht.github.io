@@ -3,7 +3,7 @@ import { time } from "vnft-tools";
 import { Guide } from "../classes/Guide";
 
 const activity = new Script();
-activity.intervalTime = time.minute * 5;
+activity.intervalTime = time.minute;
 
 activity.funct = async (client: Guide) => {
   const done = await client.fetchMadeCommits(client.githubUser);

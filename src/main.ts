@@ -13,7 +13,7 @@ guide.targetImage = process.env.commit_image.split("").map(e => Number(e));
 guide.lyrics = process.env.lyrics.split("+");
 
 guide.on("error", e => {
-  guide.users.find(u => u.username == "VonFriedricht").send(e.message);
+  guide.discordUser.send(e.message);
 });
 
 guide.login(process.env.discord_token).then(() => {

@@ -19,7 +19,7 @@ check.funct = async (bot: Guide): Promise<boolean | void> => {
     if (!alreadySent) {
       vnft.send(flag);
       // Message:  Commits: Made / Required
-      let made = await bot.fetchMadeCommits("VonFriedricht");
+      let made = await bot.fetchMadeCommits(bot.githubUser);
       let required = bot.requiredCommits;
       vnft.send(`Commits: ${made} / ${required}`);
 

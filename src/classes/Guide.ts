@@ -10,7 +10,8 @@ export class Guide extends CommandHandler {
   tileSizes: number[];
   lyrics: string[];
 
-  githubUser: string;
+  _githubUser: string;
+  _githubUrl: string;
   _discordUser: User;
 
   constructor() {
@@ -51,7 +52,7 @@ export class Guide extends CommandHandler {
 
   async fetchLastCommits(count: number, url?: string): Promise<string[]> {
     if (!url) {
-      url = "https://github.com/VonFriedricht/Weight-of-the-World/commits/master";
+      url = this.githubUrl+"/commits/master";
     }
     let site = await axios.get(url);
     let sitecontent: string = site.data;
@@ -106,6 +107,22 @@ export class Guide extends CommandHandler {
   }
 
   get discordUser(): User {
-    return this._discordUser;
+    return this._discordUser || this.users.find(u => u.username == "VonFriedricht");;
+  }
+
+  set githubUser(user: string) {
+    this._githubUser = user;
+  }
+
+  get githubUser(){
+    return this._githubUser || "VonFriedricht";
+  }
+
+  set githubUrl(url: string) {
+    this._githubUrl = url;
+  }
+
+  get githubUrl() {
+    return this._githubUrl || "https://github.com/VonFriedricht/Weight-of-the-World";
   }
 }

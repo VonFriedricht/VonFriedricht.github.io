@@ -87,6 +87,7 @@ const client = new CommandHandler();
 client.prefix = "!";
 
 client.loadCommands(path.join(__dirname, "commands"));
+client.loadCommands(path.join(__dirname, "scripts"));
 
 client.login("Discord Token");
 ```
@@ -175,6 +176,7 @@ const client = new CommandHandler();
 client.prefix = "!";
 
 client.loadCommands(path.join(__dirname, "commands"));
+client.loadCommands(path.join(__dirname, "scripts"));
 
 client.login("Discord Token");
 ```

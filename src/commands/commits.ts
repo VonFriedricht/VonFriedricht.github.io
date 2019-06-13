@@ -4,6 +4,7 @@ import { Message } from "discord.js";
 
 const commits = new Command();
 commits.name = "commits";
+commits.addAlias("c")
 
 commits.funct = async (bot: Guide, message: Message, args: string) => {
   // Message:  Current Day: day

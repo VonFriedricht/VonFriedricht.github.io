@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node dist/src/main.js",
-    "test": "npm run build && mocha dist/test",
+    "test": "exit 1",
+    "gittest": "npm run build && mocha dist/test",
     "secret": "npm run build && node dist/src/secret.main.js",
     "build": "rm -rf dist/* && tsc",
     "prettier": "prettier --print-width 120 --write ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*}.ts",

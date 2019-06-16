@@ -2,7 +2,7 @@ import { Command } from "vnftjs";
 import { Attachment } from "discord.js";
 import { Guide } from "../classes/Guide";
 
-const Canvas = require("canvas");
+import * as Canvas from "canvas";
 
 const preview = new Command();
 preview.name = "preview";

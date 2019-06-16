@@ -24,5 +24,5 @@ commits.funct = async (bot: Guide, message: Message, args: string) => {
   }
   message.channel.send(response.join("\n\n"));
 };
-
+console.log(commits)
 export = commits;

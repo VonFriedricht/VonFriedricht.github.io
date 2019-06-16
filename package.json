@@ -10,7 +10,7 @@
     "secret": "npm run build && node dist/src/secret.main.js",
     "build": "rm -rf dist/* && tsc",
     "prettier": "prettier --print-width 120 --write ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*}.ts",
-    "postinstall": "tsc && mocha dist/test"
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",

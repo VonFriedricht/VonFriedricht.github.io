@@ -1,24 +1,24 @@
-import { Command } from "vnftjs";
-import { Client, Message, PresenceStatus } from "discord.js";
+import { Command } from 'vnftjs'
+import { Client, Message, PresenceStatus } from 'discord.js'
 
-const Presences: PresenceStatus[] = ["online", "idle", "dnd", "invisible"];
+const Presences: PresenceStatus[] = ['online', 'idle', 'dnd', 'invisible']
 
 const translations = {
-  green: "online",
-  yellow: "idle",
-  red: "dnd",
-  gray: "invisible"
-};
+  green: 'online',
+  yellow: 'idle',
+  red: 'dnd',
+  gray: 'invisible'
+}
 
-const setStatus = new Command();
-setStatus.name = "setStatus";
+const setStatus = new Command()
+setStatus.name = 'setStatus'
 setStatus.funct = function(bot: Client, message: Message, args: string) {
-  args = args.toLowerCase();
-  args = translations[args] || args;
-  let presence = Presences.find(p => p == args);
+  args = args.toLowerCase()
+  args = translations[args] || args
+  let presence = Presences.find(p => p == args)
   if (presence) {
-    bot.user.setStatus(presence);
+    bot.user.setStatus(presence)
   }
-};
+}
 
-export = setStatus;
+export = setStatus

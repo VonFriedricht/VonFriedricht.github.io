@@ -1,5 +1,5 @@
-import { CommandHandler } from "./CommandHandler";
-import { Command } from "./Command";
-import { Script } from "./Script";
+import { CommandHandler } from './CommandHandler'
+import { Command } from './Command'
+import { Script } from './Script'
 
-export { CommandHandler, Command, Script };
+export { CommandHandler, Command, Script }

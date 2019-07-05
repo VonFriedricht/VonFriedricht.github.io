@@ -1,39 +1,39 @@
-import * as assert from "assert";
-import { CommandHandler } from "vnftjs";
-import * as path from "path";
-import { Message, DMChannel } from "discord.js";
+import * as assert from 'assert'
+import { CommandHandler } from 'vnftjs'
+import * as path from 'path'
+import { Message, DMChannel } from 'discord.js'
 
-describe("setup", async () => {
-  const client = new CommandHandler();
+describe('setup', async () => {
+  const client = new CommandHandler()
 
   before(async () => {
-    client.prefix = "!";
-    client.enableDebug();
-    client.enableHelp();
-    client.helpColor = "RED";
+    client.prefix = '!'
+    client.enableDebug()
+    client.enableHelp()
+    client.helpColor = 'RED'
 
-    client.loadCommands(path.join(__dirname, "commands"));
-    client.loadScripts(path.join(__dirname, "scripts"));
+    client.loadCommands(path.join(__dirname, 'commands'))
+    client.loadScripts(path.join(__dirname, 'scripts'))
 
-    await client.login(process.env.test_token);
-  });
+    await client.login(process.env.test_token)
+  })
 
-  it("login success", done => {
-    assert.notEqual(client, "undefined");
-    done();
-  });
+  it('login success', done => {
+    assert.notEqual(client, 'undefined')
+    done()
+  })
 
-  it("help command is in", done => {
-    assert.equal(client.commands.some(c => c.name == "help"), true);
-    done();
-  });
+  it('help command is in', done => {
+    assert.equal(client.commands.some(c => c.name == 'help'), true)
+    done()
+  })
 
-  it("ping command is in", done => {
-    assert.equal(client.commands.some(c => c.name == "ping"), true);
-    done();
-  });
+  it('ping command is in', done => {
+    assert.equal(client.commands.some(c => c.name == 'ping'), true)
+    done()
+  })
 
   after(() => {
-    client.full_destroy();
-  });
-});
+    client.full_destroy()
+  })
+})

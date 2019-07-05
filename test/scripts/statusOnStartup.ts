@@ -1,9 +1,9 @@
-import { Script } from "vnftjs";
+import { Script } from 'vnftjs'
 
-const status = new Script();
+const status = new Script()
 
 status.funct = client => {
-  client.user.setStatus("dnd");
-};
+  client.user.setStatus('dnd')
+}
 
-export = status;
+export = status

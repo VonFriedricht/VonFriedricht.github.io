@@ -1,12 +1,12 @@
-import { Command } from "vnftjs";
+import { Command } from 'vnftjs'
 
-const ping = new Command();
-ping.name = "ping";
+const ping = new Command()
+ping.name = 'ping'
 
 ping.funct = (client, message, args) => {
-  message.reply("pong!");
-};
+  message.reply('pong!')
+}
 
-ping.addUserWhitelist(u => u.id == "397063436049186818");
+ping.addUserWhitelist(u => u.id == '397063436049186818')
 
-module.exports = ping;
+module.exports = ping

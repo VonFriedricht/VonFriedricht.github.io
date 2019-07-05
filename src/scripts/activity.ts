@@ -10,7 +10,6 @@ activity.funct = async (client: Guide) => {
   const required = client.requiredCommits;
   if (done >= required) {
     client.user.setActivity(`Done!`);
-    console.log("Done!");
   } else {
     const progress = `${done} / ${required}`;
     const nextword = await client.nextWords(1);

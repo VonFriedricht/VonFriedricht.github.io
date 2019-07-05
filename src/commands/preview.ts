@@ -6,6 +6,7 @@ import * as Canvas from "canvas";
 
 const preview = new Command();
 preview.name = "preview";
+preview.addAlias("p")
 preview.funct = async (bot: Guide, message, args) => {
   const pixels = bot.targetImage;
   const colors = [null, "#ebedf0", "#c6e48b", "#7bc96f", "#196127"];

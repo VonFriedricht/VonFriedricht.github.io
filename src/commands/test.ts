@@ -1,7 +1,9 @@
 import { Command } from "vnftjs";
 
 const reee = new Command()
+
 reee.name = "reee"
+
 reee.funct = (bot, message, args) => {
     try{
         const Canvas = require('canvas')

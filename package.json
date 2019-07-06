@@ -30,7 +30,7 @@
     "express": "latest",
     "nodemon": "latest",
     "vnft-tools": "latest",
-    "vnftjs": "^1.2.4"
+    "vnftjs": "^1.2.5"
   },
   "engines": {
     "node": "10.5.0"

@@ -3,6 +3,8 @@ import { Attachment } from 'discord.js'
 import { Guide } from '../classes/Guide'
 
 const preview = new Command()
+preview.name = "preview"
+preview.addAlias("p")
 
 try {
   const Canvas = require('canvas')

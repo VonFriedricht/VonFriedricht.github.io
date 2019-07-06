@@ -5,6 +5,7 @@
         "preserveConstEnums": true,
         "target": "esnext",
         "outDir": "dist",
+        "allowJs": true,
         "types": ["node", "mocha"]
     },
     "include":[

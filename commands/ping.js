@@ -1,4 +1,4 @@
-import { Command } from "vnftjs"
+const { Command } = require( "vnftjs")
 
 const ping = new Command()
 ping.name = 'next'

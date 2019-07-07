@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/VonFriedricht/weightoftheworld/issues"
   },
-  "homepage": "https://github.com/VonFriedricht/weightoftheworld#readme"
+  "homepage": "https://github.com/VonFriedricht/weightoftheworld#readme",
+  "dependencies": {
+    "vnftjs": "^1.2.5"
+  }
 }

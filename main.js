@@ -7,4 +7,4 @@ bot.prefix = '.'
 
 bot.loadCommands(path.join(__dirname, 'commands'))
 
-guide.login(process.env.discord_token)
+bot.login(process.env.discord_token)

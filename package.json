@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/VonFriedricht/weightoftheworld#readme",
   "dependencies": {
+    "canvas": "^2.5.0",
     "vnftjs": "^1.2.5"
   }
 }

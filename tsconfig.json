@@ -1,0 +1,13 @@
+{  
+    "compilerOptions": {  
+        "module": "commonjs",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "target": "esnext",
+        "outDir": "dist",
+        "types": ["node"]
+    },
+    "include":[
+      "./src/**/*.ts"
+    ]
+}

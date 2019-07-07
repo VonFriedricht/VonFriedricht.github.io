@@ -4,7 +4,10 @@
   "description": "code: bot that helps me make [the pixelart at my profile 2019](https://github.com/VonFriedricht?tab=overview&to=2019-12-31),  \r [commits](https://github.com/VonFriedricht/weightoftheworld/commits/master?after=f3c20ae8c5026e7973b9a2dee6f3eaefaf32c9b0+1): weight of the world - nier automata",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist/* && tsc",
+    "prettier": "prettier --config .prettierrc --write ./{*,*/*,*/*/*,*/*/*/*,*/*/*/*/*}.ts",
+    "postinstall": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,7 +20,15 @@
   },
   "homepage": "https://github.com/VonFriedricht/weightoftheworld#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "canvas": "^2.5.0",
     "vnftjs": "^1.2.5"
+  },
+  "engines": {
+    "node": "10.5.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "typescript": "^3.5.2"
   }
 }

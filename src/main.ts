@@ -6,7 +6,7 @@ let guide = new Guide()
 guide.prefix = '.'
 
 guide.loadCommands(path.join(__dirname, 'commands'))
-guide.loadScripts(path.join(__dirname, 'scripts'))
+//guide.loadScripts(path.join(__dirname, 'scripts'))
 
 guide.topLeftDay = new Date(process.env.top_left_day)
 guide.targetImage = process.env.commit_image.split('').map(e => Number(e))

@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/VonFriedricht/weightoftheworld#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "canvas": "^2.5.0",
     "vnftjs": "^1.2.5"
   },
